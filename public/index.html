@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#090909" />
+  <meta name="description" content="English Fantasy — your personal English learning space." />
+  <title>English Fantasy | Made By SRABON</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Noto+Sans+Bengali:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="English Fantasy home"><span class="brand-mark">EF</span><span>ENGLISH <b>FANTASY</b></span></a>
+    <span class="creator">Made By <strong>SRABON</strong></span>
+  </header>
+
+  <main>
+    <section id="loginView" class="login-wrap">
+      <div class="login-card glass">
+        <div class="eyebrow"><span class="live-dot"></span> YOUR ENGLISH LEARNING SPACE</div>
+        <div class="hero-monogram">EF</div>
+        <h1>Welcome to <span>EF.</span></h1>
+        <p class="subhead">Explore the beauty of English.</p>
+        <form id="learnerForm" class="login-form">
+          <label for="learnerId">Enter your 4-digit ID <small>তোমার ৪ সংখ্যার ID দাও</small></label>
+          <input id="learnerId" inputmode="numeric" autocomplete="off" maxlength="4" placeholder="e.g. 1234" pattern="[0-9]{4}" required />
+          <button class="gold-button full" type="submit">ENTER ENGLISH FANTASY <span>↗</span></button>
+        </form>
+        <button class="text-button" id="showAdminLogin" type="button">Admin login</button>
+        <div class="login-foot">LEARN <i>•</i> PRACTICE <i>•</i> IMPROVE</div>
+      </div>
+    </section>
+
+    <section id="appView" class="app-shell hidden">
+      <div class="welcome-row">
+        <div><div class="eyebrow">WELCOME TO YOUR LEARNING SPACE</div><h1>English <span>Fantasy</span></h1><p id="learnerWelcome">আজ কী শিখবে?</p></div>
+        <div class="top-actions"><label class="theme-label">Theme <select id="themeSelect" aria-label="Choose theme"><option value="gold">Black &amp; Gold</option><option value="blue">Midnight Blue</option><option value="purple">Royal Purple</option><option value="green">Emerald</option><option value="light">Pearl Light</option></select></label><button class="outline-button" id="logoutButton">Log out</button></div>
+      </div>
+      <section id="learningHub" class="learning-hub">
+        <div class="hub-heading"><div><div class="eyebrow">YOUR LEARNING JOURNEY</div><h2>Explore &amp; Learn</h2><p>এক জায়গায় Grammar, Vocabulary ও Practice.</p></div><div class="progress-card"><strong id="progressPercent">0%</strong><span>Learning progress</span><div class="progress-track"><i id="progressBar"></i></div></div></div>
+        <nav class="hub-nav" aria-label="Learning sections"><button class="hub-tab active" data-tab="levels">Levels</button><button class="hub-tab" data-tab="vocabulary">Vocabulary</button><button class="hub-tab" data-tab="twisters">Tongue Twister</button><button class="hub-tab" data-tab="expressions">Common Expressions</button><button class="hub-tab" data-tab="quiz">Practice Quiz</button></nav>
+        <div id="hubContent" class="hub-content"></div>
+      </section>
+      <div class="search-panel glass">
+        <label for="sentenceInput">Search or write a sentence <small>বাংলা অথবা English sentence লিখো</small></label>
+        <div class="search-line">
+          <input id="sentenceInput" maxlength="500" placeholder="যেমন: বইটি প্রকাশ করা হচ্ছে।" />
+          <button id="searchButton" class="gold-button">Search <span>⌕</span></button>
+        </div>
+        <div class="hint">AI তোমার sentence-এর English translation, বাংলা অর্থ ও natural grammar forms তৈরি করবে।</div>
+      </div>
+      <div id="status" class="status hidden" role="status"></div>
+      <section id="resultArea" class="result-area"></section>
+      <section class="saved-section">
+        <div class="section-heading"><div><div class="eyebrow">YOUR COLLECTION</div><h2>Saved Sentences</h2></div><span class="count" id="savedCount">0</span></div>
+        <div id="savedList" class="saved-list"><p class="muted">Admin-added sentences will appear here.</p></div>
+      </section>
+      <footer class="app-footer">ENGLISH FANTASY <span>•</span> Made By SRABON</footer>
+    </section>
+
+    <section id="adminLoginView" class="login-wrap hidden">
+      <div class="login-card glass admin-card">
+        <button class="back-button" id="backToLogin">← Back</button>
+        <div class="eyebrow">RESTRICTED AREA</div>
+        <h1>Admin <span>Access</span></h1>
+        <p class="subhead">শুধু Website Admin-এর জন্য</p>
+        <form id="adminForm" class="login-form">
+          <label for="adminUsername">Admin ID</label><input id="adminUsername" autocomplete="username" placeholder="Admin username" required />
+          <label for="adminPassword">Password</label><input id="adminPassword" type="password" autocomplete="current-password" placeholder="Password" required />
+          <button class="gold-button full" type="submit">SECURE LOGIN ↗</button>
+        </form>
+      </div>
+    </section>
+
+    <section id="adminView" class="app-shell hidden">
+      <div class="welcome-row"><div><div class="eyebrow">CONTROL CENTER</div><h1>Admin <span>Panel</span></h1><p>Sentence collection পরিচালনা করো।</p></div><button id="adminLogout" class="outline-button">Log out</button></div>
+      <div class="admin-grid">
+        <form id="addSentenceForm" class="glass admin-form">
+          <div class="eyebrow">CONTENT MANAGER</div><h2>Add a sentence</h2>
+          <label>বাংলা Sentence<input id="newBangla" required placeholder="বইটি প্রকাশ করা হচ্ছে।" /></label>
+          <label>English Sentence<input id="newEnglish" required placeholder="The book is being published." /></label>
+          <label>Forms JSON <small>Optional. Leave empty to let AI generate forms when searched.</small><textarea id="newForms" rows="5" placeholder='[{"name":"Affirmative","english":"...","bangla":"..."}]'></textarea></label>
+          <button class="gold-button full" type="submit">SAVE SENTENCE +</button>
+        </form>
+        <div class="glass admin-list-panel"><div class="eyebrow">LIBRARY</div><h2>Manage sentences</h2><div id="adminSavedList" class="saved-list"></div></div>
+      </div>
+    </section>
+  </main>
+  <div id="toast" class="toast hidden"></div>
+  <script src="/app.js" defer></script>
+</body>
+</html>
