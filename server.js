@@ -167,6 +167,24 @@ app.delete("/api/admin/vocabulary/:level/:index", adminOnly, async (req, res) =>
   catch { res.status(400).json({ error: "Could not delete vocabulary word." }); }
 });
 
+
+// Admin-managed learning content. JSON files are stored with the project data.
+const CONTENT_FILES = { presentations: path.join(__dirname, "data", "presentation-topics.json"), twisters: path.join(__dirname, "data", "tongue-twisters.json") };
+async function readContent(type) { const file = CONTENT_FILES[type]; if (!file) throw new Error("Invalid content type."); try { return JSON.parse(await fs.readFile(file, "utf8")); } catch { return []; } }
+async function writeContent(type, items) { const file = CONTENT_FILES[type]; if (!file) throw new Error("Invalid content type."); await fs.mkdir(path.dirname(file), {recursive:true}); await fs.writeFile(file, JSON.stringify(items, null, 2) + "\n", "utf8"); }
+app.get("/api/content/:type", async (req,res) => { try { res.json(await readContent(req.params.type)); } catch { res.status(400).json({error:"Unknown content type."}); } });
+app.post("/api/admin/content/:type", adminOnly, async (req,res) => { try { const type=req.params.type, items=await readContent(type), body=req.body||{}; let item;
+  if(type==="presentations"){ const title=String(body.title||"").trim(), intro=String(body.intro||"").trim(), points=Array.isArray(body.points)?body.points.map(x=>String(x).trim()).filter(Boolean):[], conclusion=String(body.conclusion||"").trim(); if(!title||!intro||!points.length||!conclusion) return res.status(400).json({error:"Title, introduction, key points and conclusion are required."}); item={title,bn:String(body.bn||"").trim(),intro,points,conclusion}; }
+  else if(type==="twisters"){ const text=String(body.text||"").trim(), pronunciation=String(body.pronunciation||"").trim(), meaning=String(body.meaning||"").trim(); if(!text||!pronunciation||!meaning) return res.status(400).json({error:"English text, Bangla pronunciation and meaning are required."}); item={text,pronunciation,meaning}; }
+  else return res.status(400).json({error:"Unknown content type."}); items.push(item); await writeContent(type,items); res.status(201).json(item);
+ } catch { res.status(400).json({error:"Could not save content."}); } });
+app.put("/api/admin/content/:type/:index", adminOnly, async (req,res) => { try { const type=req.params.type, index=Number(req.params.index), items=await readContent(type); if(!Number.isInteger(index)||index<0||index>=items.length) return res.status(404).json({error:"Content not found."}); const b=req.body||{};
+  if(type==="presentations"){ const title=String(b.title||"").trim(),intro=String(b.intro||"").trim(),points=Array.isArray(b.points)?b.points.map(x=>String(x).trim()).filter(Boolean):[],conclusion=String(b.conclusion||"").trim(); if(!title||!intro||!points.length||!conclusion) return res.status(400).json({error:"Complete all presentation fields."}); items[index]={title,bn:String(b.bn||"").trim(),intro,points,conclusion}; }
+  else if(type==="twisters"){ const text=String(b.text||"").trim(),pronunciation=String(b.pronunciation||"").trim(),meaning=String(b.meaning||"").trim(); if(!text||!pronunciation||!meaning) return res.status(400).json({error:"Complete all tongue twister fields."}); items[index]={text,pronunciation,meaning}; }
+  else return res.status(400).json({error:"Unknown content type."}); await writeContent(type,items); res.json(items[index]);
+ } catch { res.status(400).json({error:"Could not update content."}); } });
+app.delete("/api/admin/content/:type/:index", adminOnly, async (req,res) => { try { const type=req.params.type,index=Number(req.params.index),items=await readContent(type); if(!Number.isInteger(index)||index<0||index>=items.length) return res.status(404).json({error:"Content not found."}); items.splice(index,1); await writeContent(type,items); res.json({ok:true}); } catch { res.status(400).json({error:"Could not delete content."}); } });
+
 app.post("/api/generate", aiLimiter, async (req, res) => {
   const sentence = String(req.body?.sentence || "").trim();
   if (!sentence || sentence.length > 500) return res.status(400).json({ error: "Write a sentence (up to 500 characters)." });

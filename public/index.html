@@ -27,7 +27,7 @@
         <p class="subhead">Explore the beauty of English.</p>
         <form id="learnerForm" class="login-form">
           <label for="learnerId">Enter ID Number <small>Login ID Number লিখো</small></label>
-          <input id="learnerId" inputmode="numeric" autocomplete="off" maxlength="4" placeholder="5757" pattern="5757" required />
+          <input id="learnerId" inputmode="numeric" autocomplete="off" maxlength="4" placeholder="Enter ID Number" pattern="5757" required />
           <button class="gold-button full" type="submit">ENTER ENGLISH FANTASY <span>↗</span></button>
         </form>
         <button class="text-button" id="showAdminLogin" type="button">Admin login</button>
@@ -78,12 +78,29 @@
     </section>
 
     <section id="adminView" class="app-shell hidden">
-      <div class="welcome-row"><div><div class="eyebrow">CONTROL CENTER</div><h1>Admin <span>Panel</span></h1><p>Vocabulary ও Sentence collection পরিচালনা করো।</p></div><button id="adminLogout" class="outline-button">Log out</button></div>
+      <div class="welcome-row"><div><div class="eyebrow">CONTROL CENTER</div><h1>Admin <span>Panel</span></h1><p>Vocabulary, Presentation Topics, Tongue Twisters ও Sentences পরিচালনা করো।</p></div><button id="adminLogout" class="outline-button">Log out</button></div>
       <section class="glass admin-vocab-panel">
         <div class="eyebrow">VOCABULARY MANAGER</div><h2>Manage Vocabulary</h2>
         <div class="admin-vocab-toolbar"><label>Level <select id="adminVocabLevel"><option value="1">Level 1</option><option value="2">Level 2</option><option value="3">Level 3</option></select></label><input id="adminVocabSearch" placeholder="Search word..." aria-label="Search vocabulary words"></div>
         <form id="adminVocabForm" class="admin-vocab-form"><input id="adminVocabWord" placeholder="Word" required><input id="adminVocabMeaning" placeholder="বাংলা অর্থ" required><textarea id="adminVocabSynonyms" placeholder="Direct / Close Synonyms (comma separated)"></textarea><textarea id="adminVocabIndirectSynonyms" placeholder="Indirect Synonyms (comma separated)"></textarea><textarea id="adminVocabAntonyms" placeholder="Direct Antonyms (comma separated)"></textarea><textarea id="adminVocabIndirectAntonyms" placeholder="Indirect Antonyms (comma separated)"></textarea><div class="admin-vocab-actions"><button class="gold-button" type="submit" id="adminVocabSave">Add Word</button><button class="outline-button" type="button" id="adminVocabCancel">Clear</button></div></form>
         <div id="adminVocabList" class="admin-vocab-list"></div>
+      </section>
+      <section class="glass admin-vocab-panel admin-content-panel">
+        <div class="eyebrow">PRESENTATION MANAGER</div><h2>Manage Presentation Topics</h2>
+        <form id="adminPresentationForm" class="admin-vocab-form">
+          <input id="adminPresentationTitle" placeholder="Topic title" required><input id="adminPresentationBn" placeholder="বাংলা শিরোনাম">
+          <textarea id="adminPresentationIntro" placeholder="Introduction" required></textarea>
+          <textarea id="adminPresentationPoints" placeholder="Key points (one per line)" required></textarea>
+          <textarea id="adminPresentationConclusion" placeholder="Conclusion" required></textarea>
+          <div class="admin-vocab-actions"><button class="gold-button" id="adminPresentationSave" type="submit">Add Topic</button><button class="outline-button" id="adminPresentationCancel" type="button">Clear</button></div>
+        </form><div id="adminPresentationList" class="admin-vocab-list"></div>
+      </section>
+      <section class="glass admin-vocab-panel admin-content-panel">
+        <div class="eyebrow">TONGUE TWISTER MANAGER</div><h2>Manage Tongue Twisters</h2>
+        <form id="adminTwisterForm" class="admin-vocab-form">
+          <input id="adminTwisterText" placeholder="English tongue twister" required><input id="adminTwisterPronunciation" placeholder="বাংলা উচ্চারণ" required><textarea id="adminTwisterMeaning" placeholder="বাংলা অর্থ" required></textarea>
+          <div class="admin-vocab-actions"><button class="gold-button" id="adminTwisterSave" type="submit">Add Tongue Twister</button><button class="outline-button" id="adminTwisterCancel" type="button">Clear</button></div>
+        </form><div id="adminTwisterList" class="admin-vocab-list"></div>
       </section>
       <div class="admin-grid">
         <form id="addSentenceForm" class="glass admin-form">

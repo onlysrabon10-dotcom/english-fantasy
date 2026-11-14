@@ -1028,7 +1028,7 @@ const commonExpressions = [
   }
 ];
 
-const twisterGroups = [
+let twisterGroups = [
   { title: "Tongue Twister — Set 1", items: [
     "How much wood would a woodchuck chuck if a woodchuck could chuck wood?",
     "Green grape fruit, ripe grape fruit.",
@@ -1209,7 +1209,7 @@ async function loadSaved() {
   $("savedList").innerHTML = items.length ? items.map(item => `<div class="saved-item"><div><strong>${escapeHtml(item.bangla)}</strong><span>${escapeHtml(item.english)}</span></div><button class="copy-button" data-load="${encodeURIComponent(item.bangla)}">Use</button></div>`).join("") : '<p class="muted">এখনো কোনো sentence যোগ করা হয়নি। Admin panel থেকে যোগ করা যাবে।</p>';
   $("savedList").querySelectorAll("[data-load]").forEach(btn => btn.addEventListener("click", () => { $("sentenceInput").value = decodeURIComponent(btn.dataset.load); $("sentenceInput").focus(); }));
 }
-const presentationTopics = [
+let presentationTopics = [
   { title:"Youth Empowerment", bn:"যুবসমাজের ক্ষমতায়ন", intro:"Today I would like to talk about youth empowerment. Young people can help build a better future when they have education, skills, confidence and opportunities.", points:["Education and skill development","Youth participation in society","Leadership, innovation and responsibility"] },
   { title:"The Importance of Education", bn:"শিক্ষার গুরুত্ব", intro:"Education is one of the most powerful tools for personal and social development. It gives us knowledge, confidence and the ability to make better decisions.", points:["Knowledge and critical thinking","Equal opportunities","Education for a better society"] },
   { title:"Climate Change and Our Responsibility", bn:"জলবায়ু পরিবর্তন ও আমাদের দায়িত্ব", intro:"Climate change affects people, animals and the environment. Everyone can take small steps to protect our planet.", points:["Causes and effects of climate change","Planting trees and reducing waste","Clean energy and personal responsibility"] },
@@ -1234,9 +1234,15 @@ function renderPresentationTopics(items = presentationTopics) {
 function openPresentationTopic(index) {
   const item=presentationTopics[index]; if(!item) return;
   const host=$("hubContent");
-  host.innerHTML=`<div class="hub-detail presentation-detail"><div class="detail-top"><div><div class="eyebrow">PRESENTATION TOPIC · ${String(index+1).padStart(2,'0')}</div><h3>${escapeHtml(item.title)}</h3><p class="muted">${escapeHtml(item.bn)}</p></div><div class="page-top-actions"><button class="back-level" data-home-presentations>⌂ Home</button><button class="back-level" data-back-presentations>← Back</button></div></div><section class="presentation-speech"><h4>Introduction</h4><p>${escapeHtml(item.intro)}</p><h4>Key Points</h4><ul>${item.points.map(x=>`<li>${escapeHtml(x)}</li>`).join('')}</ul><h4>Conclusion</h4><p>In conclusion, this topic is important in our daily lives. If we understand it and take positive steps, we can make a meaningful difference. Thank you everyone for listening.</p><button class="hub-action" data-speak="${encodeURIComponent(item.intro)}">🔊 Listen to Introduction</button></section></div>`;
+  const conclusion=item.conclusion||"In conclusion, this topic is important in our daily lives. If we understand it and take positive steps, we can make a meaningful difference. Thank you everyone for listening.";
+  const fullSpeech=`${item.title}. Introduction. ${item.intro} Key points. ${item.points.join(". ")}. Conclusion. ${conclusion}`;
+  host.innerHTML=`<div class="hub-detail presentation-detail"><div class="detail-top"><div><div class="eyebrow">PRESENTATION TOPIC · ${String(index+1).padStart(2,'0')}</div><h3>${escapeHtml(item.title)}</h3><p class="muted">${escapeHtml(item.bn||"")}</p></div><div class="page-top-actions"><button class="back-level" data-home-presentations>⌂ Home</button><button class="back-level" data-back-presentations>← Back</button></div></div><section class="presentation-speech"><h4>Introduction</h4><p>${escapeHtml(item.intro)}</p><h4>Key Points</h4><ul>${item.points.map(x=>`<li>${escapeHtml(x)}</li>`).join('')}</ul><h4>Conclusion</h4><p>${escapeHtml(conclusion)}</p><div class="presentation-audio-controls"><label>Voice <select id="presentationVoice"><option value="en-US">American English</option><option value="en-GB">British English</option></select></label><button class="hub-action primary" data-presentation-speak="${encodeURIComponent(fullSpeech)}">🔊 Listen to Full Presentation</button></div></section></div>`;
 }
 
+async function loadLearningContent(){
+  try { const [p,t]=await Promise.all([api("/api/content/presentations"),api("/api/content/twisters")]); if(Array.isArray(p)&&p.length) presentationTopics=p; if(Array.isArray(t)&&t.length) twisterGroups=[{title:"Tongue Twister Practice",items:t}]; }
+  catch(err){ console.warn("Could not load managed learning content",err); }
+}
 function renderHub(tab = activeTab) {
   activeTab = tab;
   document.querySelectorAll(".hub-tab").forEach(b => b.classList.toggle("active", b.dataset.tab === tab));
@@ -1247,7 +1253,7 @@ function renderHub(tab = activeTab) {
     host.innerHTML = `<div class="vocab-intro"><span>WORD LIBRARY</span><h3>Build your vocabulary</h3><p>শব্দ লিখে Vocabulary খুঁজে নাও। Level অনুযায়ী শব্দও দেখা যাবে।</p></div><input class="word-search" id="vocabGlobalSearch" placeholder="Search vocabulary..." aria-label="Search vocabulary"><div id="vocabSearchResults" class="hub-grid"><p class="empty-note">শব্দ খুঁজতে English word বা বাংলা অর্থ লিখো।</p></div><div class="hub-grid vocab-levels">${[1,2,3,4].map(n => `<article class="hub-card vocab-level-card"><div class="eyebrow">VOCABULARY · 0${n}</div><h3>Level ${n}</h3><p>${vocabularyLevels[n]?`${vocabularyLevels[n].length} words · English words & Bangla meanings`:'More words will be added later'}</p><button class="hub-action ${vocabularyLevels[n]?'primary':''}" ${vocabularyLevels[n]?`data-vocab="${n}"`:''} ${vocabularyLevels[n]?'':'disabled'}>${vocabularyLevels[n]?'Explore words':'Coming Soon'}</button></article>`).join("")}</div><div id="vocabDetail"></div>`;
     $("vocabGlobalSearch").addEventListener("input", e => renderVocabularySearch(e.target.value));
   } else if (tab === "twisters") {
-    host.innerHTML = twisterGroups.map((g,gi) => `<div class="twister-group"><h3>${g.title}</h3><div class="hub-grid">${g.items.map((t,i) => `<div class="twister-card"><p>${escapeHtml(t)}</p><div><button class="hub-action" data-speak="${encodeURIComponent(t)}" aria-label="Listen">🔊 Audio</button><button class="hub-action" data-twister-done="${gi}-${i}">Done</button></div></div>`).join("")}</div></div>`).join("");
+    host.innerHTML = `<div class="twister-group"><h3>Tongue Twister Practice</h3><div class="hub-grid">${twisterGroups.flatMap(g=>g.items).map((item,i)=>{const t=typeof item==="string"?{text:item}:item;return `<div class="twister-card"><p>${escapeHtml(t.text)}</p>${t.pronunciation?`<p class="presentation-bn">উচ্চারণ: ${escapeHtml(t.pronunciation)}</p>`:""}${t.meaning?`<p class="presentation-bn">অর্থ: ${escapeHtml(t.meaning)}</p>`:""}<div><button class="hub-action" data-speak="${encodeURIComponent(t.text)}" aria-label="Listen">🔊 Audio</button><button class="hub-action" data-twister-done="${i}">Done</button></div></div>`}).join("")}</div></div>`;
   } else if (tab === "expressions") {
     host.innerHTML = `<div class="expression-intro"><span>EVERYDAY ENGLISH</span><h3>Common Expressions</h3><p>Expression লিখে খুঁজে নাও, অথবা Level অনুযায়ী দেখো।</p></div><input class="word-search" id="expressionGlobalSearch" placeholder="Search common expressions..." aria-label="Search common expressions"><div id="expressionSearchResults" class="expression-list"><p class="empty-note">Expression খুঁজতে English phrase বা বাংলা অর্থ লিখো।</p></div><div class="hub-grid expression-levels">${commonExpressions.map(g => `<article class="hub-card expression-level-card"><div class="eyebrow">CONVERSATION COLLECTION</div><h3>Level ${g.level}</h3><p>${g.level===1?'Everyday basics':g.level===2?'Natural conversation':'Fluent expression'} · ${g.items.length} expressions</p><button class="hub-action primary" data-expression-level="${g.level}">Open Level ↗</button></article>`).join("")}</div><div id="expressionDetail"></div>`;
     $("expressionGlobalSearch").addEventListener("input", e => renderExpressionSearch(e.target.value));
@@ -1431,7 +1437,7 @@ function openExpressions(level) {
 
 let activeSpeechText = "";
 let activeSpeechButton = null;
-function speak(text, button) {
+function speak(text, button, voiceLang = "en-US") {
   if (!("speechSynthesis" in window)) return toast("এই Browser-এ audio speech support নেই।");
   const synth = window.speechSynthesis;
   if (activeSpeechText === text && synth.speaking) {
@@ -1442,7 +1448,7 @@ function speak(text, button) {
   synth.cancel();
   if (activeSpeechButton) activeSpeechButton.textContent = "▶ Audio";
   activeSpeechText = text; activeSpeechButton = button || null;
-  const utterance = new SpeechSynthesisUtterance(text); utterance.lang = "en-US"; utterance.rate = 0.82;
+  const utterance = new SpeechSynthesisUtterance(text); utterance.lang = voiceLang; utterance.rate = 0.9;
   utterance.onend = utterance.onerror = () => { if (activeSpeechButton) activeSpeechButton.textContent = "▶ Audio"; activeSpeechText = ""; activeSpeechButton = null; };
   if (button) button.textContent = "⏸ Pause";
   synth.speak(utterance);
@@ -1450,7 +1456,7 @@ function speak(text, button) {
 
 $("learnerForm").addEventListener("submit", async e => {
   e.preventDefault(); const id = $("learnerId").value.trim();
-  try { const data = await api("/api/learner-login", { method: "POST", body: JSON.stringify({ id }) }); learnerId = data.learnerId; $("learnerWelcome").textContent = `স্বাগতম! তোমার ID: ${learnerId}`; loadProgress(); show("appView"); renderHub("levels"); await loadSaved(); }
+  try { const data = await api("/api/learner-login", { method: "POST", body: JSON.stringify({ id }) }); learnerId = data.learnerId; $("learnerWelcome").textContent = `স্বাগতম! তোমার ID: ${learnerId}`; loadProgress(); show("appView"); await loadLearningContent(); renderHub("levels"); await loadSaved(); }
   catch (err) { toast(err.message); }
 });
 $("showAdminLogin").addEventListener("click", () => show("adminLoginView"));
@@ -1496,12 +1502,13 @@ $("hubContent").addEventListener("click", e => {
   if (b.dataset.expressionBack !== undefined) { $("expressionDetail").innerHTML = ""; $("hubContent").scrollIntoView({behavior:"smooth",block:"start"}); }
   if (b.dataset.vocabBack !== undefined) { $("vocabDetail").innerHTML = ""; $("hubContent").scrollIntoView({behavior:"smooth",block:"start"}); }
   if (b.dataset.speak) speak(decodeURIComponent(b.dataset.speak), b);
+  if (b.dataset.presentationSpeak) speak(decodeURIComponent(b.dataset.presentationSpeak), b, $("presentationVoice")?.value || "en-US");
   if (b.dataset.lessonDone) { markDone(`lesson-${b.dataset.lessonDone}`); b.textContent = "Learned ✓"; b.disabled = true; }
   if (b.dataset.wordDone !== undefined) { markDone(`word-${b.dataset.wordDone}`); b.textContent = "Learned ✓"; b.disabled = true; }
   if (b.dataset.twisterDone) { markDone(`twister-${b.dataset.twisterDone}`); b.textContent = "Done ✓"; b.disabled = true; }
 });
 
-$("adminForm").addEventListener("submit", async e => { e.preventDefault(); try { const data = await api("/api/admin-login", { method: "POST", body: JSON.stringify({ username: $("adminUsername").value, password: $("adminPassword").value }) }); adminToken = data.token; show("adminView"); await loadAdminItems(); await loadAdminVocabulary(); toast("Admin login successful."); } catch (err) { toast(err.message); } });
+$("adminForm").addEventListener("submit", async e => { e.preventDefault(); try { const data = await api("/api/admin-login", { method: "POST", body: JSON.stringify({ username: $("adminUsername").value, password: $("adminPassword").value }) }); adminToken = data.token; show("adminView"); await loadAdminItems(); await loadAdminVocabulary(); await loadAdminManagedContent(); toast("Admin login successful."); } catch (err) { toast(err.message); } });
 $("adminLogout").addEventListener("click", () => { adminToken = ""; $("adminPassword").value = ""; show("loginView"); });
 
 let adminVocabItems = [];
@@ -1545,6 +1552,24 @@ async function loadAdminItems() {
   $("adminSavedList").querySelectorAll("[data-delete]").forEach(btn => btn.addEventListener("click", async () => { if (!confirm("এই sentence delete করবে?")) return; try { await api(`/api/sentences/${btn.dataset.delete}`, { method: "DELETE", admin: true }); await loadAdminItems(); toast("Sentence deleted."); } catch (err) { toast(err.message); } }));
   $("adminSavedList").querySelectorAll("[data-edit]").forEach(btn => btn.addEventListener("click", async () => { const bangla = prompt("বাংলা Sentence:", decodeURIComponent(btn.dataset.bn)); if (bangla === null) return; const english = prompt("English Sentence:", decodeURIComponent(btn.dataset.en)); if (english === null) return; try { await api(`/api/sentences/${btn.dataset.edit}`, { method: "PUT", admin: true, body: JSON.stringify({ bangla, english, forms: [] }) }); await loadAdminItems(); toast("Sentence updated."); } catch (err) { toast(err.message); } }));
 }
+
+let adminPresentations=[], adminTwisters=[], editingPresentation=null, editingTwister=null;
+function clearPresentationForm(){editingPresentation=null;$("adminPresentationForm").reset();$("adminPresentationSave").textContent="Add Topic";}
+function clearTwisterForm(){editingTwister=null;$("adminTwisterForm").reset();$("adminTwisterSave").textContent="Add Tongue Twister";}
+async function loadAdminManagedContent(){
+  try{[adminPresentations,adminTwisters]=await Promise.all([api("/api/content/presentations",{admin:true}),api("/api/content/twisters",{admin:true})]);renderAdminPresentations();renderAdminTwisters();}catch(err){toast(err.message);}
+}
+function renderAdminPresentations(){const host=$("adminPresentationList");host.innerHTML=adminPresentations.map((x,i)=>`<article class="admin-vocab-row"><div><strong>${escapeHtml(x.title)}</strong><span>${escapeHtml(x.bn||"")}</span></div><div class="admin-actions"><button class="copy-button" data-presentation-edit="${i}">Edit</button><button class="copy-button" data-presentation-delete="${i}">Delete</button></div></article>`).join("")||'<p class="muted">No presentation topics.</p>';
+host.querySelectorAll("[data-presentation-edit]").forEach(b=>b.onclick=()=>{const i=Number(b.dataset.presentationEdit),x=adminPresentations[i];editingPresentation=i;$("adminPresentationTitle").value=x.title;$("adminPresentationBn").value=x.bn||"";$("adminPresentationIntro").value=x.intro;$("adminPresentationPoints").value=x.points.join("\n");$("adminPresentationConclusion").value=x.conclusion||"";$("adminPresentationSave").textContent="Save Changes";$("adminPresentationForm").scrollIntoView({behavior:"smooth",block:"center"});});
+host.querySelectorAll("[data-presentation-delete]").forEach(b=>b.onclick=async()=>{const i=Number(b.dataset.presentationDelete);if(!confirm("Delete this presentation topic?"))return;try{await api(`/api/admin/content/presentations/${i}`,{method:"DELETE",admin:true});await loadAdminManagedContent();toast("Presentation deleted.");}catch(e){toast(e.message);}});}
+function renderAdminTwisters(){const host=$("adminTwisterList");host.innerHTML=adminTwisters.map((x,i)=>`<article class="admin-vocab-row"><div><strong>${escapeHtml(x.text)}</strong><span>${escapeHtml(x.pronunciation)} · ${escapeHtml(x.meaning)}</span></div><div class="admin-actions"><button class="copy-button" data-twister-edit="${i}">Edit</button><button class="copy-button" data-twister-delete="${i}">Delete</button></div></article>`).join("")||'<p class="muted">No tongue twisters.</p>';
+host.querySelectorAll("[data-twister-edit]").forEach(b=>b.onclick=()=>{const i=Number(b.dataset.twisterEdit),x=adminTwisters[i];editingTwister=i;$("adminTwisterText").value=x.text;$("adminTwisterPronunciation").value=x.pronunciation;$("adminTwisterMeaning").value=x.meaning;$("adminTwisterSave").textContent="Save Changes";$("adminTwisterForm").scrollIntoView({behavior:"smooth",block:"center"});});
+host.querySelectorAll("[data-twister-delete]").forEach(b=>b.onclick=async()=>{const i=Number(b.dataset.twisterDelete);if(!confirm("Delete this tongue twister?"))return;try{await api(`/api/admin/content/twisters/${i}`,{method:"DELETE",admin:true});await loadAdminManagedContent();toast("Tongue twister deleted.");}catch(e){toast(e.message);}});}
+$("adminPresentationForm").addEventListener("submit",async e=>{e.preventDefault();const payload={title:$("adminPresentationTitle").value,bn:$("adminPresentationBn").value,intro:$("adminPresentationIntro").value,points:$("adminPresentationPoints").value.split(/\n+/).map(x=>x.trim()).filter(Boolean),conclusion:$("adminPresentationConclusion").value};try{const url=editingPresentation===null?"/api/admin/content/presentations":`/api/admin/content/presentations/${editingPresentation}`;await api(url,{method:editingPresentation===null?"POST":"PUT",admin:true,body:JSON.stringify(payload)});clearPresentationForm();await loadAdminManagedContent();toast("Presentation topic saved.");}catch(e){toast(e.message);}});
+$("adminPresentationCancel").addEventListener("click",clearPresentationForm);
+$("adminTwisterForm").addEventListener("submit",async e=>{e.preventDefault();const payload={text:$("adminTwisterText").value,pronunciation:$("adminTwisterPronunciation").value,meaning:$("adminTwisterMeaning").value};try{const url=editingTwister===null?"/api/admin/content/twisters":`/api/admin/content/twisters/${editingTwister}`;await api(url,{method:editingTwister===null?"POST":"PUT",admin:true,body:JSON.stringify(payload)});clearTwisterForm();await loadAdminManagedContent();toast("Tongue twister saved.");}catch(e){toast(e.message);}});
+$("adminTwisterCancel").addEventListener("click",clearTwisterForm);
+
 $("addSentenceForm").addEventListener("submit", async e => {
   e.preventDefault(); let forms = []; const raw = $("newForms").value.trim();
   if (raw) { try { forms = JSON.parse(raw); if (!Array.isArray(forms)) throw new Error(); } catch { return toast("Forms JSON সঠিক নয়।"); } }
