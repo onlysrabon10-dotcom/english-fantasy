@@ -108,80 +108,8 @@ const sixSentenceSets = [
   ],
   []
 ];
-const words = [
-  // Vocabulary previously practised in earlier chats (including the user's book word ranges)
-  { word:"Bark", meaning:"ঘেউ ঘেউ করা", v1:"Bark", v2:"Barked", v3:"Barked", v4:"Barks", v5:"Barking", example:"Dogs bark at strangers.", bn:"কুকুর অপরিচিত মানুষ দেখলে ঘেউ ঘেউ করে।" },
-  { word:"Bask", meaning:"রোদ পোহানো", v1:"Bask", v2:"Basked", v3:"Basked", v4:"Basks", v5:"Basking", example:"The cat basks in the sun.", bn:"বিড়ালটি রোদ পোহায়।" },
-  { word:"Bet", meaning:"বাজি ধরা", v1:"Bet", v2:"Bet", v3:"Bet", v4:"Bets", v5:"Betting", example:"I bet he will win.", bn:"আমি বাজি ধরছি, সে জিতবে।" },
-  { word:"Bid", meaning:"দর প্রস্তাব করা / আদেশ করা", v1:"Bid", v2:"Bid", v3:"Bid", v4:"Bids", v5:"Bidding", example:"She made a bid for the painting.", bn:"সে ছবিটির জন্য দর প্রস্তাব করল।" },
-  { word:"Block", meaning:"বাধা দেওয়া / অবরোধ করা", v1:"Block", v2:"Blocked", v3:"Blocked", v4:"Blocks", v5:"Blocking", example:"A truck blocked the road.", bn:"একটি ট্রাক রাস্তা আটকে দিয়েছিল।" },
-  { word:"Bury", meaning:"কবর দেওয়া / মাটিচাপা দেওয়া", v1:"Bury", v2:"Buried", v3:"Buried", v4:"Buries", v5:"Burying", example:"They buried the treasure.", bn:"তারা গুপ্তধনটি মাটির নিচে পুঁতে রাখল।" },
-  { word:"Carry out", meaning:"সম্পন্ন করা / বাস্তবায়ন করা", v1:"Carry out", v2:"Carried out", v3:"Carried out", v4:"Carries out", v5:"Carrying out", example:"We carried out the plan.", bn:"আমরা পরিকল্পনাটি বাস্তবায়ন করেছি।" },
-  { word:"Challenge", meaning:"চ্যালেঞ্জ করা", v1:"Challenge", v2:"Challenged", v3:"Challenged", v4:"Challenges", v5:"Challenging", example:"I challenge you to try again.", bn:"আমি তোমাকে আবার চেষ্টা করার চ্যালেঞ্জ দিচ্ছি।" },
-  { word:"Chop", meaning:"টুকরো টুকরো করে কাটা", v1:"Chop", v2:"Chopped", v3:"Chopped", v4:"Chops", v5:"Chopping", example:"Please chop the onions.", bn:"দয়া করে পেঁয়াজগুলো কুচি করে কাটো।" },
-  { word:"Cheat", meaning:"প্রতারণা করা", v1:"Cheat", v2:"Cheated", v3:"Cheated", v4:"Cheats", v5:"Cheating", example:"Never cheat in an exam.", bn:"কখনো পরীক্ষায় প্রতারণা করো না।" },
-  { word:"Cite", meaning:"উদ্ধৃত করা", v1:"Cite", v2:"Cited", v3:"Cited", v4:"Cites", v5:"Citing", example:"Please cite your source.", bn:"দয়া করে তোমার তথ্যের উৎস উল্লেখ করো।" },
-  { word:"Compose", meaning:"রচনা করা", v1:"Compose", v2:"Composed", v3:"Composed", v4:"Composes", v5:"Composing", example:"She composed a short poem.", bn:"সে একটি ছোট কবিতা রচনা করল।" },
-  { word:"Compromise", meaning:"আপস করা", v1:"Compromise", v2:"Compromised", v3:"Compromised", v4:"Compromises", v5:"Compromising", example:"Both sides agreed to compromise.", bn:"দুই পক্ষই আপস করতে রাজি হলো।" },
-  { word:"Confine", meaning:"সীমাবদ্ধ রাখা", v1:"Confine", v2:"Confined", v3:"Confined", v4:"Confines", v5:"Confining", example:"Do not confine your ideas to one subject.", bn:"তোমার ধারণাকে একটি বিষয়ের মধ্যে সীমাবদ্ধ রেখো না।" },
-  { word:"Confess", meaning:"স্বীকার করা", v1:"Confess", v2:"Confessed", v3:"Confessed", v4:"Confesses", v5:"Confessing", example:"He confessed his mistake.", bn:"সে তার ভুল স্বীকার করল।" },
-  { word:"Contribute", meaning:"অবদান রাখা", v1:"Contribute", v2:"Contributed", v3:"Contributed", v4:"Contributes", v5:"Contributing", example:"Everyone can contribute to the project.", bn:"প্রত্যেকে প্রকল্পটিতে অবদান রাখতে পারে।" },
-  { word:"Defy", meaning:"অমান্য করা / বিরোধিতা করা", v1:"Defy", v2:"Defied", v3:"Defied", v4:"Defies", v5:"Defying", example:"He refused to defy the rules.", bn:"সে নিয়ম অমান্য করতে অস্বীকার করল।" },
-  { word:"Detect", meaning:"শনাক্ত করা", v1:"Detect", v2:"Detected", v3:"Detected", v4:"Detects", v5:"Detecting", example:"The test can detect the problem.", bn:"পরীক্ষাটি সমস্যাটি শনাক্ত করতে পারে।" },
-  { word:"Deplore", meaning:"তীব্র নিন্দা করা", v1:"Deplore", v2:"Deplored", v3:"Deplored", v4:"Deplores", v5:"Deploring", example:"We deplore violence.", bn:"আমরা সহিংসতার তীব্র নিন্দা করি।" },
-  { word:"Deform", meaning:"বিকৃত করা", v1:"Deform", v2:"Deformed", v3:"Deformed", v4:"Deforms", v5:"Deforming", example:"Heat can deform plastic.", bn:"তাপ প্লাস্টিককে বিকৃত করতে পারে।" },
-  { word:"Dishearten", meaning:"নিরুৎসাহিত করা", v1:"Dishearten", v2:"Disheartened", v3:"Disheartened", v4:"Disheartens", v5:"Disheartening", example:"Do not let failure dishearten you.", bn:"ব্যর্থতাকে তোমাকে নিরুৎসাহিত করতে দিও না।" },
-  { word:"Displease", meaning:"অসন্তুষ্ট করা", v1:"Displease", v2:"Displeased", v3:"Displeased", v4:"Displeases", v5:"Displeasing", example:"His rude words displeased her.", bn:"তার অভদ্র কথাগুলো তাকে অসন্তুষ্ট করেছিল।" },
-  { word:"Dismay", meaning:"হতাশ / বিচলিত করা", v1:"Dismay", v2:"Dismayed", v3:"Dismayed", v4:"Dismays", v5:"Dismaying", example:"The news dismayed us.", bn:"খবরটি আমাদের বিচলিত করেছিল।" },
-  { word:"Disappoint", meaning:"হতাশ করা", v1:"Disappoint", v2:"Disappointed", v3:"Disappointed", v4:"Disappoints", v5:"Disappointing", example:"I do not want to disappoint my parents.", bn:"আমি আমার বাবা-মাকে হতাশ করতে চাই না।" },
-  { word:"Dodge", meaning:"এড়িয়ে যাওয়া", v1:"Dodge", v2:"Dodged", v3:"Dodged", v4:"Dodges", v5:"Dodging", example:"He dodged the question.", bn:"সে প্রশ্নটি এড়িয়ে গেল।" },
-  { word:"Drag", meaning:"টানা", v1:"Drag", v2:"Dragged", v3:"Dragged", v4:"Drags", v5:"Dragging", example:"Please drag the chair closer.", bn:"দয়া করে চেয়ারটি কাছে টেনে আনো।" },
-  { word:"Fine", meaning:"জরিমানা করা", v1:"Fine", v2:"Fined", v3:"Fined", v4:"Fines", v5:"Fining", example:"The police fined the driver.", bn:"পুলিশ চালককে জরিমানা করল।" },
-  { word:"Find", meaning:"খুঁজে পাওয়া", v1:"Find", v2:"Found", v3:"Found", v4:"Finds", v5:"Finding", example:"I found my keys.", bn:"আমি আমার চাবিগুলো খুঁজে পেয়েছি।" },
-  { word:"Flow", meaning:"প্রবাহিত হওয়া", v1:"Flow", v2:"Flowed", v3:"Flowed", v4:"Flows", v5:"Flowing", example:"The river flows south.", bn:"নদীটি দক্ষিণ দিকে প্রবাহিত হয়।" },
-  { word:"Fly", meaning:"উড়া", v1:"Fly", v2:"Flew", v3:"Flown", v4:"Flies", v5:"Flying", example:"Birds fly in the sky.", bn:"পাখিরা আকাশে ওড়ে।" },
-  { word:"Forgive", meaning:"ক্ষমা করা", v1:"Forgive", v2:"Forgave", v3:"Forgiven", v4:"Forgives", v5:"Forgiving", example:"Please forgive me.", bn:"দয়া করে আমাকে ক্ষমা করো।" },
-  { word:"Fry", meaning:"ভাজা", v1:"Fry", v2:"Fried", v3:"Fried", v4:"Fries", v5:"Frying", example:"She fries an egg.", bn:"সে একটি ডিম ভাজে।" },
-  { word:"Gain", meaning:"অর্জন করা / লাভ করা", v1:"Gain", v2:"Gained", v3:"Gained", v4:"Gains", v5:"Gaining", example:"You can gain experience by practising.", bn:"অনুশীলনের মাধ্যমে তুমি অভিজ্ঞতা অর্জন করতে পারো।" },
-  { word:"Gather", meaning:"জড়ো করা", v1:"Gather", v2:"Gathered", v3:"Gathered", v4:"Gathers", v5:"Gathering", example:"We gathered information.", bn:"আমরা তথ্য সংগ্রহ করেছি।" },
-  { word:"Get", meaning:"পাওয়া", v1:"Get", v2:"Got", v3:"Got/Gotten", v4:"Gets", v5:"Getting", example:"I get good results when I practise.", bn:"আমি অনুশীলন করলে ভালো ফল পাই।" },
-  { word:"Glorify", meaning:"মহিমান্বিত করা", v1:"Glorify", v2:"Glorified", v3:"Glorified", v4:"Glorifies", v5:"Glorifying", example:"The story glorifies courage.", bn:"গল্পটি সাহসিকতাকে মহিমান্বিত করে।" },
-  { word:"Gossip", meaning:"পরনিন্দা / গসিপ করা", v1:"Gossip", v2:"Gossiped", v3:"Gossiped", v4:"Gossips", v5:"Gossiping", example:"They gossip about others.", bn:"তারা অন্যদের নিয়ে গসিপ করে।" },
-  { word:"Govern", meaning:"শাসন করা", v1:"Govern", v2:"Governed", v3:"Governed", v4:"Governs", v5:"Governing", example:"Laws govern the country.", bn:"আইন দেশ পরিচালনা করে।" },
-  { word:"Grow", meaning:"বড় হওয়া / জন্মানো", v1:"Grow", v2:"Grew", v3:"Grown", v4:"Grows", v5:"Growing", example:"Plants grow in sunlight.", bn:"গাছপালা সূর্যের আলোতে বেড়ে ওঠে।" },
-  { word:"Guard", meaning:"পাহারা দেওয়া / রক্ষা করা", v1:"Guard", v2:"Guarded", v3:"Guarded", v4:"Guards", v5:"Guarding", example:"The dog guards the house.", bn:"কুকুরটি বাড়ি পাহারা দেয়।" },
-  { word:"Guess", meaning:"অনুমান করা", v1:"Guess", v2:"Guessed", v3:"Guessed", v4:"Guesses", v5:"Guessing", example:"Can you guess the answer?", bn:"তুমি কি উত্তরটি অনুমান করতে পারো?" },
-  { word:"Guide", meaning:"পথ দেখানো / নির্দেশনা দেওয়া", v1:"Guide", v2:"Guided", v3:"Guided", v4:"Guides", v5:"Guiding", example:"The teacher guides the students.", bn:"শিক্ষক শিক্ষার্থীদের পথ দেখান।" },
-  { word:"Handle", meaning:"সামলানো / পরিচালনা করা", v1:"Handle", v2:"Handled", v3:"Handled", v4:"Handles", v5:"Handling", example:"She can handle the work.", bn:"সে কাজটি সামলাতে পারে।" },
-  { word:"Hang (suspend)", meaning:"ঝুলিয়ে রাখা", v1:"Hang", v2:"Hung", v3:"Hung", v4:"Hangs", v5:"Hanging", example:"I hang my bag on the hook.", bn:"আমি আমার ব্যাগটি হুকে ঝুলিয়ে রাখি।" },
-  { word:"Eject", meaning:"বহিষ্কার করা", v1:"Eject", v2:"Ejected", v3:"Ejected", v4:"Ejects", v5:"Ejecting", example:"The referee ejected the player.", bn:"রেফারি খেলোয়াড়টিকে বের করে দিলেন।" },
-  { word:"Emancipate", meaning:"মুক্ত করা", v1:"Emancipate", v2:"Emancipated", v3:"Emancipated", v4:"Emancipates", v5:"Emancipating", example:"Education can emancipate people.", bn:"শিক্ষা মানুষকে মুক্ত করতে পারে।" },
-  { word:"Embrace", meaning:"আলিঙ্গন করা / গ্রহণ করা", v1:"Embrace", v2:"Embraced", v3:"Embraced", v4:"Embraces", v5:"Embracing", example:"She embraced her mother.", bn:"সে তার মাকে আলিঙ্গন করল।" },
-  { word:"Emphasize", meaning:"জোর দেওয়া", v1:"Emphasize", v2:"Emphasized", v3:"Emphasized", v4:"Emphasizes", v5:"Emphasizing", example:"The teacher emphasized the rule.", bn:"শিক্ষক নিয়মটির ওপর জোর দিলেন।" },
-  { word:"Entrust", meaning:"বিশ্বাস করে দায়িত্ব দেওয়া", v1:"Entrust", v2:"Entrusted", v3:"Entrusted", v4:"Entrusts", v5:"Entrusting", example:"I entrusted him with the task.", bn:"আমি তাকে কাজটির দায়িত্ব দিয়েছিলাম।" },
-  { word:"Erect", meaning:"নির্মাণ করা / খাড়া করা", v1:"Erect", v2:"Erected", v3:"Erected", v4:"Erects", v5:"Erecting", example:"They erected a new building.", bn:"তারা একটি নতুন ভবন নির্মাণ করল।" },
-  { word:"Escort", meaning:"সঙ্গে করে নিয়ে যাওয়া", v1:"Escort", v2:"Escorted", v3:"Escorted", v4:"Escorts", v5:"Escorting", example:"A guard escorted us inside.", bn:"একজন প্রহরী আমাদের ভেতরে নিয়ে গেলেন।" },
-  { word:"Evict", meaning:"উচ্ছেদ করা", v1:"Evict", v2:"Evicted", v3:"Evicted", v4:"Evicts", v5:"Evicting", example:"The court ordered them to evict the building.", bn:"আদালত তাদের ভবনটি খালি করার নির্দেশ দিল।" },
-  { word:"Exert", meaning:"প্রয়োগ করা / প্রচেষ্টা চালানো", v1:"Exert", v2:"Exerted", v3:"Exerted", v4:"Exerts", v5:"Exerting", example:"You must exert more effort.", bn:"তোমাকে আরও চেষ্টা করতে হবে।" },
-  { word:"Expose", meaning:"প্রকাশ করা / উন্মুক্ত করা", v1:"Expose", v2:"Exposed", v3:"Exposed", v4:"Exposes", v5:"Exposing", example:"The report exposed the truth.", bn:"প্রতিবেদনটি সত্য প্রকাশ করল।" },
-  { word:"Falter", meaning:"দ্বিধাগ্রস্ত হওয়া / টলমল করা", v1:"Falter", v2:"Faltered", v3:"Faltered", v4:"Falters", v5:"Faltering", example:"Her voice began to falter.", bn:"তার কণ্ঠস্বর কাঁপতে শুরু করল।" },
-  { word:"Fetch", meaning:"নিয়ে আসা", v1:"Fetch", v2:"Fetched", v3:"Fetched", v4:"Fetches", v5:"Fetching", example:"Please fetch me a glass of water.", bn:"দয়া করে আমার জন্য এক গ্লাস পানি নিয়ে এসো।" },
-  { word:"Facilitate", meaning:"সহজতর করা", v1:"Facilitate", v2:"Facilitated", v3:"Facilitated", v4:"Facilitates", v5:"Facilitating", example:"Technology facilitates communication.", bn:"প্রযুক্তি যোগাযোগ সহজতর করে।" },
-  { word:"Ferry", meaning:"ফেরি করে পারাপার করা", v1:"Ferry", v2:"Ferried", v3:"Ferried", v4:"Ferries", v5:"Ferrying", example:"Boats ferry people across the river.", bn:"নৌকাগুলো মানুষকে নদী পার করে।" },
-  { word:"Hijack", meaning:"ছিনতাই করা", v1:"Hijack", v2:"Hijacked", v3:"Hijacked", v4:"Hijacks", v5:"Hijacking", example:"The news reported an attempted hijack.", bn:"খবরে ছিনতাইয়ের একটি চেষ্টার কথা জানানো হয়েছে।" },
-  { word:"Hire", meaning:"ভাড়া করা / নিয়োগ দেওয়া", v1:"Hire", v2:"Hired", v3:"Hired", v4:"Hires", v5:"Hiring", example:"The company hires new workers.", bn:"কোম্পানিটি নতুন কর্মী নিয়োগ দেয়।" },
-  { word:"Horrify", meaning:"আতঙ্কিত করা", v1:"Horrify", v2:"Horrified", v3:"Horrified", v4:"Horrifies", v5:"Horrifying", example:"The accident horrified everyone.", bn:"দুর্ঘটনাটি সবাইকে আতঙ্কিত করেছিল।" },
-  { word:"Hum", meaning:"গুনগুন করা", v1:"Hum", v2:"Hummed", v3:"Hummed", v4:"Hums", v5:"Humming", example:"She hums a song while working.", bn:"কাজ করার সময় সে একটি গান গুনগুন করে।" },
-  { word:"Humiliate", meaning:"অপমান করা", v1:"Humiliate", v2:"Humiliated", v3:"Humiliated", v4:"Humiliates", v5:"Humiliating", example:"Never humiliate others.", bn:"অন্যদের কখনো অপমান করো না।" },
-  { word:"Hurry", meaning:"তাড়াহুড়া করা", v1:"Hurry", v2:"Hurried", v3:"Hurried", v4:"Hurries", v5:"Hurrying", example:"We must hurry to catch the bus.", bn:"বাস ধরতে আমাদের তাড়াতাড়ি করতে হবে।" },
-  { word:"Ignore", meaning:"উপেক্ষা করা", v1:"Ignore", v2:"Ignored", v3:"Ignored", v4:"Ignores", v5:"Ignoring", example:"Do not ignore good advice.", bn:"ভালো পরামর্শ উপেক্ষা করো না।" },
-  { word:"Imagine", meaning:"কল্পনা করা", v1:"Imagine", v2:"Imagined", v3:"Imagined", v4:"Imagines", v5:"Imagining", example:"Imagine a world without pollution.", bn:"দূষণহীন একটি পৃথিবী কল্পনা করো।" },
-  { word:"Imitate", meaning:"অনুকরণ করা", v1:"Imitate", v2:"Imitated", v3:"Imitated", v4:"Imitates", v5:"Imitating", example:"Children often imitate adults.", bn:"শিশুরা প্রায়ই বড়দের অনুকরণ করে।" },
-  { word:"Sacrifice", meaning:"ত্যাগ করা", v1:"Sacrifice", v2:"Sacrificed", v3:"Sacrificed", v4:"Sacrifices", v5:"Sacrificing", example:"She sacrificed her free time to study.", bn:"সে পড়াশোনার জন্য তার অবসর সময় ত্যাগ করেছিল।" },
-  { word:"Edit", meaning:"সম্পাদনা করা", v1:"Edit", v2:"Edited", v3:"Edited", v4:"Edits", v5:"Editing", example:"I edit my writing before submitting it.", bn:"জমা দেওয়ার আগে আমি আমার লেখা সম্পাদনা করি।" },
-  { word:"Discover", meaning:"আবিষ্কার করা / খুঁজে বের করা", v1:"Discover", v2:"Discovered", v3:"Discovered", v4:"Discovers", v5:"Discovering", example:"They discovered a new place.", bn:"তারা একটি নতুন জায়গা আবিষ্কার করল।" },
-  { word:"Discourage", meaning:"নিরুৎসাহিত করা", v1:"Discourage", v2:"Discouraged", v3:"Discouraged", v4:"Discourages", v5:"Discouraging", example:"Do not let mistakes discourage you.", bn:"ভুলগুলোকে তোমাকে নিরুৎসাহিত করতে দিও না।" }
-];
+const vocabularyLevels = { 1: window.level1Words || [], 2: window.level2Words || [], 3: window.level3Words || [] };
+const words = vocabularyLevels[1];
 const commonExpressions = [
   {
     "level": 1,
@@ -1288,7 +1216,7 @@ function renderHub(tab = activeTab) {
   if (tab === "levels") {
     host.innerHTML = `<div class="level-grid">${levels.map((level,i) => `<button class="level-tile" data-level-index="${i}" data-level="LEVEL 0${i+1}"><span>${level.title}</span><small>${i===3?'Explore coming soon':'Open learning path ↗'}</small></button>`).join("")}</div>`;
   } else if (tab === "vocabulary") {
-    host.innerHTML = `<div class="vocab-intro"><span>WORD LIBRARY</span><h3>Build your vocabulary</h3><p>শব্দ লিখে Vocabulary খুঁজে নাও। Level অনুযায়ী শব্দও দেখা যাবে।</p></div><input class="word-search" id="vocabGlobalSearch" placeholder="Search vocabulary..." aria-label="Search vocabulary"><div id="vocabSearchResults" class="hub-grid"><p class="empty-note">শব্দ খুঁজতে English word বা বাংলা অর্থ লিখো।</p></div><div class="hub-grid vocab-levels">${[1,2,3,4].map(n => `<article class="hub-card vocab-level-card"><div class="eyebrow">VOCABULARY · 0${n}</div><h3>Level ${n}</h3><p>${n===1?`${words.length} saved words · meanings · V1–V5 · examples`:'More words will be added later'}</p><button class="hub-action ${n===1?'primary':''}" data-vocab="${n}">${n===1?'Explore words':'Coming Soon'}</button></article>`).join("")}</div><div id="vocabDetail"></div>`;
+    host.innerHTML = `<div class="vocab-intro"><span>WORD LIBRARY</span><h3>Build your vocabulary</h3><p>শব্দ লিখে Vocabulary খুঁজে নাও। Level অনুযায়ী শব্দও দেখা যাবে।</p></div><input class="word-search" id="vocabGlobalSearch" placeholder="Search vocabulary..." aria-label="Search vocabulary"><div id="vocabSearchResults" class="hub-grid"><p class="empty-note">শব্দ খুঁজতে English word বা বাংলা অর্থ লিখো।</p></div><div class="hub-grid vocab-levels">${[1,2,3,4].map(n => `<article class="hub-card vocab-level-card"><div class="eyebrow">VOCABULARY · 0${n}</div><h3>Level ${n}</h3><p>${vocabularyLevels[n]?`${vocabularyLevels[n].length} words · English words & Bangla meanings`:'More words will be added later'}</p><button class="hub-action ${vocabularyLevels[n]?'primary':''}" ${vocabularyLevels[n]?`data-vocab="${n}"`:''} ${vocabularyLevels[n]?'':'disabled'}>${vocabularyLevels[n]?'Explore words':'Coming Soon'}</button></article>`).join("")}</div><div id="vocabDetail"></div>`;
     $("vocabGlobalSearch").addEventListener("input", e => renderVocabularySearch(e.target.value));
   } else if (tab === "twisters") {
     host.innerHTML = twisterGroups.map((g,gi) => `<div class="twister-group"><h3>${g.title}</h3><div class="hub-grid">${g.items.map((t,i) => `<div class="twister-card"><p>${escapeHtml(t)}</p><div><button class="hub-action" data-speak="${encodeURIComponent(t)}" aria-label="Listen">🔊 Audio</button><button class="hub-action" data-twister-done="${gi}-${i}">Done</button></div></div>`).join("")}</div></div>`).join("");
@@ -1309,8 +1237,8 @@ function renderIdioms(items) {
 function renderVocabularySearch(query) {
   const host=$("vocabSearchResults"); if(!host) return; const q=query.trim().toLowerCase();
   if(!q){host.innerHTML='<p class="empty-note">শব্দ খুঁজতে English word বা বাংলা অর্থ লিখো।</p>';return;}
-  const found=words.map((w,i)=>({...w,index:i})).filter(w=>[w.word,w.meaning,w.example,w.bn].join(" ").toLowerCase().includes(q));
-  host.innerHTML=found.length?found.map(w=>`<article class="word-card"><div class="word-number">WORD ${String(w.index+1).padStart(2,'0')}</div><h3>${escapeHtml(w.word)}</h3><p class="word-meaning">অর্থ: ${escapeHtml(w.meaning)}</p><p class="word-example"><strong>${escapeHtml(w.example)}</strong><br><span>${escapeHtml(w.bn)}</span></p></article>`).join(""):'<p class="empty-note">কোনো Vocabulary পাওয়া যায়নি।</p>';
+  const found=Object.entries(vocabularyLevels).flatMap(([level,list])=>list.map((w,i)=>({...w,index:i,level}))).filter(w=>[w.word,w.meaning,w.example,w.bn].join(" ").toLowerCase().includes(q));
+  host.innerHTML=found.length?found.map(w=>`<article class="word-card"><div class="word-number">LEVEL 0${w.level} · WORD ${String(w.index+1).padStart(3,'0')}</div><h3>${escapeHtml(w.word)}</h3><p class="word-meaning">অর্থ: ${escapeHtml(w.meaning)}</p></article>`).join(""):'<p class="empty-note">কোনো Vocabulary পাওয়া যায়নি।</p>';
 }
 function renderExpressionSearch(query) {
   const host=$("expressionSearchResults"); if(!host) return; const q=query.trim().toLowerCase();
@@ -1403,8 +1331,9 @@ function renderLevelQuiz(levelNumber) {
 }
 function openVocabulary(level) {
   const detail = $("vocabDetail");
-  if (level !== 1) return toast("এই Vocabulary Level-এর content পরে যোগ হবে।");
-  detail.innerHTML = `<div class="hub-detail vocab-detail"><div class="detail-top"><div><div class="eyebrow">LEVEL 01 · WORD BANK</div><h3>Vocabulary Level 1</h3><p class="muted">${words.length}টি আগের অনুশীলনের শব্দ</p></div><div class="page-top-actions"><button class="back-level" data-home-vocab>⌂ Home</button><button class="back-level" data-vocab-back>← Back</button></div></div><input class="word-search" id="wordSearch" placeholder="Search vocabulary..." aria-label="Search vocabulary"><div class="hub-grid" id="wordGrid">${words.map((w,i) => `<article class="word-card"><div class="word-number">WORD ${String(i+1).padStart(2,'0')}</div><h3>${escapeHtml(w.word)}</h3><p class="word-meaning">অর্থ: ${escapeHtml(w.meaning)}</p><div class="verb-forms"><span><b>V1</b>${escapeHtml(w.v1)}</span><span><b>V2</b>${escapeHtml(w.v2)}</span><span><b>V3</b>${escapeHtml(w.v3)}</span><span><b>V4</b>${escapeHtml(w.v4)}</span><span><b>V5</b>${escapeHtml(w.v5)}</span></div><p class="word-example"><strong>${escapeHtml(w.example)}</strong><br><span>${escapeHtml(w.bn)}</span></p><button class="hub-action" data-word-done="${i}">Mark learned ✓</button></article>`).join("")}</div><p class="muted">তোমার বইয়ের Level 1-এর ২০০টি শব্দের ছবি দিলে এই তালিকাটি বইয়ের সঠিক ক্রমে সাজিয়ে দেওয়া হবে।</p></div>`;
+  const list = vocabularyLevels[level];
+  if (!list) return toast("এই Vocabulary Level-এর content পরে যোগ হবে।");
+  detail.innerHTML = `<div class="hub-detail vocab-detail"><div class="detail-top"><div><div class="eyebrow">LEVEL 0${level} · WORD BANK</div><h3>Vocabulary Level ${level}</h3><p class="muted">${list.length}টি শব্দ · English word ও বাংলা অর্থ</p></div><div class="page-top-actions"><button class="back-level" data-home-vocab>⌂ Home</button><button class="back-level" data-vocab-back>← Back</button></div></div><input class="word-search" id="wordSearch" placeholder="Search vocabulary..." aria-label="Search vocabulary"><div class="hub-grid" id="wordGrid">${list.map((w,i) => `<article class="word-card"><div class="word-number">WORD ${String(i+1).padStart(3,'0')}</div><h3>${escapeHtml(w.word)}</h3><p class="word-meaning">অর্থ: ${escapeHtml(w.meaning)}</p><button class="hub-action" data-word-done="${level}-${i}">Mark learned ✓</button></article>`).join("")}</div></div>`;
   $("wordSearch").addEventListener("input", e => { const q=e.target.value.toLowerCase(); document.querySelectorAll("#wordGrid .word-card").forEach(card => card.classList.toggle("hidden", !card.textContent.toLowerCase().includes(q))); });
 }
 function openExpressions(level) {

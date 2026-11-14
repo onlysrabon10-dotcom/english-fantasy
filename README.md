@@ -50,3 +50,14 @@ A responsive Bangla-English learning website built with Node.js, Express and van
 - Expanded Level 3 preposition, article, passive, and causative voice lessons.
 - Added six requested tongue twisters with browser audio controls.
 - Level 1 expression numbering: 19 Not at all, 20 Let's take a break, 21 Take it, 22 Wait here.
+
+## Vocabulary collections
+- Level 1: `data/vocabulary-level1.json` and `public/vocabulary-level1.js` (200 entries)
+- Level 2: `data/vocabulary-level2.json` and `public/vocabulary-level2.js` (200 entries)
+- Level 3 and Level 4 are marked Coming Soon in the Vocabulary hub until their lists are added.
+
+
+## Vocabulary
+- Level 1: 200 words
+- Level 2: 200 words
+- Level 3: 200 words
