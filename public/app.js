@@ -1209,6 +1209,34 @@ async function loadSaved() {
   $("savedList").innerHTML = items.length ? items.map(item => `<div class="saved-item"><div><strong>${escapeHtml(item.bangla)}</strong><span>${escapeHtml(item.english)}</span></div><button class="copy-button" data-load="${encodeURIComponent(item.bangla)}">Use</button></div>`).join("") : '<p class="muted">এখনো কোনো sentence যোগ করা হয়নি। Admin panel থেকে যোগ করা যাবে।</p>';
   $("savedList").querySelectorAll("[data-load]").forEach(btn => btn.addEventListener("click", () => { $("sentenceInput").value = decodeURIComponent(btn.dataset.load); $("sentenceInput").focus(); }));
 }
+const presentationTopics = [
+  { title:"Youth Empowerment", bn:"যুবসমাজের ক্ষমতায়ন", intro:"Today I would like to talk about youth empowerment. Young people can help build a better future when they have education, skills, confidence and opportunities.", points:["Education and skill development","Youth participation in society","Leadership, innovation and responsibility"] },
+  { title:"The Importance of Education", bn:"শিক্ষার গুরুত্ব", intro:"Education is one of the most powerful tools for personal and social development. It gives us knowledge, confidence and the ability to make better decisions.", points:["Knowledge and critical thinking","Equal opportunities","Education for a better society"] },
+  { title:"Climate Change and Our Responsibility", bn:"জলবায়ু পরিবর্তন ও আমাদের দায়িত্ব", intro:"Climate change affects people, animals and the environment. Everyone can take small steps to protect our planet.", points:["Causes and effects of climate change","Planting trees and reducing waste","Clean energy and personal responsibility"] },
+  { title:"The Benefits and Risks of Social Media", bn:"সামাজিক যোগাযোগমাধ্যমের সুবিধা ও ঝুঁকি", intro:"Social media helps us communicate and learn, but we should use it wisely and responsibly.", points:["Communication and learning","Misinformation and privacy","Healthy screen-time habits"] },
+  { title:"The Power of Reading Books", bn:"বই পড়ার শক্তি", intro:"Reading books is a valuable habit. It improves our knowledge, language skills, imagination and understanding of the world.", points:["Building vocabulary and knowledge","Improving imagination","Making reading a daily habit"] },
+  { title:"Women Empowerment", bn:"নারীর ক্ষমতায়ন", intro:"Women empowerment means ensuring that women and girls have equal rights, respect and opportunities to make their own choices.", points:["Equal access to education","Safety and equal opportunities","Women in leadership"] },
+  { title:"The Importance of Learning English", bn:"ইংরেজি শেখার গুরুত্ব", intro:"English is widely used around the world. Learning it can help us communicate, study and explore more opportunities.", points:["Communication with people worldwide","Education and career opportunities","Daily practice and confidence"] },
+  { title:"Technology in Modern Education", bn:"আধুনিক শিক্ষায় প্রযুক্তি", intro:"Technology has changed the way students learn. Digital tools can make education more flexible, interactive and accessible.", points:["Online learning resources","Digital skills and responsible use","Balancing technology with real-life learning"] },
+  { title:"The Importance of Mental Well-being", bn:"মানসিক সুস্থতার গুরুত্ব", intro:"Well-being is an important part of a healthy and balanced life. Support, rest and positive relationships can help people face challenges.", points:["Managing everyday stress","Talking to trusted people","Healthy routines and supportive communities"] },
+  { title:"Save Water, Save Life", bn:"পানি বাঁচান, জীবন বাঁচান", intro:"Water is essential for all living things. We should avoid wasting clean water and protect rivers, lakes and other water sources.", points:["Why clean water matters","Ways to reduce water waste","Protecting water sources"] },
+  { title:"The Value of Time", bn:"সময়ের মূল্য", intro:"Time is a valuable resource that we cannot get back. Good time management helps us study, work and enjoy life in a balanced way.", points:["Setting priorities","Planning daily activities","Avoiding unnecessary delays"] },
+  { title:"My Dream Career", bn:"আমার স্বপ্নের পেশা", intro:"A dream career gives us a goal to work towards. We can move closer to it through learning, practice and determination.", points:["Choosing a career based on interests","Building useful skills","Working towards long-term goals"] },
+  { title:"The Importance of Sports and Games", bn:"খেলাধুলার গুরুত্ব", intro:"Sports and games support physical fitness and teamwork. They also teach discipline, patience and respect for others.", points:["Fitness and healthy habits","Teamwork and discipline","Balancing study and recreation"] },
+  { title:"Cleanliness and a Healthy Environment", bn:"পরিচ্ছন্নতা ও স্বাস্থ্যকর পরিবেশ", intro:"A clean environment helps protect our health and makes our communities better places to live.", points:["Personal and public hygiene","Proper waste management","Community participation"] },
+  { title:"The Role of Students in Nation Building", bn:"জাতি গঠনে শিক্ষার্থীদের ভূমিকা", intro:"Students are an important part of a country's future. By learning, helping others and acting responsibly, they can contribute to national development.", points:["Learning and developing skills","Honesty and civic responsibility","Helping the community"] }
+];
+
+function renderPresentationTopics(items = presentationTopics) {
+  if (!items.length) return '<p class="empty-note">কোনো Presentation Topic পাওয়া যায়নি।</p>';
+  return `<div class="presentation-grid">${items.map(item => { const i=presentationTopics.indexOf(item); return `<article class="presentation-card"><div class="word-number">PRESENTATION · ${String(i+1).padStart(2,'0')}</div><h3>${escapeHtml(item.title)}</h3><p class="presentation-bn">${escapeHtml(item.bn)}</p><p>${escapeHtml(item.intro)}</p><button class="hub-action primary" data-presentation="${i}">Open Topic ↗</button></article>`; }).join('')}</div>`;
+}
+function openPresentationTopic(index) {
+  const item=presentationTopics[index]; if(!item) return;
+  const host=$("hubContent");
+  host.innerHTML=`<div class="hub-detail presentation-detail"><div class="detail-top"><div><div class="eyebrow">PRESENTATION TOPIC · ${String(index+1).padStart(2,'0')}</div><h3>${escapeHtml(item.title)}</h3><p class="muted">${escapeHtml(item.bn)}</p></div><div class="page-top-actions"><button class="back-level" data-home-presentations>⌂ Home</button><button class="back-level" data-back-presentations>← Back</button></div></div><section class="presentation-speech"><h4>Introduction</h4><p>${escapeHtml(item.intro)}</p><h4>Key Points</h4><ul>${item.points.map(x=>`<li>${escapeHtml(x)}</li>`).join('')}</ul><h4>Conclusion</h4><p>In conclusion, this topic is important in our daily lives. If we understand it and take positive steps, we can make a meaningful difference. Thank you everyone for listening.</p><button class="hub-action" data-speak="${encodeURIComponent(item.intro)}">🔊 Listen to Introduction</button></section></div>`;
+}
+
 function renderHub(tab = activeTab) {
   activeTab = tab;
   document.querySelectorAll(".hub-tab").forEach(b => b.classList.toggle("active", b.dataset.tab === tab));
@@ -1226,9 +1254,17 @@ function renderHub(tab = activeTab) {
   } else if (tab === "idioms") {
     host.innerHTML = `<div class="expression-intro"><span>IDIOM COLLECTION</span><h3>50 Useful English Idioms</h3><p>প্রতিটি Idiom-এর বাংলা অর্থ ও Example sentence।</p></div><input class="word-search" id="idiomSearch" placeholder="Search idioms..." aria-label="Search idioms"><div class="expression-list" id="idiomList">${renderIdioms(idioms)}</div>`;
     $("idiomSearch").addEventListener("input", e => { const q=e.target.value.toLowerCase(); $("idiomList").innerHTML=renderIdioms(idioms.filter(x=>x.join(" ").toLowerCase().includes(q))); });
+  } else if (tab === "presentations") {
+    host.innerHTML = `<div class="expression-intro"><span>SPEAKING & PRESENTATION</span><h3>Presentation Topics</h3><p>নিজের Speaking ও Presentation Practice-এর জন্য ১৫টি Topic। প্রতিটিতে Introduction, Key Points ও Conclusion দেওয়া আছে।</p></div><input class="word-search" id="presentationSearch" placeholder="Search presentation topics..." aria-label="Search presentation topics"><div id="presentationList">${renderPresentationTopics()}</div>`;
+    $("presentationSearch").addEventListener("input", e => { const q=e.target.value.trim().toLowerCase(); renderPresentationSearch(q); });
   } else if (tab === "quiz") {
     host.innerHTML = `<div class="hub-card"><div class="eyebrow">TEST YOURSELF</div><h3>Level-wise Practice Quiz</h3><p>প্রতিটি Level-এ ৫০টি করে প্রশ্ন। উত্তর নির্বাচন করলেই সঙ্গে সঙ্গে ফল দেখাবে।</p><div class="hub-grid">${levels.slice(0,3).map((l,i)=>`<button class="quiz-level-card" data-quiz-level="${i+1}"><strong>${l.title}</strong><span>50 Questions · Start Quiz ↗</span></button>`).join("")}</div></div>`;
   }
+}
+function renderPresentationSearch(query) {
+  const host=$("presentationList"); if(!host) return;
+  const found=query ? presentationTopics.filter(x=>[x.title,x.bn,x.intro,x.points.join(" ")].join(" ").toLowerCase().includes(query)) : presentationTopics;
+  host.innerHTML=renderPresentationTopics(found);
 }
 function renderIdioms(items) {
   if (!items.length) return '<p class="empty-note">কোনো Idiom পাওয়া যায়নি।</p>';
@@ -1397,6 +1433,9 @@ $("hubContent").addEventListener("click", e => {
   if (b.dataset.homeLevels !== undefined) renderHub("levels");
   if (b.dataset.homeVocab !== undefined) renderHub("vocabulary");
   if (b.dataset.homeExpressions !== undefined) renderHub("expressions");
+  if (b.dataset.homePresentations !== undefined) renderHub("presentations");
+  if (b.dataset.backPresentations !== undefined) renderHub("presentations");
+  if (b.dataset.presentation !== undefined) openPresentationTopic(Number(b.dataset.presentation));
   if (b.dataset.backLevel !== undefined) renderHub("levels");
   if (b.dataset.backToLevel !== undefined) openLevel(currentLevelIndex);
   if (b.dataset.backTopic !== undefined) openLevel(currentLevelIndex);
