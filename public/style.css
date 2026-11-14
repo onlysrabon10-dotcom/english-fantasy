@@ -141,3 +141,17 @@
 .level-two-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
 .level-two-grid .lesson-card{min-height:92px;align-items:center;background:linear-gradient(145deg,#211b12,#11100d)}
 @media(max-width:650px){.level-two-grid{grid-template-columns:1fr}}
+
+/* Homepage hierarchy and larger learning cards */
+.hub-heading h2{font-size:clamp(29px,4.4vw,38px);letter-spacing:-.8px;color:var(--gold2);margin:5px 0 8px}
+.hub-tab{font-size:14px;min-height:58px;padding:14px 16px}
+.level-tile{min-height:150px;padding-top:43px}
+.level-tile span{font-size:clamp(25px,3vw,31px)}
+.level-tile small{font-size:12px}
+.hub-card,.lesson-card,.vocab-level-card,.expression-level-card{padding:22px;min-height:150px}
+.hub-card h3,.vocab-level-card h3,.expression-level-card h3{font-size:24px}
+.lesson-card strong{font-size:18px}
+.lesson-card small{font-size:12px}
+.hub-action{font-size:13px;padding:11px 15px}
+@media(max-width:650px){.hub-heading h2{font-size:30px}.hub-tab{font-size:14px;min-height:60px}.level-tile{min-height:132px}.level-tile span{font-size:26px}.hub-card,.lesson-card,.vocab-level-card,.expression-level-card{padding:18px;min-height:130px}.lesson-card strong{font-size:17px}}
+.tense-forms li{line-height:1.9}

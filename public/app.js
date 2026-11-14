@@ -1276,8 +1276,18 @@ function renderTopic(topic) {
   const host = $("hubContent");
   const sections = lessonNotes[topic] || [];
   const identification = ({"Present Indefinite":"Positive: করি/খাই/যাই। Negative: করি না/খাই না/যাই না।","Present Continuous":"Positive: করছি/খাচ্ছি/যাচ্ছি। Negative: করছি না/খাচ্ছি না/যাচ্ছি না।","Present Perfect":"Positive: করেছি/খেয়েছি/গিয়েছি। Negative: করিনি/খাইনি/যাইনি।","Past Indefinite":"Positive: করলাম/করেছিলাম/খেলাম/গেলাম। Negative: করিনি/খাইনি/যাইনি (প্রসঙ্গ দেখে Past বোঝা যায়)।","Past Continuous":"Positive: করছিলাম/খাচ্ছিলাম/যাচ্ছিলাম। Negative: করছিলাম না/খাচ্ছিলাম না/যাচ্ছিলাম না।","Future Indefinite":"Positive: করব/খাব/যাব। Negative: করব না/খাব না/যাব না."})[topic];
-  const content=sections.length?sections.map(section => `<section class="lesson-section"><h4>${escapeHtml(section.heading)}</h4><div class="structure-box"><strong>Structure:</strong> ${escapeHtml(section.structure)}</div><ul>${section.examples.map(ex => `<li>${escapeHtml(ex)}</li>`).join("")}</ul></section>`).join("")+(identification?`<section class="lesson-section identification-box"><h4>বাংলা বাক্য দেখে Tense চেনার নিয়ম</h4><p>${escapeHtml(identification)}</p><p>এগুলো সাধারণ সংকেত। বাক্যের অর্থ ও সময়ের প্রসঙ্গও মিলিয়ে দেখবে।</p></section>`:""):'<p>এই Lesson-এর বিস্তারিত অংশ পরে যোগ করা হবে।</p>';
-  host.innerHTML = `<div class="hub-detail page-panel"><div class="page-top-actions"><button class="back-level" data-home-levels>⌂ Home</button><button class="back-level" data-back-topic>← Back</button></div><div class="level-page-kicker">LEVEL 0${currentLevelIndex+1} · LESSON</div><h3>${escapeHtml(topic)}</h3>${content}<button class="hub-action primary" data-topic-done="${encodeURIComponent(topic)}">Mark as learned ✓</button></div>`;
+  const tensePatterns = {
+    "Present Indefinite": ["Positive: Subject + V1 (he/she/it হলে V1+s/es)","Negative: Subject + do/does + not + V1","Question: Do/Does + subject + V1?","Negative Question: Don't/Doesn't + subject + V1?","Examples: I play football. — আমি ফুটবল খেলি। / I don't play football. — আমি ফুটবল খেলি না।"],
+    "Present Continuous": ["Positive: Subject + am/is/are + V-ing","Negative: Subject + am/is/are + not + V-ing","Question: Am/Is/Are + subject + V-ing?","Negative Question: Am/Is/Are + subject + not + V-ing?","Examples: She is reading. — সে পড়ছে। / She isn't reading. — সে পড়ছে না।"],
+    "Present Perfect": ["Positive: Subject + have/has + V3","Negative: Subject + have/has + not + V3","Question: Have/Has + subject + V3?","Negative Question: Haven't/Hasn't + subject + V3?","Examples: I have finished the work. — আমি কাজটি শেষ করেছি। / I haven't finished the work. — আমি কাজটি শেষ করিনি।"],
+    "Past Indefinite": ["Positive: Subject + V2","Negative: Subject + did + not + V1","Question: Did + subject + V1?","Negative Question: Didn't + subject + V1?","Examples: He visited Dhaka. — সে ঢাকা ভ্রমণ করেছিল। / He didn't visit Dhaka. — সে ঢাকা ভ্রমণ করেনি।"],
+    "Past Continuous": ["Positive: Subject + was/were + V-ing","Negative: Subject + was/were + not + V-ing","Question: Was/Were + subject + V-ing?","Negative Question: Wasn't/Weren't + subject + V-ing?","Examples: They were playing. — তারা খেলছিল। / They weren't playing. — তারা খেলছিল না।"],
+    "Future Indefinite": ["Positive: Subject + will + V1","Negative: Subject + will + not + V1 (won't + V1)","Question: Will + subject + V1?","Negative Question: Won't + subject + V1?","Examples: I will call you. — আমি তোমাকে ফোন করব। / I won't call you. — আমি তোমাকে ফোন করব না."]
+  };
+  const tenseBlock = tensePatterns[topic] ? `<section class="lesson-section tense-forms"><h4>Positive, Negative ও Question Forms</h4><ul>${tensePatterns[topic].map(x=>`<li>${escapeHtml(x)}</li>`).join("")}</ul></section>` : "";
+  const content=sections.length?sections.map(section => `<section class="lesson-section"><h4>${escapeHtml(section.heading)}</h4><div class="structure-box"><strong>Structure:</strong> ${escapeHtml(section.structure)}</div><ul>${section.examples.map(ex => `<li>${escapeHtml(ex)}</li>`).join("")}</ul></section>`).join("")+tenseBlock+(identification?`<section class="lesson-section identification-box"><h4>বাংলা বাক্য দেখে Tense চেনার নিয়ম</h4><p>${escapeHtml(identification)}</p><p>এগুলো সাধারণ সংকেত। বাক্যের অর্থ ও সময়ের প্রসঙ্গও মিলিয়ে দেখবে।</p></section>`:""):'<p>এই Lesson-এর বিস্তারিত অংশ পরে যোগ করা হবে.</p>';
+  const backAction = ["Present Indefinite","Present Continuous","Present Perfect","Past Indefinite","Past Continuous","Future Indefinite"].includes(topic) ? 'data-back-tense' : 'data-back-topic';
+  host.innerHTML = `<div class="hub-detail page-panel"><div class="page-top-actions"><button class="back-level" data-home-levels>⌂ Home</button><button class="back-level" ${backAction}>← Back</button></div><div class="level-page-kicker">LEVEL 0${currentLevelIndex+1} · LESSON</div><h3>${escapeHtml(topic)}</h3>${content}<button class="hub-action primary" data-topic-done="${encodeURIComponent(topic)}">Mark as learned ✓</button></div>`;
 }
 function renderSixSentences(levelIndex) {
   const host = $("hubContent"); const items = sixSentenceSets[levelIndex] || [];
@@ -1342,9 +1352,23 @@ function openExpressions(level) {
   host.scrollIntoView({behavior:"smooth",block:"nearest"});
 }
 
-function speak(text) {
+let activeSpeechText = "";
+let activeSpeechButton = null;
+function speak(text, button) {
   if (!("speechSynthesis" in window)) return toast("এই Browser-এ audio speech support নেই।");
-  window.speechSynthesis.cancel(); const utterance = new SpeechSynthesisUtterance(text); utterance.lang = "en-US"; utterance.rate = 0.82; window.speechSynthesis.speak(utterance);
+  const synth = window.speechSynthesis;
+  if (activeSpeechText === text && synth.speaking) {
+    if (synth.paused) { synth.resume(); if (button) button.textContent = "⏸ Pause"; }
+    else { synth.pause(); if (button) button.textContent = "▶ Resume"; }
+    return;
+  }
+  synth.cancel();
+  if (activeSpeechButton) activeSpeechButton.textContent = "▶ Audio";
+  activeSpeechText = text; activeSpeechButton = button || null;
+  const utterance = new SpeechSynthesisUtterance(text); utterance.lang = "en-US"; utterance.rate = 0.82;
+  utterance.onend = utterance.onerror = () => { if (activeSpeechButton) activeSpeechButton.textContent = "▶ Audio"; activeSpeechText = ""; activeSpeechButton = null; };
+  if (button) button.textContent = "⏸ Pause";
+  synth.speak(utterance);
 }
 
 $("learnerForm").addEventListener("submit", async e => {
@@ -1376,6 +1400,7 @@ $("hubContent").addEventListener("click", e => {
   if (b.dataset.backLevel !== undefined) renderHub("levels");
   if (b.dataset.backToLevel !== undefined) openLevel(currentLevelIndex);
   if (b.dataset.backTopic !== undefined) openLevel(currentLevelIndex);
+  if (b.dataset.backTense !== undefined) openTopicPage("Tense");
   if (b.dataset.openTopic) openTopicPage(decodeURIComponent(b.dataset.openTopic));
   if (b.dataset.openModal) renderModalLesson(decodeURIComponent(b.dataset.openModal));
   if (b.dataset.backModals !== undefined) openTopicPage("Use of Modals");
@@ -1389,7 +1414,7 @@ $("hubContent").addEventListener("click", e => {
   if (b.dataset.expressionLevel) openExpressions(Number(b.dataset.expressionLevel));
   if (b.dataset.expressionBack !== undefined) { $("expressionDetail").innerHTML = ""; $("hubContent").scrollIntoView({behavior:"smooth",block:"start"}); }
   if (b.dataset.vocabBack !== undefined) { $("vocabDetail").innerHTML = ""; $("hubContent").scrollIntoView({behavior:"smooth",block:"start"}); }
-  if (b.dataset.speak) speak(decodeURIComponent(b.dataset.speak));
+  if (b.dataset.speak) speak(decodeURIComponent(b.dataset.speak), b);
   if (b.dataset.lessonDone) { markDone(`lesson-${b.dataset.lessonDone}`); b.textContent = "Learned ✓"; b.disabled = true; }
   if (b.dataset.wordDone !== undefined) { markDone(`word-${b.dataset.wordDone}`); b.textContent = "Learned ✓"; b.disabled = true; }
   if (b.dataset.twisterDone) { markDone(`twister-${b.dataset.twisterDone}`); b.textContent = "Done ✓"; b.disabled = true; }
