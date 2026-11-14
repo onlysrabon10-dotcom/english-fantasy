@@ -30,7 +30,7 @@ A responsive Bangla-English learning website built with Node.js, Express and van
 ## Important limitations
 - The 4-digit learner ID is a demo identity only. Progress is saved in that browser's local storage; it does not sync across devices or browsers. Real multi-device accounts need a database and proper authentication.
 - Vocabulary sample words are placeholders until the vocabulary-book images/list are provided.
-- Common Expressions are intentionally left as separate Level 1, 2 and 3 placeholders until the correct source image/list is supplied. No entries or numbering have been invented.
+- Common Expressions Levels 1–3 contain the supplied expressions and Bengali meanings.
 - Tongue Twister audio uses the browser's built-in speech synthesis. Available voices vary by device/browser and require browser support.
 - AI generation requires a valid OpenAI API key and an account/API setup handled by an adult/guardian where required.
 - For public hosting, use HTTPS, configure environment variables in the hosting provider, and use persistent storage/database rather than an ephemeral local file if you need permanent content.
@@ -42,3 +42,11 @@ A responsive Bangla-English learning website built with Node.js, Express and van
 - Moved AI sentence search above the Learning Progress section.
 - Refined Learning Progress border, progress bar, and Level/Vocabulary/Expression card styling.
 - Level 1 will be completed to 200 book words after the user supplies the remaining book photos.
+
+
+## Latest learning-content update
+- Tense lessons include Bengali positive and negative identification clues.
+- Expanded Level 2 modal guidance, patterns, and examples.
+- Expanded Level 3 preposition, article, passive, and causative voice lessons.
+- Added six requested tongue twisters with browser audio controls.
+- Level 1 expression numbering: 19 Not at all, 20 Let's take a break, 21 Take it, 22 Wait here.

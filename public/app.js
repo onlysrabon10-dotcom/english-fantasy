@@ -9,7 +9,7 @@ const completed = new Set();
 const levels = [
   { title: "Level 1", subtitle: "Grammar Foundation", topics: ["Use of Be Verbs", "Use of Have Verbs", "Tense"] },
   { title: "Level 2", subtitle: "Build Your Sentences", topics: ["Use of Modals", "Sentence Pattern", "Use of There", "First Conditional", "Second Conditional", "Second Conditional (Imagine)", "Use of Get"] },
-  { title: "Level 3", subtitle: "Grammar in Use", topics: ["Use of Prepositions", "Articles (A, An, The)", "Passive Voice"] },
+  { title: "Level 3", subtitle: "Grammar in Use", topics: ["Use of Prepositions", "Articles (A, An, The)", "Passive Voice", "Causative Voice"] },
   { title: "Level 4", subtitle: "Coming Soon", topics: [] }
 ];
 const lessonNotes = {
@@ -31,16 +31,63 @@ const lessonNotes = {
   "Past Indefinite": [{ heading: "ব্যবহার", structure: "Subject + V2 + object", examples: ["I visited Dhaka. — আমি ঢাকা ভ্রমণ করেছিলাম।", "She cooked rice. — সে ভাত রান্না করেছিল।"] }],
   "Past Continuous": [{ heading: "ব্যবহার", structure: "Subject + was/were + verb-ing + object", examples: ["She was cooking. — সে রান্না করছিল।", "We were studying. — আমরা পড়ছিলাম।"] }],
   "Future Indefinite": [{ heading: "ব্যবহার", structure: "Subject + will + V1 + object", examples: ["I will call you. — আমি তোমাকে ফোন করব।", "They will visit us. — তারা আমাদের দেখতে আসবে।"] }],
-  "Use of Modals": [{ heading: "Structure", structure: "Subject + modal + V1 + object", examples: ["You should study. — তোমার পড়াশোনা করা উচিত।", "She can swim. — সে সাঁতার কাটতে পারে।"] }],
-  "Sentence Pattern": [{ heading: "Basic Sentence Pattern", structure: "Subject + Verb + Object (S + V + O)", examples: ["I read a book. — আমি একটি বই পড়ি।", "She drinks water. — সে পানি পান করে।"] }, { heading: "Be Verb Pattern", structure: "Subject + be verb + complement", examples: ["He is a teacher. — তিনি একজন শিক্ষক।"] }],
-  "Use of There": [{ heading: "There is / There are", structure: "There + is/are + noun + place", examples: ["There is a book on the table. — টেবিলের ওপর একটি বই আছে।", "There are two cats. — দুটি বিড়াল আছে।"] }],
-  "First Conditional": [{ heading: "Structure", structure: "If + Present Simple, Subject + will + V1", examples: ["If it rains, I will stay home. — বৃষ্টি হলে আমি বাড়িতে থাকব।"] }],
-  "Second Conditional": [{ heading: "Structure", structure: "If + Past Simple, Subject + would + V1", examples: ["If I had time, I would travel. — সময় থাকলে আমি ভ্রমণ করতাম।"] }],
-  "Second Conditional (Imagine)": [{ heading: "Imagine", structure: "Imagine + subject + past form, ... would + V1", examples: ["Imagine you were rich. What would you do? — কল্পনা করো তুমি ধনী হলে। তুমি কী করতে?"] }],
-  "Use of Get": [{ heading: "Common uses", structure: "Get = পাওয়া / হওয়া / পৌঁছানো (context অনুযায়ী)", examples: ["I get up early. — আমি সকালে তাড়াতাড়ি উঠি।", "It is getting cold. — ঠান্ডা পড়ছে।"] }],
-  "Use of Prepositions": [{ heading: "ব্যবহার", structure: "Preposition + noun/pronoun দিয়ে অবস্থান, সময় বা সম্পর্ক বোঝায়", examples: ["The book is on the table. — বইটি টেবিলের ওপর।", "I live in Dhaka. — আমি ঢাকায় থাকি।"] }],
-  "Articles (A, An, The)": [{ heading: "ব্যবহার", structure: "A/An = অনির্দিষ্ট একবচন; The = নির্দিষ্ট ব্যক্তি/বস্তু", examples: ["I saw a bird. — আমি একটি পাখি দেখেছি।", "She is an honest girl. — সে একজন সৎ মেয়ে।", "The sun is bright. — সূর্য উজ্জ্বল।"] }],
-  "Passive Voice": [{ heading: "Basic Structure", structure: "Object + be verb + V3 (+ by + subject)", examples: ["Active: They make cars. — তারা গাড়ি তৈরি করে।", "Passive: Cars are made. — গাড়ি তৈরি করা হয়।"] }]
+  "Use of Modals": [{ heading: "Modal verbs কী?", structure: "Subject + modal + V1 + (object/complement)", examples: ["Modal verb মূল verb-এর আগে বসে ability, permission, possibility, advice, obligation, willingness ইত্যাদি বোঝায়।", "Modal-এর পরে সাধারণত verb-এর base form (V1) বসে; he/she/it হলেও modal-এর সঙ্গে s/es যোগ হয় না।", "She can swim. — সে সাঁতার কাটতে পারে।", "You should study. — তোমার পড়াশোনা করা উচিত।"] }],
+  "Sentence Pattern": [{ heading: "S + V", structure: "Subject + Verb", examples: ["Birds fly. — পাখিরা ওড়ে।", "The baby cried. — শিশুটি কেঁদেছিল।"] }, { heading: "S + V + O", structure: "Subject + Verb + Object", examples: ["I read a book. — আমি একটি বই পড়ি।", "She drinks water. — সে পানি পান করে।"] }, { heading: "S + V + C", structure: "Subject + Verb + Complement", examples: ["He is happy. — সে খুশি।", "They became friends. — তারা বন্ধু হয়ে গেল।"] }, { heading: "S + V + IO + DO", structure: "Subject + Verb + Indirect Object + Direct Object", examples: ["She gave me a gift. — সে আমাকে একটি উপহার দিয়েছিল।"] }, { heading: "S + V + O + C", structure: "Subject + Verb + Object + Complement", examples: ["They elected him captain. — তারা তাকে অধিনায়ক নির্বাচিত করল।"] }],
+  "Use of There": [{ heading: "There is / There are — অস্তিত্ব বা উপস্থিতি", structure: "There + is + singular/uncountable noun; There + are + plural noun", examples: ["There is a book on the table. — টেবিলের ওপর একটি বই আছে।", "There are two cats in the garden. — বাগানে দুটি বিড়াল আছে।", "There is some water in the glass. — গ্লাসে কিছু পানি আছে।"] }, { heading: "Past and Future", structure: "There + was/were + noun; There + will be + noun", examples: ["There was a problem. — একটি সমস্যা ছিল।", "There will be a meeting tomorrow. — আগামীকাল একটি মিটিং হবে।"] }, { heading: "Negative and Questions", structure: "There + is/are + not + noun; Is/Are + there + noun?", examples: ["There isn't any milk. — কোনো দুধ নেই।", "Are there any questions? — কোনো প্রশ্ন আছে কি?"] }],
+  "First Conditional": [{ heading: "ব্যবহার", structure: "If + Present Simple, Subject + will + V1", examples: ["ভবিষ্যতে বাস্তবসম্মত কোনো শর্ত পূরণ হলে কী হবে তা বোঝাতে First Conditional ব্যবহৃত হয়।", "If it rains, I will stay home. — বৃষ্টি হলে আমি বাড়িতে থাকব।", "If you study, you will pass. — তুমি পড়াশোনা করলে পাস করবে।", "If she comes, I will call you. — সে এলে আমি তোমাকে ফোন করব।"] }, { heading: "Negative ও Question", structure: "If + don't/doesn't + V1, subject + will/won't + V1", examples: ["If you don't hurry, you will miss the bus. — তুমি তাড়াতাড়ি না করলে বাস মিস করবে।", "What will you do if it rains? — বৃষ্টি হলে তুমি কী করবে?"] }],
+  "Second Conditional": [{ heading: "ব্যবহার", structure: "If + Past Simple, Subject + would + V1", examples: ["বর্তমান বা ভবিষ্যতের কাল্পনিক/অবাস্তব বা কম সম্ভাবনাময় পরিস্থিতি বোঝাতে ব্যবহৃত হয়।", "If I had time, I would travel. — আমার সময় থাকলে আমি ভ্রমণ করতাম।", "If I were rich, I would help people. — আমি ধনী হলে মানুষকে সাহায্য করতাম।"] }, { heading: "মনে রাখবে", structure: "If-clause-এ Past Simple; মূল clause-এ would + V1", examples: ["সাধারণত If-clause-এ would বসে না। প্রচলিত formal usage-এ be verb-এর ক্ষেত্রে সব subject-এর সঙ্গে were ব্যবহার করা যায়।", "If she studied harder, she would get better results. — সে আরও মনোযোগ দিয়ে পড়লে ভালো ফল করত।"] }],
+  "Second Conditional (Imagine)": [{ heading: "ব্যবহার", structure: "Imagine + (that) + subject + Past Simple; subject + would + V1", examples: ["কোনো কাল্পনিক পরিস্থিতি কল্পনা করতে Imagine ব্যবহার করা যায়। এরপর সেই পরিস্থিতিতে কী হতে পারে বোঝাতে would + V1 বসে।", "Imagine you were rich. What would you do? — কল্পনা করো তুমি ধনী হলে। তুমি কী করতে?", "Imagine you lived abroad. Where would you go? — কল্পনা করো তুমি বিদেশে থাকতে। তুমি কোথায় যেতে?"] }, { heading: "আরও Pattern", structure: "What would you do if ...? / Imagine + V-ing", examples: ["What would you do if you won a prize? — তুমি পুরস্কার জিতলে কী করতে?", "Imagine living near the sea. — সমুদ্রের কাছে বসবাস করার কথা কল্পনা করো।"] }],
+  "Use of Get": [{ heading: "Get-এর সাধারণ অর্থ", structure: "get + noun = পাওয়া/নেওয়া; get + adjective = হয়ে যাওয়া; get to + place = পৌঁছানো", examples: ["I got a gift. — আমি একটি উপহার পেয়েছি।", "It's getting cold. — ঠান্ডা পড়ছে।", "We got to school early. — আমরা স্কুলে তাড়াতাড়ি পৌঁছেছিলাম।"] }, { heading: "Phrasal / common uses", structure: "get up, get in, get out, get back, get along with, get ready", examples: ["I get up at six. — আমি ছয়টায় ঘুম থেকে উঠি।", "Get in the car. — গাড়িতে ওঠো।", "Please get out. — দয়া করে বাইরে যাও।", "I get along with my classmates. — আমি আমার সহপাঠীদের সঙ্গে ভালোভাবে মিশি।", "Get ready quickly. — দ্রুত প্রস্তুত হও।"] }],
+  "Use of Prepositions": [
+    { heading: "Preposition কী এবং কোথায় বসে", structure: "Preposition + noun/pronoun; সাধারণত noun/pronoun-এর আগে বসে", examples: ["Preposition স্থান, সময়, দিক, অবস্থান ও সম্পর্ক বোঝায়।", "The book is on the table. — বইটি টেবিলের ওপর।", "I live in Dhaka. — আমি ঢাকায় থাকি।", "She came with me. — সে আমার সঙ্গে এসেছিল।"] },
+    { heading: "Place: IN, ON, AT", structure: "IN = বড় এলাকা/ভেতরে; ON = পৃষ্ঠের ওপর; AT = নির্দিষ্ট point", examples: ["I live in Bangladesh. — আমি বাংলাদেশে থাকি।", "The phone is on the desk. — ফোনটি ডেস্কের ওপর।", "Meet me at the gate. — গেটে আমার সঙ্গে দেখা করো।", "She is in the room. — সে ঘরের ভেতরে আছে।"] },
+    { heading: "Near, Close to, Beside, By", structure: "near/close to = কাছাকাছি; beside = ঠিক পাশে; by = পাশে/দ্বারা", examples: ["My school is near my house. — আমার স্কুল বাড়ির কাছে।", "The shop is close to the bank. — দোকানটি ব্যাংকের কাছাকাছি।", "Sit beside me. — আমার পাশে বসো।", "There is a tree by the road. — রাস্তার পাশে একটি গাছ আছে।"] },
+    { heading: "TO, TOWARDS, ALONG, ACROSS", structure: "to = গন্তব্য; towards = দিক বরাবর; along = কোনো কিছুর পাশ ধরে; across = এক পাশ থেকে অন্য পাশে", examples: ["I am going to school. — আমি স্কুলে যাচ্ছি।", "He walked towards the door. — সে দরজার দিকে হাঁটল।", "We walked along the river. — আমরা নদীর পাশ ধরে হাঁটলাম।", "She walked across the road. — সে রাস্তা পার হলো।"] },
+    { heading: "BEFORE, IN FRONT OF, BEHIND, OPPOSITE", structure: "before = আগে; in front of = সামনে; behind = পেছনে; opposite = বিপরীতে", examples: ["Wash your hands before dinner. — রাতের খাবারের আগে হাত ধুয়ে নাও।", "The car is in front of the house. — গাড়িটি বাড়ির সামনে।", "The garden is behind the school. — বাগানটি স্কুলের পেছনে।", "The bank is opposite the hospital. — ব্যাংকটি হাসপাতালের বিপরীতে।"] },
+    { heading: "BETWEEN, AMONG", structure: "between = সাধারণত দুই ব্যক্তি/বস্তুর মধ্যে; among = একাধিকের মধ্যে", examples: ["The ball is between the boxes. — বলটি বাক্স দুটির মাঝে।", "She sat among her friends. — সে বন্ধুদের মাঝে বসেছিল।"] },
+    { heading: "ABOVE, OVER, UNDER, BELOW, BENEATH, UNDERNEATH", structure: "above = উপরে (স্পর্শ ছাড়া); over = উপরে/ঢেকে; under/beneath/underneath = নিচে; below = নিম্ন স্তরে", examples: ["The fan is above my head. — পাখাটি আমার মাথার ওপরে।", "A plane flew over the city. — একটি বিমান শহরের ওপর দিয়ে উড়ল।", "The shoes are under the bed. — জুতাগুলো বিছানার নিচে।", "The temperature is below zero. — তাপমাত্রা শূন্যের নিচে।"] },
+    { heading: "INSIDE, INTO, OUT OF, OUTSIDE", structure: "inside = ভেতরে অবস্থান; into = ভেতরের দিকে প্রবেশ; out of = ভেতর থেকে বাইরে; outside = বাইরে", examples: ["Stay inside the house. — বাড়ির ভেতরে থাকো।", "She went into the room. — সে ঘরের ভেতরে ঢুকল।", "Take the book out of the bag. — ব্যাগ থেকে বইটি বের করো।", "Wait outside the classroom. — শ্রেণিকক্ষের বাইরে অপেক্ষা করো।"] },
+    { heading: "OF, OFF", structure: "of = সম্পর্ক/অংশ/মালিকানা; off = কোনো পৃষ্ঠ থেকে আলাদা/বন্ধ", examples: ["The cover of the book is blue. — বইটির মলাট নীল।", "Take your feet off the table. — টেবিল থেকে পা সরাও।", "The light is off. — বাতিটি বন্ধ।"] }
+  ],
+  "Articles (A, An, The)": [
+    { heading: "A এবং AN-এর মূল নিয়ম", structure: "a + consonant sound; an + vowel sound; singular countable noun-এর আগে", examples: ["a book, a university (ইউ ধ্বনি), a European country.", "an apple, an hour (h নীরব), an honest man.", "I saw a bird. — আমি একটি পাখি দেখেছি।", "She is an honest girl. — সে একজন সৎ মেয়ে।"] },
+    { heading: "THE-এর ব্যবহার", structure: "the + নির্দিষ্ট/আগে উল্লেখ করা noun; unique things; superlative; ordinal", examples: ["I saw a dog. The dog was black. — আমি একটি কুকুর দেখলাম। কুকুরটি কালো ছিল।", "The sun is bright. — সূর্য উজ্জ্বল।", "He is the tallest boy. — সে সবচেয়ে লম্বা ছেলে।", "This is the first chapter. — এটি প্রথম অধ্যায়।"] },
+    { heading: "যেখানে Article বসে না (Zero Article)", structure: "সাধারণ অর্থে plural/uncountable noun, অধিকাংশ proper name, language/subject-এর আগে article নয়", examples: ["Books are useful. — বই উপকারী।", "Water is important. — পানি গুরুত্বপূর্ণ।", "I speak English. — আমি ইংরেজি বলি।", "Dhaka is a busy city. — ঢাকা একটি ব্যস্ত শহর।"] },
+    { heading: "বিশেষ নিয়ম ও Common Mistakes", structure: "a/an বানানের অক্ষর নয়, উচ্চারণের sound অনুসারে; meal, school, bed ইত্যাদিতে অর্থভেদে article বদলায়", examples: ["an MBA student; a one-eyed man; an hour.", "I go to school. (শিক্ষার্থী হিসেবে); I went to the school. (নির্দিষ্ট ভবনে)।", "She plays the piano. — সে পিয়ানো বাজায়।", "The rich should help the poor. — ধনীদের দরিদ্রদের সাহায্য করা উচিত।"] }
+  ],
+  "Passive Voice": [
+    { heading: "Passive Voice কী", structure: "Active: Subject + Verb + Object; Passive: Object + be verb + V3 (+ by + doer)", examples: ["Active: They make cars. — তারা গাড়ি তৈরি করে।", "Passive: Cars are made (by them). — গাড়ি তৈরি করা হয়।", "Object-কে গুরুত্ব দিতে বা doer অজানা/অপ্রয়োজনীয় হলে Passive ব্যবহৃত হয়।"] },
+    { heading: "Tense অনুযায়ী Passive Structure", structure: "Present Simple: am/is/are + V3; Past Simple: was/were + V3; Future: will be + V3", examples: ["Rice is eaten. — ভাত খাওয়া হয়।", "The window was broken. — জানালাটি ভাঙা হয়েছিল।", "The work will be finished. — কাজটি শেষ করা হবে।", "Present Continuous: am/is/are being + V3; Present Perfect: has/have been + V3."] },
+    { heading: "Negative, Question ও Modal Passive", structure: "be + not + V3; Be + subject + V3?; modal + be + V3", examples: ["The room isn't cleaned. — ঘরটি পরিষ্কার করা হয় না।", "Was the letter sent? — চিঠিটি কি পাঠানো হয়েছিল?", "The rules must be followed. — নিয়মগুলো অবশ্যই মানতে হবে।", "The work can be done. — কাজটি করা যেতে পারে।"] },
+    { heading: "Passive করার ধাপ ও সতর্কতা", structure: "Active-এর object-কে subject করো + tense অনুযায়ী be verb + V3; প্রয়োজন হলে by + doer", examples: ["She wrote a letter. → A letter was written by her.", "People speak English here. → English is spoken here.", "যে verb-এর object নেই (যেমন sleep, arrive), সাধারণত তার Passive হয় না।"] }
+  ],
+  "Causative Voice": [
+    { heading: "Causative Voice কী", structure: "কাউকে দিয়ে কোনো কাজ করানো/করিয়ে নেওয়া বোঝায়", examples: ["I had my hair cut. — আমি চুল কাটিয়েছি।", "She got her phone repaired. — সে তার ফোন মেরামত করিয়েছে।"] },
+    { heading: "HAVE / GET + Object + V3", structure: "Subject + have/has/had + object + V3; Subject + get/gets/got + object + V3", examples: ["I have my room cleaned. — আমি আমার ঘর পরিষ্কার করাই।", "He had his car washed. — সে তার গাড়ি ধুইয়েছিল।", "We got the computer fixed. — আমরা কম্পিউটারটি ঠিক করিয়েছি।"] },
+    { heading: "HAVE / MAKE / LET + Person + V1", structure: "have + person + V1; make + person + V1; let + person + V1", examples: ["I had him check the answer. — আমি তাকে উত্তরটি পরীক্ষা করতে বলেছিলাম/দিয়ে করিয়েছিলাম।", "The teacher made us rewrite it. — শিক্ষক আমাদের দিয়ে এটি আবার লিখিয়েছিলেন।", "Let me go. — আমাকে যেতে দাও।"] },
+    { heading: "GET + Person + TO + V1; HELP", structure: "get + person + to + V1; help + person + (to) V1", examples: ["I got my brother to help me. — আমি আমার ভাইকে আমাকে সাহায্য করতে রাজি করিয়েছি।", "She helped me (to) carry the box. — সে আমাকে বাক্সটি বহন করতে সাহায্য করেছে।", "মনে রাখবে: make/let-এর পরে সাধারণত to ছাড়া V1; get-এর পরে person থাকলে to + V1।"] }
+  ]
+};
+const modalLessons = {
+  "Can": { meaning:"সামর্থ্য, দক্ষতা, অনানুষ্ঠানিক অনুমতি বা সম্ভাবনা বোঝায়।", structure:"Subject + can + V1; Negative: cannot/can't; Question: Can + subject + V1?", examples:["I can swim. — আমি সাঁতার কাটতে পারি।","Can I come in? — আমি কি ভেতরে আসতে পারি?","She can't drive. — সে গাড়ি চালাতে পারে না।"] },
+  "Could": { meaning:"অতীতের সামর্থ্য, ভদ্র অনুরোধ, অথবা কম নিশ্চিত সম্ভাবনা বোঝায়।", structure:"Subject + could + V1; Could + subject + V1?", examples:["I could run fast when I was young. — ছোটবেলায় আমি দ্রুত দৌড়াতে পারতাম।","Could you help me? — আপনি কি আমাকে সাহায্য করতে পারবেন?","It could rain later. — পরে বৃষ্টি হতে পারে।"] },
+  "May": { meaning:"আনুষ্ঠানিক অনুমতি এবং সম্ভাবনা বোঝায়।", structure:"Subject + may + V1; May + subject + V1?", examples:["May I come in? — আমি কি ভেতরে আসতে পারি?","It may rain today. — আজ বৃষ্টি হতে পারে।","You may leave now. — আপনি এখন যেতে পারেন।"] },
+  "Might": { meaning:"কম নিশ্চিত সম্ভাবনা বা ভদ্র/সতর্ক পরামর্শ বোঝায়।", structure:"Subject + might + V1", examples:["She might come today. — সে আজ আসতেও পারে।","I might visit them. — আমি তাদের দেখতে যেতে পারি।","You might try again. — তুমি আরেকবার চেষ্টা করে দেখতে পারো।"] },
+  "Must": { meaning:"জোরালো বাধ্যবাধকতা, প্রয়োজন বা দৃঢ় অনুমান বোঝায়।", structure:"Subject + must + V1; must not/mustn't = নিষেধ", examples:["You must obey the rules. — তোমাকে নিয়ম মানতেই হবে।","You mustn't be late. — তোমার দেরি করা চলবে না।","He must be tired. — তার নিশ্চয়ই ক্লান্ত লাগছে।"] },
+  "Shall": { meaning:"প্রস্তাব, পরামর্শ বা আনুষ্ঠানিক ভবিষ্যৎ বোঝাতে I/We-এর সঙ্গে ব্যবহৃত হয়।", structure:"Shall + I/we + V1?; Subject + shall + V1 (formal)", examples:["Shall we start? — আমরা কি শুরু করব?","Shall I open the window? — আমি কি জানালাটি খুলব?","We shall overcome this difficulty. — আমরা এই অসুবিধা কাটিয়ে উঠব।"] },
+  "Should": { meaning:"উপদেশ, কর্তব্য, প্রত্যাশা বা উচিত বোঝায়।", structure:"Subject + should + V1; should not/shouldn't + V1", examples:["You should study regularly. — তোমার নিয়মিত পড়াশোনা করা উচিত।","You shouldn't waste time. — তোমার সময় নষ্ট করা উচিত নয়।","Should I call him? — আমার কি তাকে ফোন করা উচিত?"] },
+  "Will": { meaning:"ভবিষ্যৎ, সিদ্ধান্ত, প্রতিশ্রুতি বা ইচ্ছা বোঝায়।", structure:"Subject + will + V1; will not/won't + V1", examples:["I will call you tomorrow. — আমি আগামীকাল তোমাকে ফোন করব।","She won't come today. — সে আজ আসবে না।","Will you help me? — তুমি কি আমাকে সাহায্য করবে?"] },
+  "Would": { meaning:"ভদ্র অনুরোধ, কল্পিত পরিস্থিতি, অতীতের অভ্যাস বা ইচ্ছা বোঝায়।", structure:"Subject + would + V1; Would + subject + V1?", examples:["Would you please help me? — আপনি কি দয়া করে আমাকে সাহায্য করবেন?","If I had money, I would travel. — আমার টাকা থাকলে আমি ভ্রমণ করতাম।","When we were young, we would play outside. — আমরা ছোটবেলায় বাইরে খেলতাম।"] },
+  "Ought to": { meaning:"নৈতিক দায়িত্ব বা উপদেশ বোঝায়; should-এর কাছাকাছি অর্থ।", structure:"Subject + ought to + V1; ought not to + V1", examples:["You ought to respect your parents. — তোমার বাবা-মাকে সম্মান করা উচিত।","We ought to help others. — আমাদের অন্যদের সাহায্য করা উচিত।"] },
+  "Need to": { meaning:"প্রয়োজন বা দরকার বোঝায়। এটি semi-modal expression।", structure:"Subject + need/needs to + V1; past: needed to + V1", examples:["I need to study. — আমার পড়াশোনা করা দরকার।","She needs to rest. — তার বিশ্রাম নেওয়া দরকার।","We needed to leave early. — আমাদের তাড়াতাড়ি বের হওয়া দরকার ছিল।"] },
+  "Dare": { meaning:"সাহস থাকা বা সাহস করে কিছু করা বোঝায়; modal ও ordinary verb—দুইভাবেই আসে।", structure:"Dare + subject + V1? (modal); Subject + dare(s) to + V1 (ordinary verb)", examples:["Dare he speak to the teacher? — সে কি শিক্ষকের সঙ্গে কথা বলার সাহস করে?","She doesn't dare to ask. — সে জিজ্ঞেস করার সাহস পায় না।"] },
+  "Used to": { meaning:"অতীতের অভ্যাস বা আগের অবস্থা বোঝায়, যা এখন আর নেই বা নিয়মিত ঘটে না। এটি semi-modal pattern।", structure:"Subject + used to + V1; Negative: didn't use to + V1; Question: Did + subject + use to + V1?", examples:["I used to play football. — আমি আগে ফুটবল খেলতাম।","She didn't use to drink tea. — সে আগে চা পান করত না।","Did you use to live here? — তুমি কি আগে এখানে থাকতে?"] },
+  "Would you mind": { meaning:"ভদ্রভাবে অনুরোধ করতে ব্যবহৃত হয়। এর পরে verb-ing বসে; noun-ও বসতে পারে।", structure:"Would you mind + V-ing...?; Would you mind if + subject + past verb...?", examples:["Would you mind opening the window? — জানালাটি খুলে দিলে কি আপনার অসুবিধা হবে?","Would you mind waiting here? — এখানে অপেক্ষা করলে কি আপনার অসুবিধা হবে?","Would you mind if I sat here? — আমি এখানে বসলে কি আপনার আপত্তি হবে?"] },
+  "Supposed to": { meaning:"কোনো নিয়ম, দায়িত্ব, প্রত্যাশা বা নির্ধারিত কাজ বোঝায়।", structure:"Subject + am/is/are supposed to + V1; was/were supposed to + V1", examples:["I am supposed to study now. — আমার এখন পড়াশোনা করার কথা।","You are not supposed to smoke here. — এখানে তোমার ধূমপান করার কথা নয়।","We were supposed to meet yesterday. — গতকাল আমাদের দেখা করার কথা ছিল।"] },
+  "Yet to": { meaning:"কোনো কাজ এখনো সম্পন্ন হয়নি, তবে হওয়ার বাকি আছে—এমন অর্থ বোঝায়।", structure:"Subject + have/has + yet to + V1; Subject + be + yet to + V1 (formal use)", examples:["I have yet to finish my homework. — আমার এখনও বাড়ির কাজ শেষ করা বাকি।","The train is yet to arrive. — ট্রেনটির এখনও পৌঁছানো বাকি।","She has yet to reply. — তার এখনও উত্তর দেওয়া বাকি।"] },
+  "Likely to": { meaning:"কোনো কাজ হওয়ার সম্ভাবনা বেশি বোঝায়।", structure:"Subject + am/is/are likely to + V1; Subject + be not likely to + V1", examples:["It is likely to rain. — বৃষ্টি হওয়ার সম্ভাবনা আছে।","He is likely to win. — তার জেতার সম্ভাবনা বেশি।","They are not likely to come. — তাদের আসার সম্ভাবনা কম।"] },
+  "Am/Is/Are to": { meaning:"নির্ধারিত পরিকল্পনা, আনুষ্ঠানিক নির্দেশ বা দায়িত্ব বোঝায়।", structure:"Subject + am/is/are to + V1; Negative: am/is/are not to + V1", examples:["I am to meet the principal. — আমার প্রধান শিক্ষকের সঙ্গে দেখা করার কথা।","You are to submit the form today. — তোমাকে আজ ফর্ম জমা দিতে হবে।","She is not to leave early. — তার আগে চলে যাওয়ার কথা নয়।"] },
+  "Was/Were to": { meaning:"অতীতে নির্ধারিত পরিকল্পনা বা দায়িত্ব বোঝায়; কাজটি ঘটেছিল কি না তা প্রসঙ্গ থেকে বোঝা যায়।", structure:"Subject + was/were to + V1; Negative: was/were not to + V1", examples:["I was to visit him yesterday. — গতকাল আমার তার সঙ্গে দেখা করার কথা ছিল।","They were to start at noon. — তাদের দুপুরে শুরু করার কথা ছিল।","He was not to tell anyone. — তার কাউকে বলার কথা ছিল না।"] }
 };
 const sixSentenceSets = [
   [
@@ -136,12 +183,922 @@ const words = [
   { word:"Discourage", meaning:"নিরুৎসাহিত করা", v1:"Discourage", v2:"Discouraged", v3:"Discouraged", v4:"Discourages", v5:"Discouraging", example:"Do not let mistakes discourage you.", bn:"ভুলগুলোকে তোমাকে নিরুৎসাহিত করতে দিও না।" }
 ];
 const commonExpressions = [
- {level:1, items:[
- ["How are you?","তুমি কেমন আছ?","How are you today?"],["I'm fine.","আমি ভালো আছি।","I'm fine, thank you."],["What happened?","কী হয়েছে?","What happened here?"],["No problem.","কোনো সমস্যা নেই।","No problem, I can help."],["Never mind.","থাক, কিছু মনে করো না।","Never mind, it's okay."],["Of course.","অবশ্যই।","Of course, you can join us."],["I don't know.","আমি জানি না।","I don't know the answer."],["I think so.","আমার তাই মনে হয়।","I think so, too."],["Wait a moment.","একটু অপেক্ষা করো।","Wait a moment, please."],["Be careful.","সাবধানে থেকো।","Be careful on the road."],["Hurry up.","তাড়াতাড়ি করো।","Hurry up or we'll be late."],["Come here.","এখানে আসো।","Come here for a minute."],["Go ahead.","এগিয়ে যাও / শুরু করো।","Go ahead and ask your question."],["That's right.","এটাই ঠিক।","That's right; you are correct."],["Not at all.","একদমই না / স্বাগতম।","Not at all, happy to help."],["Take care.","নিজের যত্ন নিও।","Take care of yourself."],["See you soon.","আবার শিগগির দেখা হবে।","See you soon at school."],["I'm sorry.","আমি দুঃখিত।","I'm sorry for being late."],["Thank you so much.","তোমাকে অনেক ধন্যবাদ।","Thank you so much for your help."],["You're welcome.","স্বাগতম / ধন্যবাদ দেওয়ার কিছু নেই।","You're welcome; anytime."]]},
- {level:2, items:[
- ["As far as I know","আমার যতদূর জানা আছে","As far as I know, the shop is closed."],["To be honest","সত্যি বলতে","To be honest, I disagree."],["In my opinion","আমার মতে","In my opinion, this is a good idea."],["It depends.","এটা নির্ভর করে।","It depends on the weather."],["That makes sense.","কথাটা যুক্তিসংগত।","That makes sense to me."],["I'm looking forward to it.","আমি এটির জন্য অধীর আগ্রহে অপেক্ষা করছি।","I'm looking forward to the trip."],["Keep in touch.","যোগাযোগ রেখো।","Keep in touch after the course."],["Let me know.","আমাকে জানিও।","Let me know when you arrive."],["I have no idea.","আমার কোনো ধারণা নেই।","I have no idea where he went."],["It's up to you.","এটা তোমার সিদ্ধান্ত।","It's up to you to choose."],["Don't get me wrong.","আমাকে ভুল বুঝো না।","Don't get me wrong; I am helping."],["That sounds great.","শুনতে দারুণ লাগছে।","That sounds great to me."],["I'm afraid so.","দুঃখজনকভাবে তাই মনে হচ্ছে।","I'm afraid so; the event is cancelled."],["I'm afraid not.","দুঃখিত, তা সম্ভব নয়।","I'm afraid not; we're fully booked."],["By the way","প্রসঙ্গক্রমে","By the way, how is your study going?"],["For example","উদাহরণস্বরূপ","For example, you can practise daily."],["On the other hand","অন্যদিকে","On the other hand, it may cost more."],["In that case","সে ক্ষেত্রে","In that case, call me tomorrow."],["As soon as possible","যত দ্রুত সম্ভব","Please reply as soon as possible."],["Make yourself at home.","নিজের বাড়ির মতো স্বচ্ছন্দ বোধ করো।","Come in and make yourself at home."]]},
- {level:3, items:[
- ["I couldn't agree more.","আমি এর সঙ্গে পুরোপুরি একমত।","I couldn't agree more with your point."],["It slipped my mind.","বিষয়টি আমার মন থেকে সরে গিয়েছিল।","Sorry, it slipped my mind."],["Let's get straight to the point.","চলো সরাসরি মূল কথায় আসি।","Let's get straight to the point."],["That rings a bell.","কথাটি পরিচিত মনে হচ্ছে।","That name rings a bell."],["I'm on the same page.","আমি একই বিষয়ে একমত / বুঝতে পেরেছি।","We are on the same page now."],["I see your point.","আমি তোমার বক্তব্য বুঝতে পারছি।","I see your point, but I disagree."],["It's not worth it.","এটি করার মতো লাভজনক নয়।","Arguing about it is not worth it."],["Don't take it personally.","ব্যক্তিগতভাবে নিয়ো না।","Don't take it personally; it was feedback."],["I'll keep that in mind.","আমি বিষয়টি মনে রাখব।","I'll keep that in mind next time."],["That is beside the point.","ওটা মূল বিষয়ের বাইরে।","That is beside the point."],["Let's call it a day.","আজকের মতো কাজ শেষ করি।","We've done enough; let's call it a day."],["I'm running out of time.","আমার সময় ফুরিয়ে আসছে।","I'm running out of time."],["It goes without saying.","এ কথা বলার অপেক্ষা রাখে না।","It goes without saying that practice matters."],["I take your word for it.","আমি তোমার কথা বিশ্বাস করছি।","I take your word for it."],["There's no point in worrying.","দুশ্চিন্তা করে লাভ নেই।","There's no point in worrying now."],["Let's not jump to conclusions.","চলো তাড়াহুড়া করে সিদ্ধান্তে না পৌঁছাই।","Let's not jump to conclusions."],["I beg to differ.","আমি বিনয়ের সঙ্গে দ্বিমত পোষণ করছি।","I beg to differ on this issue."],["It is easier said than done.","বলা সহজ, করা কঠিন।","Changing habits is easier said than done."],["We are running late.","আমাদের দেরি হয়ে যাচ্ছে।","We are running late for class."],["The choice is yours.","সিদ্ধান্ত তোমার।","The choice is yours."]]}];
+  {
+    "level": 1,
+    "items": [
+      [
+        "Come here.",
+        "এখানে এসো।",
+        ""
+      ],
+      [
+        "Go up.",
+        "ওপরে যাও।",
+        ""
+      ],
+      [
+        "Go down.",
+        "নিচে যাও।",
+        ""
+      ],
+      [
+        "Go slowly / Walk.",
+        "ধীরে যাও / হেঁটে যাও।",
+        ""
+      ],
+      [
+        "Go at once.",
+        "এখনই যাও।",
+        ""
+      ],
+      [
+        "Go straight.",
+        "সোজা যাও।",
+        ""
+      ],
+      [
+        "Go away / Get out.",
+        "চলে যাও।",
+        ""
+      ],
+      [
+        "Go ahead.",
+        "এগিয়ে যাও।",
+        ""
+      ],
+      [
+        "Come near.",
+        "কাছে এসো।",
+        ""
+      ],
+      [
+        "Wait outside.",
+        "বাইরে অপেক্ষা করো।",
+        ""
+      ],
+      [
+        "Go on!",
+        "চালিয়ে যাও!",
+        ""
+      ],
+      [
+        "Go back.",
+        "ফিরে যাও।",
+        ""
+      ],
+      [
+        "Go to hell.",
+        "জাহান্নামে যাও।",
+        ""
+      ],
+      [
+        "Relax for a while.",
+        "একটু বিশ্রাম করো।",
+        ""
+      ],
+      [
+        "Look here.",
+        "এদিকে দেখো।",
+        ""
+      ],
+      [
+        "Get down.",
+        "নেমে যাও / নামো।",
+        ""
+      ],
+      [
+        "Not a bit!",
+        "একটুও না!",
+        ""
+      ],
+      [
+        "Not the least.",
+        "একটুও নয়।",
+        ""
+      ],
+      [
+        "Not at all.",
+        "একদমই না / মোটেও না।",
+        ""
+      ],
+      [
+        "Let's take a break.",
+        "চলো একটু বিরতি নিই।",
+        ""
+      ],
+      [
+        "Take it.",
+        "এই নাও।",
+        ""
+      ],
+      [
+        "Wait here.",
+        "এখানে অপেক্ষা করো।",
+        ""
+      ],
+      [
+        "Come back.",
+        "ফিরে এসো।",
+        ""
+      ],
+      [
+        "Come soon.",
+        "তাড়াতাড়ি এসো।",
+        ""
+      ],
+      [
+        "Come on!",
+        "আরে, চেষ্টা করো!",
+        ""
+      ],
+      [
+        "Be ready.",
+        "তৈরি হও।",
+        ""
+      ],
+      [
+        "Be calm.",
+        "শান্ত হও।",
+        ""
+      ],
+      [
+        "Clean properly.",
+        "ভালো করে পরিষ্কার করো।",
+        ""
+      ],
+      [
+        "Keep quiet.",
+        "চুপ করো।",
+        ""
+      ],
+      [
+        "Stop here.",
+        "এখানে থামো।",
+        ""
+      ],
+      [
+        "Try again.",
+        "আরেকবার চেষ্টা করো।",
+        ""
+      ],
+      [
+        "Look ahead.",
+        "সামনে তাকাও।",
+        ""
+      ],
+      [
+        "Mind your business.",
+        "নিজের কাজে মন দাও।",
+        ""
+      ],
+      [
+        "Listen to me.",
+        "আমার কথা শোনো।",
+        ""
+      ],
+      [
+        "Move aside.",
+        "একপাশে সরে দাঁড়াও।",
+        ""
+      ],
+      [
+        "It's so embarrassing.",
+        "এটা খুবই লজ্জার বিষয়।",
+        ""
+      ],
+      [
+        "Leave it.",
+        "থাক, বাদ দাও।",
+        ""
+      ],
+      [
+        "Drive slowly.",
+        "আস্তে গাড়ি চালাও।",
+        ""
+      ],
+      [
+        "Use your brain.",
+        "বুদ্ধি খাটাও।",
+        ""
+      ],
+      [
+        "Keep it in your mind.",
+        "মনে রেখো।",
+        ""
+      ],
+      [
+        "Have patience.",
+        "একটু ধৈর্য ধরো।",
+        ""
+      ],
+      [
+        "Have a safe journey.",
+        "নিরাপদে যেও / তোমার যাত্রা শুভ হোক।",
+        ""
+      ],
+      [
+        "Tell me about it.",
+        "এটা সম্পর্কে আমাকে বলো।",
+        ""
+      ],
+      [
+        "Stand near.",
+        "কাছে দাঁড়াও।",
+        ""
+      ],
+      [
+        "Stop worrying.",
+        "চিন্তা করা বন্ধ করো।",
+        ""
+      ],
+      [
+        "That's not a bad idea.",
+        "কথাটা মন্দ নয়।",
+        ""
+      ],
+      [
+        "Would you mind?",
+        "আপনি কি কিছু মনে করবেন?",
+        ""
+      ],
+      [
+        "It's sad to hear.",
+        "শুনে খারাপ লাগল।",
+        ""
+      ],
+      [
+        "It's a matter of joy.",
+        "এটি আনন্দের বিষয়।",
+        ""
+      ],
+      [
+        "That's enough.",
+        "যথেষ্ট হয়েছে।",
+        ""
+      ],
+      [
+        "Keep your promise.",
+        "নিজের প্রতিশ্রুতি রাখো।",
+        ""
+      ],
+      [
+        "Get lost / Get out of my sight.",
+        "আমার চোখের সামনে থেকে দূর হও।",
+        ""
+      ],
+      [
+        "Come and see me again.",
+        "আবার আমার সঙ্গে দেখা করতে এসো।",
+        ""
+      ],
+      [
+        "Come afterwards.",
+        "পরে এসো।",
+        ""
+      ],
+      [
+        "Come for a walk, please.",
+        "চলো, একটু হাঁটতে যাই।",
+        ""
+      ],
+      [
+        "How did you think?",
+        "তুমি কীভাবে এমনটা ভাবলে?",
+        ""
+      ],
+      [
+        "For this reason.",
+        "এই কারণে।",
+        ""
+      ],
+      [
+        "Pray for me.",
+        "আমার জন্য দোয়া করো।",
+        ""
+      ],
+      [
+        "I am very excited.",
+        "আমি খুবই উত্তেজিত / আনন্দিত।",
+        ""
+      ],
+      [
+        "See you tomorrow.",
+        "আগামীকাল দেখা হবে।",
+        ""
+      ]
+    ]
+  },
+  {
+    "level": 2,
+    "items": [
+      [
+        "I'm sorry.",
+        "আমি দুঃখিত।",
+        ""
+      ],
+      [
+        "Excuse me.",
+        "মাফ করবেন।",
+        ""
+      ],
+      [
+        "Don't worry.",
+        "দুশ্চিন্তা করো না।",
+        ""
+      ],
+      [
+        "Pardon me.",
+        "মাফ করবেন।",
+        ""
+      ],
+      [
+        "Forget it.",
+        "ওটা ভুলে যাও / বাদ দাও।",
+        ""
+      ],
+      [
+        "Thanks for your advice.",
+        "আপনার পরামর্শের জন্য ধন্যবাদ।",
+        ""
+      ],
+      [
+        "I need more information.",
+        "আমার আরও তথ্য প্রয়োজন।",
+        ""
+      ],
+      [
+        "Allow me to speak.",
+        "আমাকে কথা বলার অনুমতি দিন।",
+        ""
+      ],
+      [
+        "I made a mistake. Please excuse me.",
+        "ভুল হয়ে গেছে, দয়া করে মাফ করবেন।",
+        ""
+      ],
+      [
+        "Long time no see.",
+        "অনেক দিন দেখা হয় না।",
+        ""
+      ],
+      [
+        "What's happening?",
+        "কী হচ্ছে?",
+        ""
+      ],
+      [
+        "Have a nice day.",
+        "আপনার দিনটি ভালো কাটুক।",
+        ""
+      ],
+      [
+        "What's wrong with you?",
+        "তোমার কী সমস্যা?",
+        ""
+      ],
+      [
+        "Not good.",
+        "ভালো নয়।",
+        ""
+      ],
+      [
+        "Not bad.",
+        "খারাপ নয়।",
+        ""
+      ],
+      [
+        "Keep in touch.",
+        "যোগাযোগ রেখো।",
+        ""
+      ],
+      [
+        "Look who it is!",
+        "দেখো, কে এসেছে!",
+        ""
+      ],
+      [
+        "What a tragedy!",
+        "কী মর্মান্তিক ঘটনা!",
+        ""
+      ],
+      [
+        "What a surprise!",
+        "কী আশ্চর্য!",
+        ""
+      ],
+      [
+        "What a shame!",
+        "কী লজ্জার কথা!",
+        ""
+      ],
+      [
+        "Hurry up!",
+        "তাড়াতাড়ি করো!",
+        ""
+      ],
+      [
+        "I have lost my wallet.",
+        "আমি আমার মানিব্যাগ হারিয়ে ফেলেছি।",
+        ""
+      ],
+      [
+        "For example.",
+        "উদাহরণস্বরূপ।",
+        ""
+      ],
+      [
+        "In my opinion.",
+        "আমার মতে।",
+        ""
+      ],
+      [
+        "By turns.",
+        "পালা করে / পর্যায়ক্রমে।",
+        ""
+      ],
+      [
+        "Is she alive?",
+        "সে কি বেঁচে আছে?",
+        ""
+      ],
+      [
+        "Keep it aside.",
+        "এটা একপাশে রাখো।",
+        ""
+      ],
+      [
+        "Don't hide from me.",
+        "আমার কাছ থেকে লুকিয়ো না।",
+        ""
+      ],
+      [
+        "Don't say anything.",
+        "কিছু বলো না।",
+        ""
+      ],
+      [
+        "She made a mistake.",
+        "সে একটি ভুল করেছিল।",
+        ""
+      ],
+      [
+        "Forgive him.",
+        "তাকে ক্ষমা করে দাও।",
+        ""
+      ],
+      [
+        "Keep it there.",
+        "এটা ওখানে রেখে দাও।",
+        ""
+      ],
+      [
+        "It was not good.",
+        "এটা ভালো ছিল না।",
+        ""
+      ],
+      [
+        "She likes both.",
+        "সে দুটোই পছন্দ করে।",
+        ""
+      ],
+      [
+        "I don't think so.",
+        "আমি তা মনে করি না।",
+        ""
+      ],
+      [
+        "Take it out.",
+        "এটা বাইরে বের করো।",
+        ""
+      ],
+      [
+        "Hold it carefully.",
+        "এটা সাবধানে ধরো।",
+        ""
+      ],
+      [
+        "Save your time.",
+        "তোমার সময় বাঁচাও।",
+        ""
+      ],
+      [
+        "Do your work by yourself.",
+        "নিজের কাজ নিজে করো।",
+        ""
+      ],
+      [
+        "Give me a moment.",
+        "আমাকে একটু সময় দাও।",
+        ""
+      ],
+      [
+        "You can go now.",
+        "তুমি এখন যেতে পারো।",
+        ""
+      ],
+      [
+        "Look around you.",
+        "তোমার চারপাশে তাকাও।",
+        ""
+      ],
+      [
+        "This is not fair.",
+        "এটা ঠিক নয়।",
+        ""
+      ],
+      [
+        "Let him do this work.",
+        "তাকে এই কাজটি করতে দাও।",
+        ""
+      ],
+      [
+        "I heard that she is sick.",
+        "আমি শুনেছি যে সে অসুস্থ।",
+        ""
+      ],
+      [
+        "Give me something to eat.",
+        "আমাকে কিছু খেতে দাও।",
+        ""
+      ],
+      [
+        "He knows my address.",
+        "সে আমার ঠিকানা জানে।",
+        ""
+      ],
+      [
+        "You still have time.",
+        "তোমার কাছে এখনো সময় আছে।",
+        ""
+      ],
+      [
+        "Don't eat street food.",
+        "রাস্তার খাবার খেয়ো না।",
+        ""
+      ],
+      [
+        "It will be a matter of luck.",
+        "এটা ভাগ্যের ব্যাপার হবে।",
+        ""
+      ],
+      [
+        "You have done a good job.",
+        "তুমি ভালো কাজ করেছো।",
+        ""
+      ],
+      [
+        "Let me wake up early.",
+        "আমাকে সকালে তাড়াতাড়ি উঠতে দাও।",
+        ""
+      ],
+      [
+        "Don't insist.",
+        "জোরাজুরি করো না।",
+        ""
+      ],
+      [
+        "Move fast.",
+        "দ্রুত সরে যাও।",
+        ""
+      ],
+      [
+        "I have good news.",
+        "আমার কাছে ভালো খবর আছে।",
+        ""
+      ],
+      [
+        "Don't talk to him.",
+        "তার সঙ্গে কথা বলো না।",
+        ""
+      ],
+      [
+        "Never tell a lie.",
+        "কখনো মিথ্যা বলো না।",
+        ""
+      ],
+      [
+        "Do what he says.",
+        "সে যা বলে, তা-ই করো।",
+        ""
+      ],
+      [
+        "Go and get it.",
+        "যাও এবং ওটা নিয়ে এসো।",
+        ""
+      ],
+      [
+        "Stop him.",
+        "তাকে থামাও।",
+        ""
+      ]
+    ]
+  },
+  {
+    "level": 3,
+    "items": [
+      [
+        "It's good.",
+        "এটা ভালো।",
+        ""
+      ],
+      [
+        "It's not like that.",
+        "ব্যাপারটা তেমন নয়।",
+        ""
+      ],
+      [
+        "Look outside.",
+        "বাইরে তাকাও।",
+        ""
+      ],
+      [
+        "No one has come yet.",
+        "এখনো কেউ আসেনি।",
+        ""
+      ],
+      [
+        "I remember.",
+        "আমার মনে আছে।",
+        ""
+      ],
+      [
+        "Stay inside.",
+        "ভেতরে থাকো।",
+        ""
+      ],
+      [
+        "Come to the market with me.",
+        "আমার সঙ্গে বাজারে চলো।",
+        ""
+      ],
+      [
+        "Don't doubt me.",
+        "আমাকে সন্দেহ করো না।",
+        ""
+      ],
+      [
+        "Go home and take a rest.",
+        "বাড়ি যাও এবং বিশ্রাম নাও।",
+        ""
+      ],
+      [
+        "Don't be angry with Mim.",
+        "মীমের ওপর রাগ করো না।",
+        ""
+      ],
+      [
+        "I'm not sure.",
+        "আমি নিশ্চিত নই।",
+        ""
+      ],
+      [
+        "Don't talk too much.",
+        "বেশি কথা বলো না।",
+        ""
+      ],
+      [
+        "Keep doing it.",
+        "এটা করতে থাকো।",
+        ""
+      ],
+      [
+        "I can't believe it.",
+        "আমি এটা বিশ্বাস করতে পারছি না।",
+        ""
+      ],
+      [
+        "I knew it very well.",
+        "আমি এটা খুব ভালো করেই জানতাম।",
+        ""
+      ],
+      [
+        "Is it your book?",
+        "এটা কি তোমার বই?",
+        ""
+      ],
+      [
+        "No, it's not mine.",
+        "না, এটা আমার নয়।",
+        ""
+      ],
+      [
+        "Write it properly.",
+        "এটা ঠিকভাবে লেখো।",
+        ""
+      ],
+      [
+        "You can do it.",
+        "তুমি এটা করতে পারবে।",
+        ""
+      ],
+      [
+        "I will meet you in a while.",
+        "কিছুক্ষণ পরে তোমার সঙ্গে দেখা করব।",
+        ""
+      ],
+      [
+        "Come forward.",
+        "সামনে এগিয়ে এসো।",
+        ""
+      ],
+      [
+        "Arrive on time.",
+        "সময়মতো পৌঁছে যেয়ো।",
+        ""
+      ],
+      [
+        "Stand there.",
+        "ওখানে দাঁড়াও।",
+        ""
+      ],
+      [
+        "Don't blame me.",
+        "আমাকে দোষ দিও না।",
+        ""
+      ],
+      [
+        "I have nothing to say.",
+        "আমার কিছু বলার নেই।",
+        ""
+      ],
+      [
+        "She is going to bed / sleep.",
+        "সে ঘুমাতে যাচ্ছে।",
+        ""
+      ],
+      [
+        "There is still a lot of time.",
+        "এখনো অনেক সময় আছে।",
+        ""
+      ],
+      [
+        "Nobody lives there.",
+        "সেখানে কেউ থাকে না।",
+        ""
+      ],
+      [
+        "They are our neighbours.",
+        "তারা আমাদের প্রতিবেশী।",
+        ""
+      ],
+      [
+        "It was usable.",
+        "এটি ব্যবহারযোগ্য ছিল।",
+        ""
+      ],
+      [
+        "Be careful.",
+        "সাবধান হও।",
+        ""
+      ],
+      [
+        "Turn around.",
+        "ঘুরে দাঁড়াও।",
+        ""
+      ],
+      [
+        "You have to speak slowly.",
+        "তোমাকে ধীরে কথা বলতে হবে।",
+        ""
+      ],
+      [
+        "You should hurry up.",
+        "তোমার তাড়াতাড়ি করা উচিত।",
+        ""
+      ],
+      [
+        "Please speak up.",
+        "দয়া করে একটু জোরে বলো।",
+        ""
+      ],
+      [
+        "You have to look down.",
+        "তোমাকে নিচের দিকে তাকাতে হবে।",
+        ""
+      ],
+      [
+        "That's too bad.",
+        "এটা খুবই খারাপ।",
+        ""
+      ],
+      [
+        "It is obvious.",
+        "এটা স্পষ্ট।",
+        ""
+      ],
+      [
+        "I will go after a while.",
+        "আমি কিছুক্ষণ পরে যাব।",
+        ""
+      ],
+      [
+        "Let's meet.",
+        "চলো দেখা করি।",
+        ""
+      ],
+      [
+        "It may rain today.",
+        "আজ বৃষ্টি হতে পারে।",
+        ""
+      ],
+      [
+        "I am surprised.",
+        "আমি অবাক হয়েছি।",
+        ""
+      ],
+      [
+        "It is impossible for me.",
+        "এটা আমার পক্ষে অসম্ভব।",
+        ""
+      ],
+      [
+        "Both are equal.",
+        "দুটোই সমান।",
+        ""
+      ],
+      [
+        "Stay a little away.",
+        "একটু দূরে থাকো।",
+        ""
+      ],
+      [
+        "The work is done.",
+        "কাজটি শেষ হয়েছে।",
+        ""
+      ],
+      [
+        "He is a liar.",
+        "সে একজন মিথ্যাবাদী।",
+        ""
+      ],
+      [
+        "Take it off.",
+        "এটা খুলে ফেলো।",
+        ""
+      ],
+      [
+        "It's your turn now.",
+        "এখন তোমার পালা।",
+        ""
+      ],
+      [
+        "Our time is up.",
+        "আমাদের সময় শেষ।",
+        ""
+      ],
+      [
+        "He has to know.",
+        "তাকে জানতে হবে।",
+        ""
+      ],
+      [
+        "Give him that.",
+        "তাকে ওটা দাও।",
+        ""
+      ],
+      [
+        "Answer my question.",
+        "আমার প্রশ্নের উত্তর দাও।",
+        ""
+      ],
+      [
+        "I have made a mistake.",
+        "আমি একটি ভুল করেছি।",
+        ""
+      ],
+      [
+        "Tell him to call.",
+        "তাকে ফোন করতে বলো।",
+        ""
+      ],
+      [
+        "What time is it?",
+        "এখন কয়টা বাজে?",
+        ""
+      ],
+      [
+        "Bring any book.",
+        "যেকোনো একটি বই নিয়ে এসো।",
+        ""
+      ],
+      [
+        "You have done well.",
+        "তুমি ভালো করেছো।",
+        ""
+      ],
+      [
+        "You should watch out.",
+        "তোমার সতর্ক থাকা উচিত।",
+        ""
+      ],
+      [
+        "Write in English.",
+        "ইংরেজিতে লেখো।",
+        ""
+      ]
+    ]
+  }
+];
 
 const twisterGroups = [
   { title: "Tongue Twister — Set 1", items: [
@@ -149,7 +1106,13 @@ const twisterGroups = [
     "Green grape fruit, ripe grape fruit.",
     "Polly put purple paint in the pool.",
     "Carlos kicks a curly corner kick.",
-    "The teacher told me to teach a typical topic."
+    "The teacher told me to teach a typical topic.",
+    "She sells seashells by the seashore.",
+    "Peter Piper picked a peck of pickled peppers.",
+    "A big black bug bit a big black bear.",
+    "Six slippery snails slid slowly seaward.",
+    "Betty Botter bought some butter.",
+    "Which witch wished which wicked wish?"
   ]},
   { title: "Tongue Twister — Set 2 (10 Together)", items: [
     "Red lorry, yellow lorry.", "Three free throws.", "Top cup, cup top.", "Blue blue bird.", "Daddy draws doors.",
@@ -353,7 +1316,7 @@ function renderExpressionSearch(query) {
   const host=$("expressionSearchResults"); if(!host) return; const q=query.trim().toLowerCase();
   if(!q){host.innerHTML='<p class="empty-note">Expression খুঁজতে English phrase বা বাংলা অর্থ লিখো।</p>';return;}
   const found=commonExpressions.flatMap(g=>g.items.map((x,i)=>({item:x,level:g.level,index:i}))).filter(x=>x.item.join(" ").toLowerCase().includes(q));
-  host.innerHTML=found.length?found.map(x=>`<article class="expression-row"><div class="expression-index">L${x.level}</div><div class="expression-body"><h4>${escapeHtml(x.item[0])}</h4><p>${escapeHtml(x.item[1])}</p><small>Example: ${escapeHtml(x.item[2])}</small></div><button class="hub-action" data-speak="${encodeURIComponent(x.item[0])}">🔊</button></article>`).join(""):'<p class="empty-note">কোনো Expression পাওয়া যায়নি।</p>';
+  host.innerHTML=found.length?found.map(x=>`<article class="expression-row"><div class="expression-index">L${x.level}</div><div class="expression-body"><h4>${escapeHtml(x.item[0])}</h4><p>${escapeHtml(x.item[1])}</p>${x.item[2] ? `<small>Example: ${escapeHtml(x.item[2])}</small>` : ""}</div><button class="hub-action" data-speak="${encodeURIComponent(x.item[0])}">🔊</button></article>`).join(""):'<p class="empty-note">কোনো Expression পাওয়া যায়নি।</p>';
 }
 function openLevel(index) {
   currentLevelIndex=index;
@@ -361,21 +1324,31 @@ function openLevel(index) {
   if(!level) return;
   if(index===3){host.innerHTML=`<div class="hub-detail page-panel"><div class="page-top-actions"><button class="back-level" data-home-levels>⌂ Home</button><button class="back-level" data-back-level>← Back</button></div><div class="coming-soon-mark">04</div><h3>Level 4</h3><p>এই Level-এর lessons শিগগিরই আসছে।</p></div>`;return;}
   const topics=level.topics.map((topic,i)=>`<article class="lesson-card"><div><strong>${escapeHtml(topic)}</strong><small>${index===0 && i<2 ? "Detailed lesson" : topic==="Tense"?"6 separate tense lessons":"Lesson & examples"}</small></div><button class="hub-action" data-open-topic="${encodeURIComponent(topic)}">Open ↗</button></article>`).join("");
-  host.innerHTML=`<div class="hub-detail level-page"><div class="page-top-actions"><button class="back-level" data-home-levels>⌂ Home</button><button class="back-level" data-back-level>← Back</button></div><div class="level-page-kicker">LEARNING PATH · 0${index+1}</div><h3>${level.title}</h3><p class="muted">একটি Topic বেছে নিয়ে নতুন Lesson Page-এ পড়া শুরু করো।</p><div class="lesson-list">${topics}</div><div class="level-extra-actions"><button class="hub-action" data-six-practice="${index}">6 Sentences · Practice</button><button class="hub-action" data-six-quiz="${index}">6 Sentences · Quiz</button></div><button class="level-quiz-launch" data-quiz-level="${index+1}"><span>LEVEL 0${index+1} QUIZ</span><strong>50 Questions</strong><small>Start your level test ↗</small></button></div>`;
+  host.innerHTML=`<div class="hub-detail level-page"><div class="page-top-actions"><button class="back-level" data-home-levels>⌂ Home</button><button class="back-level" data-back-level>← Back</button></div><div class="level-page-kicker">LEARNING PATH · 0${index+1}</div><h3>${level.title}</h3><p class="muted">একটি Topic বেছে নিয়ে নতুন Lesson Page-এ পড়া শুরু করো।</p><div class="lesson-list ${index===1?"level-two-grid":""}">${topics}</div><div class="level-extra-actions"><button class="hub-action" data-six-practice="${index}">6 Sentences · Practice</button><button class="hub-action" data-six-quiz="${index}">6 Sentences · Quiz</button></div><button class="level-quiz-launch" data-quiz-level="${index+1}"><span>LEVEL 0${index+1} QUIZ</span><strong>50 Questions</strong><small>Start your level test ↗</small></button></div>`;
 }
 function openTopicPage(topic) {
   const host=$("hubContent");
   if(topic==="Tense"){
     const tenseNames=["Present Indefinite","Present Continuous","Present Perfect","Past Indefinite","Past Continuous","Future Indefinite"];
-    host.innerHTML=`<div class="hub-detail page-panel"><div class="page-top-actions"><button class="back-level" data-home-levels>⌂ Home</button><button class="back-level" data-back-to-level>← Back</button></div><div class="level-page-kicker">LEVEL 01 · GRAMMAR</div><h3>Tense</h3><p class="muted">৬টি Tense-এর যেকোনো একটি বেছে নাও।</p><div class="lesson-list">${tenseNames.map(t=>`<article class="lesson-card"><div><strong>${t}</strong><small>Structure, usage & examples</small></div><button class="hub-action" data-open-topic="${encodeURIComponent(t)}">Open ↗</button></article>`).join("")}</div></div>`;
+    host.innerHTML=`<div class="hub-detail page-panel"><div class="page-top-actions"><button class="back-level" data-home-levels>⌂ Home</button><button class="back-level" data-back-to-level>← Back</button></div><div class="level-page-kicker">LEVEL 01 · GRAMMAR</div><h3>Tense</h3><p class="muted">৬টি Tense-এর যেকোনো একটি বেছে নাও।</p><div class="hub-grid modal-grid">${tenseNames.map(t=>`<article class="lesson-card"><div><strong>${t}</strong><small>Structure, usage & examples</small></div><button class="hub-action" data-open-topic="${encodeURIComponent(t)}">Open ↗</button></article>`).join("")}</div></div>`;
+    return;
+  }
+  if(topic==="Use of Modals"){
+    host.innerHTML=`<div class="hub-detail page-panel"><div class="page-top-actions"><button class="back-level" data-home-levels>⌂ Home</button><button class="back-level" data-back-to-level>← Back</button></div><div class="level-page-kicker">LEVEL 02 · MODAL VERBS</div><h3>Use of Modals</h3><p class="muted">প্রতিটি Modal আলাদা Lesson Page-এ পড়ো।</p><div class="hub-grid modal-grid">${Object.keys(modalLessons).map(m=>`<article class="lesson-card"><div><strong>${m}</strong><small>Usage · Structure · Examples</small></div><button class="hub-action" data-open-modal="${encodeURIComponent(m)}">Open ↗</button></article>`).join("")}</div></div>`;
     return;
   }
   renderTopic(topic);
 }
+function renderModalLesson(name) {
+  const lesson=modalLessons[name]; if(!lesson) return;
+  const host=$("hubContent");
+  host.innerHTML=`<div class="hub-detail page-panel"><div class="page-top-actions"><button class="back-level" data-home-levels>⌂ Home</button><button class="back-level" data-back-modals>← All Modals</button></div><div class="level-page-kicker">LEVEL 02 · MODAL LESSON</div><h3>${escapeHtml(name)}</h3><section class="lesson-section"><h4>ব্যবহার (Usage)</h4><p>${escapeHtml(lesson.meaning)}</p><div class="structure-box"><strong>Structure:</strong> ${escapeHtml(lesson.structure)}</div><h4>Examples</h4><ul>${lesson.examples.map(x=>`<li>${escapeHtml(x)}</li>`).join("")}</ul><h4>Negative, Question ও WH Pattern</h4><div class="structure-box"><strong>Negative:</strong> Subject + modal + not + V1<br><strong>Question:</strong> Modal + subject + V1?<br><strong>WH:</strong> WH-word + modal + subject + V1?</div><ul><li>I cannot swim. — আমি সাঁতার কাটতে পারি না।</li><li>Can you swim? — তুমি কি সাঁতার কাটতে পারো?</li><li>Why can you swim? — তুমি কেন সাঁতার কাটতে পারো?</li><li>মনে রাখবে: Modal-এর পরে V1 বসে; he/she/it হলেও s/es হয় না।</li></ul></section><button class="hub-action primary" data-topic-done="${encodeURIComponent('Modal '+name)}">Mark as learned ✓</button></div>`;
+}
 function renderTopic(topic) {
   const host = $("hubContent");
   const sections = lessonNotes[topic] || [];
-  const content=sections.length?sections.map(section => `<section class="lesson-section"><h4>${escapeHtml(section.heading)}</h4><div class="structure-box"><strong>Structure:</strong> ${escapeHtml(section.structure)}</div><ul>${section.examples.map(ex => `<li>${escapeHtml(ex)}</li>`).join("")}</ul></section>`).join(""):'<p>এই Lesson-এর বিস্তারিত অংশ পরে যোগ করা হবে।</p>';
+  const identification = ({"Present Indefinite":"Positive: করি/খাই/যাই। Negative: করি না/খাই না/যাই না।","Present Continuous":"Positive: করছি/খাচ্ছি/যাচ্ছি। Negative: করছি না/খাচ্ছি না/যাচ্ছি না।","Present Perfect":"Positive: করেছি/খেয়েছি/গিয়েছি। Negative: করিনি/খাইনি/যাইনি।","Past Indefinite":"Positive: করলাম/করেছিলাম/খেলাম/গেলাম। Negative: করিনি/খাইনি/যাইনি (প্রসঙ্গ দেখে Past বোঝা যায়)।","Past Continuous":"Positive: করছিলাম/খাচ্ছিলাম/যাচ্ছিলাম। Negative: করছিলাম না/খাচ্ছিলাম না/যাচ্ছিলাম না।","Future Indefinite":"Positive: করব/খাব/যাব। Negative: করব না/খাব না/যাব না."})[topic];
+  const content=sections.length?sections.map(section => `<section class="lesson-section"><h4>${escapeHtml(section.heading)}</h4><div class="structure-box"><strong>Structure:</strong> ${escapeHtml(section.structure)}</div><ul>${section.examples.map(ex => `<li>${escapeHtml(ex)}</li>`).join("")}</ul></section>`).join("")+(identification?`<section class="lesson-section identification-box"><h4>বাংলা বাক্য দেখে Tense চেনার নিয়ম</h4><p>${escapeHtml(identification)}</p><p>এগুলো সাধারণ সংকেত। বাক্যের অর্থ ও সময়ের প্রসঙ্গও মিলিয়ে দেখবে।</p></section>`:""):'<p>এই Lesson-এর বিস্তারিত অংশ পরে যোগ করা হবে।</p>';
   host.innerHTML = `<div class="hub-detail page-panel"><div class="page-top-actions"><button class="back-level" data-home-levels>⌂ Home</button><button class="back-level" data-back-topic>← Back</button></div><div class="level-page-kicker">LEVEL 0${currentLevelIndex+1} · LESSON</div><h3>${escapeHtml(topic)}</h3>${content}<button class="hub-action primary" data-topic-done="${encodeURIComponent(topic)}">Mark as learned ✓</button></div>`;
 }
 function renderSixSentences(levelIndex) {
@@ -398,17 +1371,35 @@ function renderSixSentenceQuiz(levelIndex) {
 }
 function renderLevelQuiz(levelNumber) {
   currentLevelIndex=levelNumber-1;
-  const host=$("hubContent"); const questions=levelQuizBanks[levelNumber-1]||[]; let answered=0,score=0;
-  host.innerHTML=`<div class="hub-detail page-panel"><div class="page-top-actions"><button class="back-level" data-home-levels>⌂ Home</button><button class="back-level" data-back-to-level>← Back</button></div><div class="level-page-kicker">LEVEL 0${levelNumber} · PRACTICE TEST</div><h3>Level ${levelNumber} Quiz</h3><p class="muted">৫০টি প্রশ্ন · প্রতিটি উত্তরের পর সঙ্গে সঙ্গে feedback দেখাবে।</p><div class="quiz-live-progress"><span id="levelQuizCount">0/${questions.length} answered</span><strong id="levelQuizScore">Score: 0</strong></div><div id="levelQuizQuestions">${questions.map((q,i)=>`<article class="quiz-question" data-q-index="${i}"><p>${i+1}. ${escapeHtml(q.q)}</p><div class="quiz-options">${q.options.map((o,j)=>`<label><input type="radio" name="level${levelNumber}q${i}" value="${j}"><span>${escapeHtml(o)}</span></label>`).join("")}</div><div class="instant-feedback" id="feedback-${i}" aria-live="polite"></div></article>`).join("")}</div><div id="levelQuizComplete" class="quiz-complete"></div></div>`;
+  const host=$("hubContent"); const questions=levelQuizBanks[levelNumber-1]||[];
+  const attempts=questions.map(()=>({tries:0,status:"unanswered",picked:null}));
+  host.innerHTML=`<div class="hub-detail page-panel"><div class="page-top-actions"><button class="back-level" data-home-levels>⌂ Home</button><button class="back-level" data-back-to-level>← Back</button></div><div class="level-page-kicker">LEVEL 0${levelNumber} · PRACTICE TEST</div><h3>Level ${levelNumber} Quiz</h3><p class="muted">${questions.length}টি প্রশ্ন · ভুল হলে আবার উত্তর পরিবর্তন করতে পারবে। সবশেষে Submit Quiz চাপো।</p><div class="quiz-live-progress"><span id="levelQuizCount">0/${questions.length} answered</span><strong id="levelQuizScore">Correct: 0</strong></div><div id="levelQuizQuestions">${questions.map((q,i)=>`<article class="quiz-question" data-q-index="${i}"><p>${i+1}. ${escapeHtml(q.q)}</p><div class="quiz-options">${q.options.map((o,j)=>`<label><input type="radio" name="level${levelNumber}q${i}" value="${j}"><span>${escapeHtml(o)}</span></label>`).join("")}</div><div class="instant-feedback" id="feedback-${i}" aria-live="polite"></div></article>`).join("")}</div><button id="submitLevelQuiz" class="hub-action primary submit-quiz">Submit Quiz</button><div id="levelQuizComplete" class="quiz-complete" aria-live="polite"></div></div>`;
   host.querySelectorAll('.quiz-question input[type="radio"]').forEach(input=>input.addEventListener('change',()=>{
-    const qIndex=Number(input.closest('.quiz-question').dataset.qIndex),q=questions[qIndex],picked=Number(input.value),ok=picked===q.answer,card=input.closest('.quiz-question'),feedback=card.querySelector('.instant-feedback');
-    if(card.dataset.answered) return; card.dataset.answered='1'; answered++; if(ok)score++;
-    card.querySelectorAll('input').forEach(el=>el.disabled=true);
-    card.classList.add(ok?'question-correct':'question-wrong');
-    feedback.innerHTML=`<strong class="${ok?'feedback-good':'feedback-bad'}">${ok?'✓ Correct':'✕ Incorrect'}</strong><span>${escapeHtml(ok?q.why:`Correct answer: ${q.options[q.answer]}. ${q.why}`)}</span>`;
-    $("levelQuizCount").textContent=`${answered}/${questions.length} answered`;$("levelQuizScore").textContent=`Score: ${score}`;
-    if(answered===questions.length){$("levelQuizComplete").innerHTML=`<h3>Quiz completed!</h3><p>Your final score: <strong>${score}/${questions.length}</strong></p><button class="hub-action primary" data-quiz-retry="${levelNumber}">Try Again</button>`;markDone(`level-quiz-${levelNumber}`);}
+    const card=input.closest('.quiz-question'),qIndex=Number(card.dataset.qIndex),q=questions[qIndex],picked=Number(input.value),state=attempts[qIndex];
+    state.tries++; state.picked=picked;
+    const ok=picked===q.answer;
+    state.status=ok?(state.tries===1?'first-correct':'retried-correct'):'wrong';
+    card.classList.remove('question-correct','question-wrong','question-retried');
+    if(state.status==='first-correct') card.classList.add('question-correct');
+    else if(state.status==='retried-correct') card.classList.add('question-retried');
+    else card.classList.add('question-wrong');
+    const feedback=card.querySelector('.instant-feedback');
+    feedback.innerHTML=ok?`<strong class="${state.tries===1?'feedback-good':'feedback-retry'}">${state.tries===1?'✓ Correct on first try':'✓ Correct after retry'}</strong><span>${escapeHtml(q.why)}</span>`:`<strong class="feedback-bad">✕ Incorrect — try again</strong><span>আবার উত্তর পরিবর্তন করতে পারো।</span>`;
+    const answered=attempts.filter(a=>a.status!=='unanswered').length;
+    const correct=attempts.filter(a=>a.status==='first-correct'||a.status==='retried-correct').length;
+    $("levelQuizCount").textContent=`${answered}/${questions.length} answered`;
+    $("levelQuizScore").textContent=`Correct: ${correct}`;
   }));
+  $("submitLevelQuiz").addEventListener('click',()=>{
+    const first=attempts.filter(a=>a.status==='first-correct').length;
+    const retried=attempts.filter(a=>a.status==='retried-correct').length;
+    const wrong=attempts.filter(a=>a.status==='wrong'||a.status==='unanswered').length;
+    const score=first+retried;
+    $("levelQuizComplete").innerHTML=`<div class="quiz-score-summary"><div class="quiz-score-circle"><strong>${score}</strong><span>/${questions.length}</span></div><div><h3>Quiz Result</h3><p>মোট নম্বর: <strong>${score}/${questions.length}</strong></p><p><span class="result-dot green"></span> প্রথমবার সঠিক: ${first}</p><p><span class="result-dot yellow"></span> আবার চেষ্টা করে সঠিক: ${retried}</p><p><span class="result-dot red"></span> এখনো ভুল/উত্তর দেওয়া হয়নি: ${wrong}</p></div></div><button class="hub-action" data-quiz-retry="${levelNumber}">Try Again</button>`;
+    $("submitLevelQuiz").disabled=true;
+    host.querySelectorAll('.quiz-question input').forEach(el=>el.disabled=true);
+    markDone(`level-quiz-${levelNumber}`);
+  });
 }
 function openVocabulary(level) {
   const detail = $("vocabDetail");
@@ -418,7 +1409,7 @@ function openVocabulary(level) {
 }
 function openExpressions(level) {
   const group = commonExpressions.find(g => g.level === level); const host = $("expressionDetail"); if (!group || !host) return;
-  host.innerHTML = `<div class="hub-detail expression-detail"><div class="detail-top"><div><div class="eyebrow">COMMON EXPRESSIONS · LEVEL 0${level}</div><h3>${level===1?'Everyday Basics':level===2?'Natural Conversation':'Fluent Expressions'}</h3><p class="muted">${group.items.length}টি expression</p></div><div class="page-top-actions"><button class="back-level" data-home-expressions>⌂ Home</button><button class="back-level" data-expression-back>← Back</button></div></div><div class="expression-list">${group.items.map((item,i)=>`<article class="expression-row"><div class="expression-index">${String(i+1).padStart(2,'0')}</div><div class="expression-body"><h4>${escapeHtml(item[0])}</h4><p>${escapeHtml(item[1])}</p><small>Example: ${escapeHtml(item[2])}</small></div><button class="hub-action" data-speak="${encodeURIComponent(item[0])}">🔊</button></article>`).join("")}</div></div>`;
+  host.innerHTML = `<div class="hub-detail expression-detail"><div class="detail-top"><div><div class="eyebrow">COMMON EXPRESSIONS · LEVEL 0${level}</div><h3>${level===1?'Everyday Basics':level===2?'Natural Conversation':'Fluent Expressions'}</h3><p class="muted">${group.items.length}টি expression</p></div><div class="page-top-actions"><button class="back-level" data-home-expressions>⌂ Home</button><button class="back-level" data-expression-back>← Back</button></div></div><div class="expression-list">${group.items.map((item,i)=>`<article class="expression-row"><div class="expression-index">${String(i+1).padStart(2,'0')}</div><div class="expression-body"><h4>${escapeHtml(item[0])}</h4><p>${escapeHtml(item[1])}</p>${item[2] ? `<small>Example: ${escapeHtml(item[2])}</small>` : ""}</div><button class="hub-action" data-speak="${encodeURIComponent(item[0])}">🔊</button></article>`).join("")}</div></div>`;
   host.scrollIntoView({behavior:"smooth",block:"nearest"});
 }
 
@@ -457,6 +1448,8 @@ $("hubContent").addEventListener("click", e => {
   if (b.dataset.backToLevel !== undefined) openLevel(currentLevelIndex);
   if (b.dataset.backTopic !== undefined) openLevel(currentLevelIndex);
   if (b.dataset.openTopic) openTopicPage(decodeURIComponent(b.dataset.openTopic));
+  if (b.dataset.openModal) renderModalLesson(decodeURIComponent(b.dataset.openModal));
+  if (b.dataset.backModals !== undefined) openTopicPage("Use of Modals");
   if (b.dataset.sixPractice !== undefined) renderSixSentences(Number(b.dataset.sixPractice));
   if (b.dataset.sixQuiz !== undefined) renderSixSentenceQuiz(Number(b.dataset.sixQuiz));
   if (b.dataset.quizLevel !== undefined) renderLevelQuiz(Number(b.dataset.quizLevel));
