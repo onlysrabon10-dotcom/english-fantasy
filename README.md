@@ -34,3 +34,11 @@ A responsive Bangla-English learning website built with Node.js, Express and van
 - Tongue Twister audio uses the browser's built-in speech synthesis. Available voices vary by device/browser and require browser support.
 - AI generation requires a valid OpenAI API key and an account/API setup handled by an adult/guardian where required.
 - For public hosting, use HTTPS, configure environment variables in the hosting provider, and use persistent storage/database rather than an ephemeral local file if you need permanent content.
+
+
+## Latest content update
+- Added 60 Common Expressions across Levels 1–3 (20 per level), with Bangla meanings, example sentences, and audio playback.
+- Expanded Vocabulary with previously practised words from earlier chats, including V1–V5, Bengali meanings, and example translations.
+- Moved AI sentence search above the Learning Progress section.
+- Refined Learning Progress border, progress bar, and Level/Vocabulary/Expression card styling.
+- Level 1 will be completed to 200 book words after the user supplies the remaining book photos.
