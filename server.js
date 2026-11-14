@@ -54,10 +54,10 @@ function adminOnly(req, res, next) {
 
 app.get("/api/health", (_req, res) => res.json({ ok: true, app: "English Fantasy" }));
 
-// A demo learner login: any four-digit ID is accepted. It is not private authentication.
+// Shared learner entry code. This is a shared access code, not individual identity verification.
 app.post("/api/learner-login", (req, res) => {
-  const id = String(req.body?.id || "");
-  if (!/^\d{4}$/.test(id)) return res.status(400).json({ error: "Enter any 4-digit ID." });
+  const id = String(req.body?.id || "").trim();
+  if (id !== "5757") return res.status(401).json({ error: "ভুল ID Number। সঠিক ID Number দাও।" });
   res.json({ ok: true, learnerId: id });
 });
 
@@ -109,6 +109,62 @@ app.delete("/api/sentences/:id", adminOnly, async (req, res) => {
   if (next.length === items.length) return res.status(404).json({ error: "Sentence not found." });
   await writeSentences(next);
   res.json({ ok: true });
+});
+
+// Admin vocabulary manager: edits are persisted in the matching JSON file.
+function vocabularyFile(level) {
+  const n = Number(level);
+  if (![1, 2, 3].includes(n)) return null;
+  return path.join(__dirname, "data", `vocabulary-level${n}.json`);
+}
+async function readVocabulary(level) {
+  const file = vocabularyFile(level);
+  if (!file) throw new Error("Invalid vocabulary level.");
+  return JSON.parse(await fs.readFile(file, "utf8"));
+}
+async function writeVocabulary(level, items) {
+  const file = vocabularyFile(level);
+  if (!file) throw new Error("Invalid vocabulary level.");
+  await fs.writeFile(file, JSON.stringify(items, null, 2) + "\n", "utf8");
+  const n = Number(level);
+  const browserFile = path.join(__dirname, "public", `vocabulary-level${n}.js`);
+  const safeJson = JSON.stringify(items).replace(/</g, "\\u003c");
+  await fs.writeFile(browserFile, `window.level${n}Words = ${safeJson};\n`, "utf8");
+}
+function cleanWords(value) {
+  if (Array.isArray(value)) return value.map(x => String(x).trim()).filter(Boolean).slice(0, 8);
+  return String(value || "").split(/[\n,;]+/).map(x => x.trim()).filter(Boolean).slice(0, 8);
+}
+app.get("/api/admin/vocabulary/:level", adminOnly, async (req, res) => {
+  try { res.json(await readVocabulary(req.params.level)); }
+  catch { res.status(400).json({ error: "Vocabulary level not found." }); }
+});
+app.put("/api/admin/vocabulary/:level/:index", adminOnly, async (req, res) => {
+  try {
+    const level = Number(req.params.level), index = Number(req.params.index);
+    const items = await readVocabulary(level);
+    if (!Number.isInteger(index) || index < 0 || index >= items.length) return res.status(404).json({ error: "Word not found." });
+    const body = req.body || {};
+    const word = String(body.word ?? items[index].word).trim();
+    const meaning = String(body.meaning ?? items[index].meaning).trim();
+    if (!word || !meaning) return res.status(400).json({ error: "Word and meaning are required." });
+    items[index] = { ...items[index], word, meaning, synonyms: cleanWords(body.synonyms ?? items[index].synonyms), indirectSynonyms: cleanWords(body.indirectSynonyms ?? items[index].indirectSynonyms), antonyms: cleanWords(body.antonyms ?? items[index].antonyms), indirectAntonyms: cleanWords(body.indirectAntonyms ?? items[index].indirectAntonyms) };
+    await writeVocabulary(level, items); res.json(items[index]);
+  } catch { res.status(400).json({ error: "Could not update vocabulary word." }); }
+});
+app.post("/api/admin/vocabulary/:level", adminOnly, async (req, res) => {
+  try {
+    const level = Number(req.params.level), items = await readVocabulary(level), body = req.body || {};
+    const word = String(body.word || "").trim(), meaning = String(body.meaning || "").trim();
+    if (!word || !meaning) return res.status(400).json({ error: "Word and meaning are required." });
+    if (items.some(x => x.word.toLowerCase() === word.toLowerCase())) return res.status(409).json({ error: "This word already exists in this level." });
+    const item = { word, meaning, synonyms: cleanWords(body.synonyms), indirectSynonyms: cleanWords(body.indirectSynonyms), antonyms: cleanWords(body.antonyms), indirectAntonyms: cleanWords(body.indirectAntonyms) };
+    items.push(item); await writeVocabulary(level, items); res.status(201).json(item);
+  } catch { res.status(400).json({ error: "Could not add vocabulary word." }); }
+});
+app.delete("/api/admin/vocabulary/:level/:index", adminOnly, async (req, res) => {
+  try { const level = Number(req.params.level), index = Number(req.params.index), items = await readVocabulary(level); if (!Number.isInteger(index) || index < 0 || index >= items.length) return res.status(404).json({ error: "Word not found." }); items.splice(index, 1); await writeVocabulary(level, items); res.json({ ok: true }); }
+  catch { res.status(400).json({ error: "Could not delete vocabulary word." }); }
 });
 
 app.post("/api/generate", aiLimiter, async (req, res) => {

@@ -1402,7 +1402,7 @@ function openVocabulary(level) {
 function renderVocabDetails(level,index,button){
   const w=vocabularyLevels[level]?.[index]; const host=$(`vocab-extra-${level}-${index}`); if(!w||!host)return;
   if(!host.dataset.loaded){
-    const forms=(w.meaning.includes("ফাঁসি")&&w.word.toLowerCase()==="hang"?["hang","hanged","hanged","hanging","hangs"]:verbForms(w.word)); const synonyms=wordRelations[w.word.toLowerCase()]||[]; const antonyms=antonymRelations[w.word.toLowerCase()]||[];
+    const forms=(w.meaning.includes("ফাঁসি")&&w.word.toLowerCase()==="hang"?["hang","hanged","hanged","hanging","hangs"]:verbForms(w.word)); const synonyms=w.synonyms||wordRelations[w.word.toLowerCase()]||[]; const indirectSynonyms=w.indirectSynonyms||[]; const antonyms=w.antonyms||antonymRelations[w.word.toLowerCase()]||[]; const indirectAntonyms=w.indirectAntonyms||[];
     const meaning=(w.meaning||"").split("/")[0].trim();
     const bnEndings={
       "করা":["করি","করি না","করেছিলাম","করব","করছি"],"যাওয়া":["যাই","যাই না","গিয়েছিলাম","যাব","যাচ্ছি"],"আসা":["আসি","আসি না","এসেছিলাম","আসব","আসছি"],"খাওয়া":["খাই","খাই না","খেয়েছিলাম","খাব","খাচ্ছি"],"পড়া":["পড়ি","পড়ি না","পড়েছিলাম","পড়ব","পড়ছি"],"লেখা":["লিখি","লিখি না","লিখেছিলাম","লিখব","লিখছি"],"বসা":["বসি","বসি না","বসেছিলাম","বসব","বসছি"],"দাঁড়ানো":["দাঁড়াই","দাঁড়াই না","দাঁড়িয়েছিলাম","দাঁড়াব","দাঁড়াচ্ছি"],"শোনা":["শুনি","শুনি না","শুনেছিলাম","শুনব","শুনছি"],"দেখা":["দেখি","দেখি না","দেখেছিলাম","দেখব","দেখছি"],"চলা":["চলি","চলি না","চলেছিলাম","চলব","চলছি"],"পাওয়া":["পাই","পাই না","পেয়েছিলাম","পাব","পাচ্ছি"],"নেওয়া":["নিই","নিই না","নিয়েছিলাম","নেব","নিচ্ছি"],"দেওয়া":["দিই","দিই না","দিয়েছিলাম","দেব","দিচ্ছি"],"বলা":["বলি","বলি না","বলেছিলাম","বলব","বলছি"],"হওয়া":["হই","হই না","হয়েছিলাম","হব","হচ্ছি"],"রাখা":["রাখি","রাখি না","রেখেছিলাম","রাখব","রাখছি"],"কাটা":["কাটি","কাটি না","কেটেছিলাম","কাটব","কাটছি"],"তোলা":["তুলি","তুলি না","তুলেছিলাম","তুলব","তুলছি"],"ধরা":["ধরি","ধরি না","ধরেছিলাম","ধরব","ধরছি"],"মারা":["মারি","মারি না","মেরেছিলাম","মারব","মারছি"],"জানা":["জানি","জানি না","জেনেছিলাম","জানব","জানছি"],"হাঁটা":["হাঁটি","হাঁটি না","হেঁটেছিলাম","হাঁটব","হাঁটছি"],"ঘুমানো":["ঘুমাই","ঘুমাই না","ঘুমিয়েছিলাম","ঘুমাব","ঘুমাচ্ছি"]
@@ -1418,7 +1418,7 @@ function renderVocabDetails(level,index,button){
       [`I will ${forms[0]} tomorrow.`,`আমি আগামীকাল ${bnForms[3]}।`],
       [`I am ${forms[3]} now.`,`আমি এখন ${bnForms[4]}।`]
     ];
-    host.innerHTML=`<div class="vocab-detail-block"><h4>Synonyms</h4><p>${synonyms.length?synonyms.map(escapeHtml).join(" · "):"No close synonym available"}</p><h4>Antonyms</h4><p>${antonyms.length?antonyms.map(escapeHtml).join(" · "):"No direct antonym"}</p><h4>5 Example Sentences</h4><ol class="vocab-examples">${examples.map(x=>`<li><strong>${escapeHtml(x[0])}</strong><span>${escapeHtml(x[1])}</span></li>`).join("")}</ol></div>`;
+    host.innerHTML=`<div class="vocab-detail-block"><h4>Direct / Close Synonyms</h4><p>${synonyms.length?synonyms.map(escapeHtml).join(" · "):"No direct synonym available"}</p><h4>Indirect Synonyms</h4><p>${indirectSynonyms.length?indirectSynonyms.map(escapeHtml).join(" · "):"No reliable indirect synonym added yet"}</p><h4>Direct Antonyms</h4><p>${antonyms.length?antonyms.map(escapeHtml).join(" · "):"No direct antonym available"}</p><h4>Indirect Antonyms</h4><p>${indirectAntonyms.length?indirectAntonyms.map(escapeHtml).join(" · "):"No reliable indirect antonym added yet"}</p><h4>5 Example Sentences</h4><ol class="vocab-examples">${examples.map(x=>`<li><strong>${escapeHtml(x[0])}</strong><span>${escapeHtml(x[1])}</span></li>`).join("")}</ol></div>`;
     host.dataset.loaded="1";
   }
   const opening=host.classList.contains("hidden"); host.classList.toggle("hidden",!opening); button.textContent=opening?"Hide Details ↑":"Details & 5 Examples ↓";
@@ -1501,8 +1501,44 @@ $("hubContent").addEventListener("click", e => {
   if (b.dataset.twisterDone) { markDone(`twister-${b.dataset.twisterDone}`); b.textContent = "Done ✓"; b.disabled = true; }
 });
 
-$("adminForm").addEventListener("submit", async e => { e.preventDefault(); try { const data = await api("/api/admin-login", { method: "POST", body: JSON.stringify({ username: $("adminUsername").value, password: $("adminPassword").value }) }); adminToken = data.token; show("adminView"); await loadAdminItems(); toast("Admin login successful."); } catch (err) { toast(err.message); } });
+$("adminForm").addEventListener("submit", async e => { e.preventDefault(); try { const data = await api("/api/admin-login", { method: "POST", body: JSON.stringify({ username: $("adminUsername").value, password: $("adminPassword").value }) }); adminToken = data.token; show("adminView"); await loadAdminItems(); await loadAdminVocabulary(); toast("Admin login successful."); } catch (err) { toast(err.message); } });
 $("adminLogout").addEventListener("click", () => { adminToken = ""; $("adminPassword").value = ""; show("loginView"); });
+
+let adminVocabItems = [];
+let adminVocabEditingIndex = null;
+function splitAdminWords(value) { return value.split(/[\n,;]+/).map(x => x.trim()).filter(Boolean); }
+function clearAdminVocabForm() {
+  adminVocabEditingIndex = null; $("adminVocabForm").reset(); $("adminVocabSave").textContent = "Add Word";
+}
+async function loadAdminVocabulary() {
+  const level = $("adminVocabLevel").value;
+  try { adminVocabItems = await api(`/api/admin/vocabulary/${level}`, { admin: true }); renderAdminVocabulary(); }
+  catch (err) { toast(err.message); }
+}
+function renderAdminVocabulary() {
+  const q = $("adminVocabSearch").value.trim().toLowerCase();
+  const list = adminVocabItems.map((item,index)=>({...item,index})).filter(item=>`${item.word} ${item.meaning}`.toLowerCase().includes(q));
+  $("adminVocabList").innerHTML = list.map(item=>`<article class="admin-vocab-row"><div><strong>${escapeHtml(item.word)}</strong><span>${escapeHtml(item.meaning)}</span><small>Synonyms: ${(item.synonyms||[]).length + (item.indirectSynonyms||[]).length} · Antonyms: ${(item.antonyms||[]).length + (item.indirectAntonyms||[]).length}</small></div><div class="admin-actions"><button class="copy-button" data-vocab-edit="${item.index}">Edit</button><button class="copy-button" data-vocab-delete="${item.index}">Delete</button></div></article>`).join("") || '<p class="muted">No matching words.</p>';
+  $("adminVocabList").querySelectorAll("[data-vocab-edit]").forEach(btn=>btn.addEventListener("click",()=>{
+    const i=Number(btn.dataset.vocabEdit), w=adminVocabItems[i]; adminVocabEditingIndex=i;
+    $("adminVocabWord").value=w.word; $("adminVocabMeaning").value=w.meaning;
+    $("adminVocabSynonyms").value=(w.synonyms||[]).join(", "); $("adminVocabIndirectSynonyms").value=(w.indirectSynonyms||[]).join(", ");
+    $("adminVocabAntonyms").value=(w.antonyms||[]).join(", "); $("adminVocabIndirectAntonyms").value=(w.indirectAntonyms||[]).join(", ");
+    $("adminVocabSave").textContent="Save Changes"; $("adminVocabForm").scrollIntoView({behavior:"smooth",block:"center"});
+  }));
+  $("adminVocabList").querySelectorAll("[data-vocab-delete]").forEach(btn=>btn.addEventListener("click",async()=>{
+    const i=Number(btn.dataset.vocabDelete); if(!confirm(`Delete ${adminVocabItems[i]?.word || "this word"}?`)) return;
+    try { await api(`/api/admin/vocabulary/${$("adminVocabLevel").value}/${i}`,{method:"DELETE",admin:true}); await loadAdminVocabulary(); toast("Vocabulary word deleted."); } catch(err){toast(err.message);}
+  }));
+}
+$("adminVocabLevel").addEventListener("change",()=>{clearAdminVocabForm();loadAdminVocabulary();});
+$("adminVocabSearch").addEventListener("input",renderAdminVocabulary);
+$("adminVocabCancel").addEventListener("click",clearAdminVocabForm);
+$("adminVocabForm").addEventListener("submit",async e=>{
+  e.preventDefault(); const level=$("adminVocabLevel").value; const payload={word:$("adminVocabWord").value,meaning:$("adminVocabMeaning").value,synonyms:splitAdminWords($("adminVocabSynonyms").value),indirectSynonyms:splitAdminWords($("adminVocabIndirectSynonyms").value),antonyms:splitAdminWords($("adminVocabAntonyms").value),indirectAntonyms:splitAdminWords($("adminVocabIndirectAntonyms").value)};
+  try { if(adminVocabEditingIndex===null) await api(`/api/admin/vocabulary/${level}`,{method:"POST",admin:true,body:JSON.stringify(payload)}); else await api(`/api/admin/vocabulary/${level}/${adminVocabEditingIndex}`,{method:"PUT",admin:true,body:JSON.stringify(payload)}); clearAdminVocabForm(); await loadAdminVocabulary(); toast("Vocabulary saved."); } catch(err){toast(err.message);}
+});
+
 async function loadAdminItems() {
   const items = await api("/api/sentences");
   $("adminSavedList").innerHTML = items.length ? items.map(item => `<div class="saved-item"><div><strong>${escapeHtml(item.bangla)}</strong><span>${escapeHtml(item.english)}</span></div><div class="admin-actions"><button class="copy-button" data-edit="${item.id}" data-bn="${encodeURIComponent(item.bangla)}" data-en="${encodeURIComponent(item.english)}">Edit</button><button class="copy-button" data-delete="${item.id}">Delete</button></div></div>`).join("") : '<p class="muted">No saved sentences yet.</p>';

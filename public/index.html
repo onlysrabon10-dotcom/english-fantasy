@@ -26,8 +26,8 @@
         <h1>Welcome to <span>EF.</span></h1>
         <p class="subhead">Explore the beauty of English.</p>
         <form id="learnerForm" class="login-form">
-          <label for="learnerId">Enter your 4-digit ID <small>তোমার ৪ সংখ্যার ID দাও</small></label>
-          <input id="learnerId" inputmode="numeric" autocomplete="off" maxlength="4" placeholder="e.g. 1234" pattern="[0-9]{4}" required />
+          <label for="learnerId">Enter ID Number <small>Login ID Number লিখো</small></label>
+          <input id="learnerId" inputmode="numeric" autocomplete="off" maxlength="4" placeholder="5757" pattern="5757" required />
           <button class="gold-button full" type="submit">ENTER ENGLISH FANTASY <span>↗</span></button>
         </form>
         <button class="text-button" id="showAdminLogin" type="button">Admin login</button>
@@ -78,7 +78,13 @@
     </section>
 
     <section id="adminView" class="app-shell hidden">
-      <div class="welcome-row"><div><div class="eyebrow">CONTROL CENTER</div><h1>Admin <span>Panel</span></h1><p>Sentence collection পরিচালনা করো।</p></div><button id="adminLogout" class="outline-button">Log out</button></div>
+      <div class="welcome-row"><div><div class="eyebrow">CONTROL CENTER</div><h1>Admin <span>Panel</span></h1><p>Vocabulary ও Sentence collection পরিচালনা করো।</p></div><button id="adminLogout" class="outline-button">Log out</button></div>
+      <section class="glass admin-vocab-panel">
+        <div class="eyebrow">VOCABULARY MANAGER</div><h2>Manage Vocabulary</h2>
+        <div class="admin-vocab-toolbar"><label>Level <select id="adminVocabLevel"><option value="1">Level 1</option><option value="2">Level 2</option><option value="3">Level 3</option></select></label><input id="adminVocabSearch" placeholder="Search word..." aria-label="Search vocabulary words"></div>
+        <form id="adminVocabForm" class="admin-vocab-form"><input id="adminVocabWord" placeholder="Word" required><input id="adminVocabMeaning" placeholder="বাংলা অর্থ" required><textarea id="adminVocabSynonyms" placeholder="Direct / Close Synonyms (comma separated)"></textarea><textarea id="adminVocabIndirectSynonyms" placeholder="Indirect Synonyms (comma separated)"></textarea><textarea id="adminVocabAntonyms" placeholder="Direct Antonyms (comma separated)"></textarea><textarea id="adminVocabIndirectAntonyms" placeholder="Indirect Antonyms (comma separated)"></textarea><div class="admin-vocab-actions"><button class="gold-button" type="submit" id="adminVocabSave">Add Word</button><button class="outline-button" type="button" id="adminVocabCancel">Clear</button></div></form>
+        <div id="adminVocabList" class="admin-vocab-list"></div>
+      </section>
       <div class="admin-grid">
         <form id="addSentenceForm" class="glass admin-form">
           <div class="eyebrow">CONTENT MANAGER</div><h2>Add a sentence</h2>

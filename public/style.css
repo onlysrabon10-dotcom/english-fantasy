@@ -252,3 +252,21 @@
 .vocab-examples span{font-family:"Noto Sans Bengali",sans-serif;color:var(--muted);margin-top:3px;}
 .theme-light .vocab-detail-block{background:#f7f3eb;}
 @media(max-width:650px){.vocab-detail .word-card{padding:16px}.vocab-detail-block{padding:12px}.vocab-examples li{font-size:12px}}
+
+
+/* Admin vocabulary manager */
+.admin-vocab-panel{padding:24px;margin:20px 0;border:1px solid var(--line);border-radius:18px}
+.admin-vocab-panel h2{margin:6px 0 18px;font-size:23px}
+.admin-vocab-toolbar{display:grid;grid-template-columns:160px 1fr;gap:12px;margin-bottom:16px}
+.admin-vocab-toolbar label{display:grid;gap:6px;color:var(--muted);font-size:13px}
+.admin-vocab-toolbar input,.admin-vocab-toolbar select,.admin-vocab-form input,.admin-vocab-form textarea{width:100%;min-width:0;padding:12px 13px;border:1px solid var(--line);border-radius:10px;background:#ffffff0a;color:var(--text);font:inherit}
+.admin-vocab-form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:14px 0 20px}
+.admin-vocab-form textarea{min-height:68px;resize:vertical}
+.admin-vocab-actions{grid-column:1/-1;display:flex;gap:10px;flex-wrap:wrap}
+.admin-vocab-list{display:grid;gap:8px}
+.admin-vocab-row{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:13px 14px;border:1px solid var(--line);border-radius:12px;background:#ffffff05}
+.admin-vocab-row strong,.admin-vocab-row span,.admin-vocab-row small{display:block}
+.admin-vocab-row span{margin-top:3px;color:var(--muted)}
+.admin-vocab-row small{margin-top:5px;color:var(--muted);font-size:11px}
+.admin-vocab-row .admin-actions{display:flex;gap:7px;flex-shrink:0}
+@media(max-width:650px){.admin-vocab-panel{padding:16px}.admin-vocab-toolbar{grid-template-columns:1fr}.admin-vocab-form{grid-template-columns:1fr}.admin-vocab-row{align-items:flex-start;flex-direction:column}.admin-vocab-row .admin-actions{width:100%}}
