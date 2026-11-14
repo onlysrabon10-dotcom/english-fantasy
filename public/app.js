@@ -2,11 +2,12 @@ const $ = (id) => document.getElementById(id);
 let adminToken = "";
 let learnerId = "";
 let activeTab = "levels";
+let currentLevelIndex = 0;
 const progressKey = () => `ef-progress-${learnerId || "guest"}`;
 const completed = new Set();
 
 const levels = [
-  { title: "Level 1", subtitle: "Grammar Foundation", topics: ["Use of Be Verbs", "Use of Have Verbs", "Present Indefinite", "Present Continuous", "Present Perfect", "Past Indefinite", "Past Continuous", "Future Indefinite"] },
+  { title: "Level 1", subtitle: "Grammar Foundation", topics: ["Use of Be Verbs", "Use of Have Verbs", "Tense"] },
   { title: "Level 2", subtitle: "Build Your Sentences", topics: ["Use of Modals", "Sentence Pattern", "Use of There", "First Conditional", "Second Conditional", "Second Conditional (Imagine)", "Use of Get"] },
   { title: "Level 3", subtitle: "Grammar in Use", topics: ["Use of Prepositions", "Articles (A, An, The)", "Passive Voice"] },
   { title: "Level 4", subtitle: "Coming Soon", topics: [] }
@@ -164,6 +165,110 @@ const quiz = [
   { q: "Choose the correct form: They ___ a new car.", options: ["has", "have", "having"], answer: 1, why: "They-এর সঙ্গে have বসে।" }
 ];
 
+
+const idioms = [
+  ["A piece of cake","খুব সহজ কাজ","The test was a piece of cake."],
+  ["Break the ice","জড়তা কাটিয়ে কথা শুরু করা","A friendly question can break the ice."],
+  ["Once in a blue moon","কদাচিৎ","We eat out once in a blue moon."],
+  ["Under the weather","অসুস্থ বোধ করা","I'm feeling under the weather today."],
+  ["Spill the beans","গোপন কথা ফাঁস করা","He spilled the beans about the surprise."],
+  ["A blessing in disguise","প্রথমে খারাপ মনে হলেও পরে ভালো ফল","Missing the bus was a blessing in disguise."],
+  ["Actions speak louder than words","কথার চেয়ে কাজের গুরুত্ব বেশি","Actions speak louder than words."],
+  ["Add fuel to the fire","সমস্যা আরও বাড়িয়ে দেওয়া","His comment added fuel to the fire."],
+  ["Back to square one","আবার শুরুতে ফিরে যাওয়া","The plan failed, so we are back to square one."],
+  ["Bark up the wrong tree","ভুল ব্যক্তিকে দোষ দেওয়া বা ভুল পথে চেষ্টা করা","If you think I broke it, you're barking up the wrong tree."],
+  ["Beat around the bush","মূল কথা এড়িয়ে যাওয়া","Please don't beat around the bush."],
+  ["Better late than never","একেবারে না করার চেয়ে দেরিতে করা ভালো","You finally started studying—better late than never."],
+  ["Bite off more than you can chew","সামর্থ্যের চেয়ে বেশি দায়িত্ব নেওয়া","I bit off more than I could chew."],
+  ["Burn the midnight oil","রাত জেগে কাজ বা পড়াশোনা করা","She burned the midnight oil before the exam."],
+  ["Call it a day","আজকের মতো কাজ শেষ করা","Let's call it a day."],
+  ["Cost an arm and a leg","অত্যন্ত ব্যয়বহুল হওয়া","That phone costs an arm and a leg."],
+  ["Cry over spilled milk","যা হয়ে গেছে তা নিয়ে আফসোস করা","There is no use crying over spilled milk."],
+  ["Cut corners","কাজে শর্টকাট নিয়ে মান কমিয়ে ফেলা","Don't cut corners on your homework."],
+  ["Get out of hand","নিয়ন্ত্রণের বাইরে চলে যাওয়া","The situation got out of hand."],
+  ["Get something off your chest","মনের কথা বলে হালকা হওয়া","You can talk and get it off your chest."],
+  ["Give someone a hand","কাউকে সাহায্য করা","Can you give me a hand?"],
+  ["Hang in there","ধৈর্য ধরে লেগে থাকা","Hang in there; things will improve."],
+  ["Hit the books","মন দিয়ে পড়াশোনা শুরু করা","I need to hit the books tonight."],
+  ["In hot water","বিপদে বা ঝামেলায় থাকা","He is in hot water for being late."],
+  ["It takes two to tango","কোনো বিষয়ে দুই পক্ষেরই ভূমিকা থাকে","Remember, it takes two to tango."],
+  ["Keep an eye on","খেয়াল রাখা","Please keep an eye on my bag."],
+  ["Kill two birds with one stone","এক কাজে দুইটি ফল পাওয়া","I can shop and visit my aunt, killing two birds with one stone."],
+  ["Let the cat out of the bag","গোপন কথা প্রকাশ করে ফেলা","She let the cat out of the bag."],
+  ["Miss the boat","সুযোগ হারানো","Apply now or you may miss the boat."],
+  ["No pain, no gain","চেষ্টা ছাড়া সাফল্য আসে না","Keep practising—no pain, no gain."],
+  ["On cloud nine","ভীষণ আনন্দিত","She was on cloud nine after the result."],
+  ["Out of the blue","হঠাৎ করে","He called me out of the blue."],
+  ["Pull someone's leg","মজা করে কাউকে বোকা বানানো","I'm just pulling your leg."],
+  ["Put all your eggs in one basket","সব আশা এক জায়গায় নির্ভর করা","Don't put all your eggs in one basket."],
+  ["See eye to eye","একমত হওয়া","We don't always see eye to eye."],
+  ["Sit on the fence","সিদ্ধান্ত না নিয়ে দোটানায় থাকা","You cannot sit on the fence forever."],
+  ["The ball is in your court","এখন সিদ্ধান্ত তোমার","I've done my part; the ball is in your court."],
+  ["Through thick and thin","সুখে-দুঃখে","They supported each other through thick and thin."],
+  ["Time flies","সময় দ্রুত চলে যায়","Time flies when you're having fun."],
+  ["To make matters worse","পরিস্থিতি আরও খারাপ করতে","To make matters worse, it started raining."],
+  ["Turn a blind eye","ইচ্ছা করে উপেক্ষা করা","We shouldn't turn a blind eye to mistakes."],
+  ["Up in the air","এখনো অনিশ্চিত","Our holiday plans are still up in the air."],
+  ["When pigs fly","কখনোই নয় / অসম্ভব কিছু বোঝাতে","He will clean his room when pigs fly."],
+  ["Your guess is as good as mine","আমিও তোমার মতোই জানি না","Where is he? Your guess is as good as mine."],
+  ["A dime a dozen","খুব সহজলভ্য বা অনেক পাওয়া যায়","Cheap souvenirs are a dime a dozen."],
+  ["At the drop of a hat","এক মুহূর্ত দেরি না করে","She is ready to help at the drop of a hat."],
+  ["By the book","নিয়ম মেনে","The teacher does everything by the book."],
+  ["Every cloud has a silver lining","প্রতিটি খারাপ পরিস্থিতিতেও ভালো দিক থাকে","Every cloud has a silver lining."],
+  ["Make ends meet","আয় দিয়ে খরচ চালানো","They work hard to make ends meet."],
+  ["The last straw","সহ্যের শেষ সীমা","That delay was the last straw."]
+];
+
+const makeQ = (q, options, answer, why) => ({ q, options, answer, why });
+function buildLevelQuizBanks() {
+  const banks = [[], [], []];
+  const add = (level, q) => banks[level-1].push(q);
+  // Level 1: Be verbs (10)
+  const beItems = [
+    ["I","a student","am"],["She","happy","is"],["They","at school","are"],["He","a doctor","is"],["We","ready","are"],
+    ["It","cold today","is"],["You","my friend","are"],["The books","on the desk","are"],["My mother","a teacher","is"],["I","at home yesterday","was"]
+  ];
+  beItems.forEach(([sub,comp,ans],i)=>add(1,makeQ(`Complete: ${sub} ___ ${comp}.`,["am","is","are","was"], ["am","is","are","was"].indexOf(ans),`এই Subject ও সময়ের সঙ্গে ${ans} সঠিক be verb।`)));
+  // Have/has (10)
+  const haveItems=[["I","have"],["She","has"],["They","have"],["He","has"],["We","have"],["Rina","has"],["You","have"],["The boys","have"],["My father","has"],["It","has"]];
+  haveItems.forEach(([sub,ans])=>add(1,makeQ(`Choose the correct verb: ${sub} ___ a book.`,["have","has","having","had"],["have","has","having","had"].indexOf(ans),`${sub} এর সঙ্গে ${ans} ব্যবহার হয়।`)));
+  // Present simple (10)
+  const simpleItems=[["I","play","plays"],["She","reads","read"],["They","go","goes"],["He","watches","watch"],["We","study","studies"],["Rafi","works","work"],["You","like","likes"],["The cat","sleeps","sleep"],["Birds","fly","flies"],["My sister","cooks","cook"]];
+  simpleItems.forEach(([sub,correct,wrong])=>add(1,makeQ(`Present Simple: ${sub} ___ every day.`,[correct,wrong,"am "+correct,"is "+correct],0,`Present Simple-এ ${sub} অনুযায়ী ${correct} সঠিক।`)));
+  // Present continuous (5)
+  [["I","am"],["She","is"],["They","are"],["We","are"],["The boy","is"]].forEach(([sub,ans])=>add(1,makeQ(`Present Continuous: ${sub} ___ reading now.`,["am","is","are","was"],["am","is","are","was"].indexOf(ans),`Present Continuous-এ ${sub} এর সঙ্গে ${ans} বসে।`)));
+  // Present perfect (5)
+  [["I","have"],["He","has"],["They","have"],["Mina","has"],["We","have"]].forEach(([sub,ans])=>add(1,makeQ(`Present Perfect: ${sub} ___ finished the work.`,["have","has","had","having"],["have","has","had","having"].indexOf(ans),`${sub} এর সঙ্গে ${ans} + V3 হয়।`)));
+  // Past simple (5)
+  [["Yesterday, I ___ to school.","went",["go","went","gone","going"]],["She ___ a letter.","wrote",["write","wrote","written","writes"]],["They ___ football.","played",["play","plays","played","playing"]],["He ___ dinner.","cooked",["cook","cooks","cooked","cooking"]],["We ___ Dhaka.","visited",["visit","visits","visited","visiting"]]].forEach(([q,a,o])=>add(1,makeQ(`Past Indefinite: ${q}`,o,o.indexOf(a),`Past Indefinite-এ এখানে V2 (${a}) দরকার।`)));
+  // Past continuous (3)
+  [["I","was"],["They","were"],["She","was"]].forEach(([sub,ans])=>add(1,makeQ(`Past Continuous: ${sub} ___ studying.`,["was","were","is","are"],["was","were","is","are"].indexOf(ans),`${sub} এর সঙ্গে ${ans} + verb-ing হয়।`)));
+  // Future (2)
+  [["I","will"],["They","will"]].forEach(([sub,ans])=>add(1,makeQ(`Future Indefinite: ${sub} ___ visit tomorrow.`,["will","would","am","has"],["will","would","am","has"].indexOf(ans),`Future Indefinite-এ Subject-এর পরে will + V1 হয়।`)));
+
+  // Level 2: Modals (10), sentence patterns (10), there (10), conditionals (10), get (10)
+  const modalItems=[["You ___ obey the rules.","must",["must","can","might","would"]],["She ___ swim very well.","can",["can","must","should","would"]],["You ___ see a doctor if you feel unwell.","should",["should","might","can","would"]],["It ___ rain later; I'm not sure.","might",["might","must","should","can"]],["___ you please help me?","Could",["Could","Must","Should","Might"]],["Students ___ be polite.","should",["should","would","might","could"]],["He ___ speak three languages.","can",["can","must","should","would"]],["You ___ not park here; it is prohibited.","must",["must","might","could","would"]],["I ___ visit my aunt tomorrow.","will",["will","must","should","might"]],["___ you mind opening the window?","Would",["Would","Should","Must","Can"]]];
+  modalItems.forEach(([q,a,o])=>add(2,makeQ(q,o,o.indexOf(a),`${a} এখানে বাক্যের অর্থ ও গঠনের সঙ্গে মানানসই modal verb।`)));
+  const patternItems=[["Which is the correct S + V + O sentence?","She reads books.",["She reads books.","Reads she books.","Books she reads.","She books reads."]],["Choose the correct S + be + complement pattern.","He is tired.",["He is tired.","He tired is.","Is tired he.","Tired he is a."]],["Which sentence has Subject + Verb + Object?","They play cricket.",["They play cricket.","Cricket they.","Play they cricket.","They cricket play."]],["Choose the correct sentence.","My brother is a student.",["My brother a student is.","My brother is a student.","Is my brother student a.","A student my brother."]],["Which is a correct negative sentence?","I do not like tea.",["I not like tea.","I do not like tea.","I does not like tea.","I am not like tea."]],["Choose the correct question pattern.","Do you speak English?",["You do speak English?","Do you speak English?","Speak do you English?","Does you speak English?"]],["Which sentence uses an adjective complement?","The sky is blue.",["The sky blue.","The sky is blue.","The sky does blue.","Blue the sky are."]],["Choose the correct word order.","She gave me a pen.",["She me gave a pen.","She gave me a pen.","Gave she a pen me.","A pen gave me she."]],["Which sentence is grammatically correct?","We are learning English.",["We learning are English.","We are learning English.","We is learning English.","We be learning English."]],["Choose the correct imperative sentence.","Please open the door.",["Please you open door.","Please open the door.","Opens please the door.","Please opening door."]]];
+  patternItems.forEach(([q,a,o])=>add(2,makeQ(q,o,o.indexOf(a),`সঠিক English word order ও sentence pattern হলো “${a}”।`)));
+  const thereItems=[["___ is a pen on the table.","There",["There","Their","They","It"]],["There ___ two apples in the basket.","are",["is","are","am","be"]],["There ___ a problem.","is",["is","are","were","have"]],["___ are many students here.","There",["There","Their","They","It"]],["There ___ some water in the glass.","is",["is","are","be","have"]],["___ there any questions?","Are",["Is","Are","Am","Do"]],["There ___ a shop here yesterday.","was",["is","are","was","were"]],["There ___ three chairs in the room.","are",["is","am","are","be"]],["There ___ not enough time.","is",["are","is","were","have"]],["___ there a library near here?","Is",["Do","Are","Is","Have"]]];
+  thereItems.forEach(([q,a,o])=>add(2,makeQ(q,o,o.indexOf(a),`There-এর পরে noun singular/plural ও tense অনুযায়ী ${a} বসে।`)));
+  const condItems=[["If it rains, we ___ at home.","will stay",["will stay","would stayed","stay will","would staying"]],["If I were rich, I ___ the world.","would travel",["will travel","would travel","travelled","am travelling"]],["If you study, you ___ pass.","will",["would","will","are","have"]],["If she had more time, she ___ more.","would read",["will read","would read","reads","is read"]],["If I were you, I ___ apologise.","would",["will","would","am","have"]],["If they invite me, I ___ go.","will",["would","will","did","was"]],["If he knew the answer, he ___ tell us.","would",["will","would","does","has"]],["If the weather is fine, we ___ outside.","will play",["would played","will play","played will","are play"]],["Imagine you ___ the principal. What would you change?","were",["are","was","were","be"]],["If I had a bicycle, I ___ to school.","would ride",["will ride","would ride","rode","am ride"]]];
+  condItems.forEach(([q,a,o])=>add(2,makeQ(q,o,o.indexOf(a),`Conditional-এর If-clause ও result clause-এর গঠন মিলিয়ে ${a} সঠিক।`)));
+  const getItems=[["I ___ up at 6 a.m. every day.","get",["get","gets","gotten","getting"]],["She ___ angry easily.","gets",["get","gets","getting","gotten"]],["Please ___ ready quickly.","get",["get","gets","got","getting"]],["We ___ to the station at noon yesterday.","got",["get","gets","got","getting"]],["How did you ___ this answer?","get",["got","gets","get","getting"]],["It is ___ dark.","getting",["get","gets","got","getting"]],["I ___ a message from him yesterday.","got",["get","gets","got","getting"]],["They ___ along well.","get",["gets","get","gotten","getting"]],["He ___ dressed before breakfast.","gets",["get","gets","got","getting"]],["We need to ___ started.","get",["gets","got","get","getting"]]];
+  getItems.forEach(([q,a,o])=>add(2,makeQ(q,o,o.indexOf(a),`এই বাক্যে get-এর সঠিক form হলো ${a}।`)));
+
+  // Level 3: Prepositions (20), articles (15), passive voice (15)
+  const prepItems=[["I live ___ Dhaka.","in",["in","on","at","by"]],["The book is ___ the table.","on",["in","on","at","under"]],["We meet ___ 7 o'clock.","at",["in","on","at","by"]],["My birthday is ___ June.","in",["at","on","in","by"]],["The class is ___ Monday.","on",["in","at","on","for"]],["She is sitting ___ her two friends.","between",["among","between","through","over"]],["The teacher stood ___ the students.","among",["between","among","above","into"]],["The cat is ___ the chair.","under",["over","under","between","across"]],["He walked ___ the bridge.","across",["along","across","between","inside"]],["We walked ___ the river.","along",["across","along","into","off"]],["She came ___ the room.","into",["out of","into","under","beside"]],["He came ___ the house.","out of",["into","out of","onto","above"]],["The bank is ___ the school.","opposite",["opposite","inside","during","among"]],["I have lived here ___ 2020.","since",["for","since","during","by"]],["I studied ___ two hours.","for",["since","at","for","on"]],["Please finish it ___ Friday.","by",["since","by","during","from"]],["She was born ___ 2010.","in",["at","on","in","by"]],["The picture is ___ the wall.","on",["in","at","on","into"]],["He is standing ___ me.","beside",["beside","between","through","over"]],["We stayed inside ___ the storm.","during",["since","for","during","until"]]];
+  prepItems.forEach(([q,a,o])=>add(3,makeQ(q,o,o.indexOf(a),`এই context-এ ${a} সঠিক preposition।`)));
+  const articleItems=[["She is ___ honest person.","an",["a","an","the","no article"]],["He bought ___ umbrella.","an",["a","an","the","no article"]],["I saw ___ cat in the garden.","a",["a","an","the","no article"]],["___ sun rises in the east.","The",["A","An","The","No article"]],["She is ___ best player in the team.","the",["a","an","the","no article"]],["He studies at ___ university.","a",["a","an","the","no article"]],["I need ___ hour to finish.","an",["a","an","the","no article"]],["___ water is essential for life.","No article",["A","An","The","No article"]],["This is ___ European country.","a",["a","an","the","no article"]],["She plays ___ piano.","the",["a","an","the","no article"]],["I have ___ idea.","an",["a","an","the","no article"]],["He is ___ one-eyed man.","a",["a","an","the","no article"]],["___ Ganges is a famous river.","The",["A","An","The","No article"]],["We had ___ lunch at noon.","No article",["A","An","The","No article"]],["She adopted ___ little puppy.","a",["a","an","the","no article"]]];
+  articleItems.forEach(([q,a,o])=>add(3,makeQ(`Choose the correct article: ${q}`,o,o.indexOf(a),`${a} এখানে sound ও article-এর নিয়ম অনুযায়ী সঠিক।`)));
+  const passiveItems=[["Active: They make cars. Passive: Cars ___ made.","are",["is","are","was","be"]],["Active: She wrote a letter. Passive: A letter ___ written.","was",["is","are","was","were"]],["Active: He is cleaning the room. Passive: The room is ___ cleaned.","being",["been","being","be","was"]],["Active: They will build a bridge. Passive: A bridge will ___ built.","be",["is","be","been","being"]],["Active: Someone has stolen my bag. Passive: My bag has been ___.","stolen",["steal","stole","stolen","stealing"]],["Active: People speak English here. Passive: English ___ spoken here.","is",["are","is","was","be"]],["Active: The chef cooked the meal. Passive: The meal ___ cooked by the chef.","was",["is","are","was","were"]],["Active: They are painting the wall. Passive: The wall is being ___.","painted",["paint","painting","painted","paints"]],["Active: You must follow the rules. Passive: The rules must ___ followed.","be",["is","be","been","being"]],["Active: She can solve it. Passive: It can ___ solved.","be",["is","been","being","be"]],["Active: He will invite us. Passive: We will ___ invited.","be",["are","be","been","being"]],["Active: They have finished the work. Passive: The work has been ___.","finished",["finish","finishes","finished","finishing"]],["Active: The police caught the thief. Passive: The thief ___ caught.","was",["is","are","was","were"]],["Active: Someone is repairing the road. Passive: The road is being ___.","repaired",["repair","repairs","repaired","repairing"]],["Active: They sell fresh fruit here. Passive: Fresh fruit ___ sold here.","is",["are","is","was","be"]]];
+  passiveItems.forEach(([q,a,o])=>add(3,makeQ(q,o,o.indexOf(a),`Passive Voice-এর tense অনুযায়ী ${a} সঠিক auxiliary/verb form।`)));
+  return banks.map((bank)=>bank.slice(0,50));
+}
+const levelQuizBanks = buildLevelQuizBanks();
+
 function show(viewId) {
   ["loginView", "appView", "adminLoginView", "adminView"].forEach(id => $(id).classList.toggle("hidden", id !== viewId));
   window.scrollTo({ top: 0, behavior: "smooth" });
@@ -195,7 +300,7 @@ function loadProgress() {
 }
 function markDone(key) { completed.add(key); localStorage.setItem(progressKey(), JSON.stringify([...completed])); updateProgress(); }
 function updateProgress() {
-  const total = levels.reduce((n, l) => n + l.topics.length, 0) + words.length + commonExpressions.reduce((n,g)=>n+g.items.length,0) + twisterGroups.reduce((n,g) => n + g.items.length,0) + quiz.length;
+  const total = levels.reduce((n, l) => n + l.topics.length, 0) + words.length + commonExpressions.reduce((n,g)=>n+g.items.length,0) + twisterGroups.reduce((n,g) => n + g.items.length,0) + idioms.length + levelQuizBanks.reduce((n,b)=>n+b.length,0);
   const percent = Math.round(completed.size / total * 100);
   if ($("progressPercent")) $("progressPercent").textContent = `${Math.min(percent,100)}%`;
   if ($("progressBar")) $("progressBar").style.width = `${Math.min(percent,100)}%`;
@@ -218,48 +323,102 @@ function renderHub(tab = activeTab) {
   document.querySelectorAll(".hub-tab").forEach(b => b.classList.toggle("active", b.dataset.tab === tab));
   const host = $("hubContent");
   if (tab === "levels") {
-    host.innerHTML = `<div class="level-grid">${levels.map((level,i) => `<button class="level-tile" data-level="0${i+1}" ${i===3?'disabled':''}><span>${level.title}</span><small>${i===3?'Coming Soon':'Open lessons ↗'}</small></button>`).join("")}</div><div id="levelDetail"></div>`;
+    host.innerHTML = `<div class="level-grid">${levels.map((level,i) => `<button class="level-tile" data-level-index="${i}" data-level="LEVEL 0${i+1}"><span>${level.title}</span><small>${i===3?'Explore coming soon':'Open learning path ↗'}</small></button>`).join("")}</div>`;
   } else if (tab === "vocabulary") {
-    host.innerHTML = `<div class="vocab-intro"><span>WORD LIBRARY</span><h3>Build your vocabulary</h3><p>আগের অনুশীলন করা শব্দগুলো এখানে রাখা হয়েছে। Level 1-এর ২০০টি বইয়ের শব্দ ছবি পাওয়ার পর সম্পূর্ণ করা হবে।</p></div><div class="hub-grid">${[1,2,3,4].map(n => `<article class="hub-card vocab-level-card"><div class="eyebrow">VOCABULARY · 0${n}</div><h3>Level ${n}</h3><p>${n===1?`${words.length} saved words · meanings · V1–V5 · examples`:'More words will be added later'}</p><button class="hub-action ${n===1?'primary':''}" data-vocab="${n}">${n===1?'Explore words':'Coming Soon'}</button></article>`).join("")}</div><div id="vocabDetail"></div>`;
+    host.innerHTML = `<div class="vocab-intro"><span>WORD LIBRARY</span><h3>Build your vocabulary</h3><p>শব্দ লিখে Vocabulary খুঁজে নাও। Level অনুযায়ী শব্দও দেখা যাবে।</p></div><input class="word-search" id="vocabGlobalSearch" placeholder="Search vocabulary..." aria-label="Search vocabulary"><div id="vocabSearchResults" class="hub-grid"><p class="empty-note">শব্দ খুঁজতে English word বা বাংলা অর্থ লিখো।</p></div><div class="hub-grid vocab-levels">${[1,2,3,4].map(n => `<article class="hub-card vocab-level-card"><div class="eyebrow">VOCABULARY · 0${n}</div><h3>Level ${n}</h3><p>${n===1?`${words.length} saved words · meanings · V1–V5 · examples`:'More words will be added later'}</p><button class="hub-action ${n===1?'primary':''}" data-vocab="${n}">${n===1?'Explore words':'Coming Soon'}</button></article>`).join("")}</div><div id="vocabDetail"></div>`;
+    $("vocabGlobalSearch").addEventListener("input", e => renderVocabularySearch(e.target.value));
   } else if (tab === "twisters") {
     host.innerHTML = twisterGroups.map((g,gi) => `<div class="twister-group"><h3>${g.title}</h3><div class="hub-grid">${g.items.map((t,i) => `<div class="twister-card"><p>${escapeHtml(t)}</p><div><button class="hub-action" data-speak="${encodeURIComponent(t)}" aria-label="Listen">🔊 Audio</button><button class="hub-action" data-twister-done="${gi}-${i}">Done</button></div></div>`).join("")}</div></div>`).join("");
   } else if (tab === "expressions") {
-    host.innerHTML = `<div class="expression-intro"><span>EVERYDAY ENGLISH</span><h3>Common Expressions</h3><p>দৈনন্দিন কথোপকথন থেকে advanced expressions পর্যন্ত।</p></div><div class="hub-grid">${commonExpressions.map(g => `<article class="hub-card expression-level-card"><div class="eyebrow">CONVERSATION COLLECTION</div><h3>Level ${g.level}</h3><p>${g.level===1?'Everyday basics':g.level===2?'Natural conversation':'Fluent expression'} · ${g.items.length} expressions</p><button class="hub-action primary" data-expression-level="${g.level}">Open Level ↗</button></article>`).join("")}</div><div id="expressionDetail"></div>`;
+    host.innerHTML = `<div class="expression-intro"><span>EVERYDAY ENGLISH</span><h3>Common Expressions</h3><p>Expression লিখে খুঁজে নাও, অথবা Level অনুযায়ী দেখো।</p></div><input class="word-search" id="expressionGlobalSearch" placeholder="Search common expressions..." aria-label="Search common expressions"><div id="expressionSearchResults" class="expression-list"><p class="empty-note">Expression খুঁজতে English phrase বা বাংলা অর্থ লিখো।</p></div><div class="hub-grid expression-levels">${commonExpressions.map(g => `<article class="hub-card expression-level-card"><div class="eyebrow">CONVERSATION COLLECTION</div><h3>Level ${g.level}</h3><p>${g.level===1?'Everyday basics':g.level===2?'Natural conversation':'Fluent expression'} · ${g.items.length} expressions</p><button class="hub-action primary" data-expression-level="${g.level}">Open Level ↗</button></article>`).join("")}</div><div id="expressionDetail"></div>`;
+    $("expressionGlobalSearch").addEventListener("input", e => renderExpressionSearch(e.target.value));
+  } else if (tab === "idioms") {
+    host.innerHTML = `<div class="expression-intro"><span>IDIOM COLLECTION</span><h3>50 Useful English Idioms</h3><p>প্রতিটি Idiom-এর বাংলা অর্থ ও Example sentence।</p></div><input class="word-search" id="idiomSearch" placeholder="Search idioms..." aria-label="Search idioms"><div class="expression-list" id="idiomList">${renderIdioms(idioms)}</div>`;
+    $("idiomSearch").addEventListener("input", e => { const q=e.target.value.toLowerCase(); $("idiomList").innerHTML=renderIdioms(idioms.filter(x=>x.join(" ").toLowerCase().includes(q))); });
   } else if (tab === "quiz") {
-    host.innerHTML = `<div class="hub-card"><div class="eyebrow">TEST YOURSELF</div><h3>Grammar & Vocabulary Quiz</h3><p>প্রতিটি প্রশ্নের একটি সঠিক উত্তর বেছে Submit করো।</p><form id="quizForm">${quiz.map((q,i) => `<div class="quiz-question"><p>${i+1}. ${q.q}</p>${q.options.map((o,j) => `<label><input type="radio" name="q${i}" value="${j}" /> ${escapeHtml(o)}</label>`).join("")}</div>`).join("")}<button class="hub-action primary" type="submit">Submit Answers</button></form><div id="quizFeedback" class="quiz-feedback" aria-live="polite"></div></div>`;
-    $("quizForm").addEventListener("submit", e => { e.preventDefault(); let score=0, feedback=[]; quiz.forEach((q,i) => { const picked = document.querySelector(`input[name="q${i}"]:checked`); if (picked && Number(picked.value) === q.answer) score++; feedback.push(`${i+1}. ${picked && Number(picked.value) === q.answer ? "সঠিক" : "সঠিক উত্তর: " + q.options[q.answer]} — ${q.why}`); }); markDone("quiz"); $("quizFeedback").innerHTML = `<strong>তোমার Score: ${score}/${quiz.length}</strong><br>${feedback.map(escapeHtml).join("<br>")}`; });
+    host.innerHTML = `<div class="hub-card"><div class="eyebrow">TEST YOURSELF</div><h3>Level-wise Practice Quiz</h3><p>প্রতিটি Level-এ ৫০টি করে প্রশ্ন। উত্তর নির্বাচন করলেই সঙ্গে সঙ্গে ফল দেখাবে।</p><div class="hub-grid">${levels.slice(0,3).map((l,i)=>`<button class="quiz-level-card" data-quiz-level="${i+1}"><strong>${l.title}</strong><span>50 Questions · Start Quiz ↗</span></button>`).join("")}</div></div>`;
   }
 }
+function renderIdioms(items) {
+  if (!items.length) return '<p class="empty-note">কোনো Idiom পাওয়া যায়নি।</p>';
+  return items.map((x,i)=>`<article class="expression-row"><div class="expression-index">${String(idioms.indexOf(x)+1).padStart(2,'0')}</div><div class="expression-body"><h4>${escapeHtml(x[0])}</h4><p>${escapeHtml(x[1])}</p><small>Example: ${escapeHtml(x[2])}</small></div><button class="hub-action" data-speak="${encodeURIComponent(x[0])}">🔊</button></article>`).join("");
+}
+function renderVocabularySearch(query) {
+  const host=$("vocabSearchResults"); if(!host) return; const q=query.trim().toLowerCase();
+  if(!q){host.innerHTML='<p class="empty-note">শব্দ খুঁজতে English word বা বাংলা অর্থ লিখো।</p>';return;}
+  const found=words.map((w,i)=>({...w,index:i})).filter(w=>[w.word,w.meaning,w.example,w.bn].join(" ").toLowerCase().includes(q));
+  host.innerHTML=found.length?found.map(w=>`<article class="word-card"><div class="word-number">WORD ${String(w.index+1).padStart(2,'0')}</div><h3>${escapeHtml(w.word)}</h3><p class="word-meaning">অর্থ: ${escapeHtml(w.meaning)}</p><p class="word-example"><strong>${escapeHtml(w.example)}</strong><br><span>${escapeHtml(w.bn)}</span></p></article>`).join(""):'<p class="empty-note">কোনো Vocabulary পাওয়া যায়নি।</p>';
+}
+function renderExpressionSearch(query) {
+  const host=$("expressionSearchResults"); if(!host) return; const q=query.trim().toLowerCase();
+  if(!q){host.innerHTML='<p class="empty-note">Expression খুঁজতে English phrase বা বাংলা অর্থ লিখো।</p>';return;}
+  const found=commonExpressions.flatMap(g=>g.items.map((x,i)=>({item:x,level:g.level,index:i}))).filter(x=>x.item.join(" ").toLowerCase().includes(q));
+  host.innerHTML=found.length?found.map(x=>`<article class="expression-row"><div class="expression-index">L${x.level}</div><div class="expression-body"><h4>${escapeHtml(x.item[0])}</h4><p>${escapeHtml(x.item[1])}</p><small>Example: ${escapeHtml(x.item[2])}</small></div><button class="hub-action" data-speak="${encodeURIComponent(x.item[0])}">🔊</button></article>`).join(""):'<p class="empty-note">কোনো Expression পাওয়া যায়নি।</p>';
+}
 function openLevel(index) {
-  const level = levels[index]; const detail = $("levelDetail");
-  if (!level || !level.topics.length) return;
-  const levelGrid = document.querySelector(".level-grid"); if (levelGrid) levelGrid.classList.add("hidden");
-  detail.innerHTML = `<div class="hub-detail level-page"><button class="back-level" data-back-level>← Back to Levels</button><h3>${level.title}</h3><p class="muted">একটি Topic বেছে নিয়ে পড়া শুরু করো।</p><div class="lesson-list">${level.topics.map((topic,i) => `<article class="lesson-card"><div><strong>${escapeHtml(topic)}</strong><small>${index===0 && i<2 ? "Detailed lesson" : "Lesson & examples"}</small></div><button class="hub-action" data-open-topic="${encodeURIComponent(topic)}">Open ↗</button></article>`).join("")}<article class="lesson-card six-sentences-card"><div><strong>6 Sentences</strong><small>৩–৪টি বাক্যের ছয়টি Form অনুশীলন</small></div><button class="hub-action primary" data-six-sentences="${index}">Practice ↗</button></article></div><div id="topicLesson"></div></div>`;
-  detail.scrollIntoView({behavior:"smooth",block:"nearest"});
+  currentLevelIndex=index;
+  const level=levels[index]; const host=$("hubContent");
+  if(!level) return;
+  if(index===3){host.innerHTML=`<div class="hub-detail page-panel"><div class="page-top-actions"><button class="back-level" data-home-levels>⌂ Home</button><button class="back-level" data-back-level>← Back</button></div><div class="coming-soon-mark">04</div><h3>Level 4</h3><p>এই Level-এর lessons শিগগিরই আসছে।</p></div>`;return;}
+  const topics=level.topics.map((topic,i)=>`<article class="lesson-card"><div><strong>${escapeHtml(topic)}</strong><small>${index===0 && i<2 ? "Detailed lesson" : topic==="Tense"?"6 separate tense lessons":"Lesson & examples"}</small></div><button class="hub-action" data-open-topic="${encodeURIComponent(topic)}">Open ↗</button></article>`).join("");
+  host.innerHTML=`<div class="hub-detail level-page"><div class="page-top-actions"><button class="back-level" data-home-levels>⌂ Home</button><button class="back-level" data-back-level>← Back</button></div><div class="level-page-kicker">LEARNING PATH · 0${index+1}</div><h3>${level.title}</h3><p class="muted">একটি Topic বেছে নিয়ে নতুন Lesson Page-এ পড়া শুরু করো।</p><div class="lesson-list">${topics}</div><div class="level-extra-actions"><button class="hub-action" data-six-practice="${index}">6 Sentences · Practice</button><button class="hub-action" data-six-quiz="${index}">6 Sentences · Quiz</button></div><button class="level-quiz-launch" data-quiz-level="${index+1}"><span>LEVEL 0${index+1} QUIZ</span><strong>50 Questions</strong><small>Start your level test ↗</small></button></div>`;
+}
+function openTopicPage(topic) {
+  const host=$("hubContent");
+  if(topic==="Tense"){
+    const tenseNames=["Present Indefinite","Present Continuous","Present Perfect","Past Indefinite","Past Continuous","Future Indefinite"];
+    host.innerHTML=`<div class="hub-detail page-panel"><div class="page-top-actions"><button class="back-level" data-home-levels>⌂ Home</button><button class="back-level" data-back-to-level>← Back</button></div><div class="level-page-kicker">LEVEL 01 · GRAMMAR</div><h3>Tense</h3><p class="muted">৬টি Tense-এর যেকোনো একটি বেছে নাও।</p><div class="lesson-list">${tenseNames.map(t=>`<article class="lesson-card"><div><strong>${t}</strong><small>Structure, usage & examples</small></div><button class="hub-action" data-open-topic="${encodeURIComponent(t)}">Open ↗</button></article>`).join("")}</div></div>`;
+    return;
+  }
+  renderTopic(topic);
 }
 function renderTopic(topic) {
-  const host = $("topicLesson");
+  const host = $("hubContent");
   const sections = lessonNotes[topic] || [];
-  if (!sections.length) { host.innerHTML = `<div class="lesson-content"><h3>${escapeHtml(topic)}</h3><p>এই Lesson-এর বিস্তারিত অংশ পরে যোগ করা হবে।</p></div>`; return; }
-  host.innerHTML = `<div class="lesson-content"><h3>${escapeHtml(topic)}</h3>${sections.map(section => `<section class="lesson-section"><h4>${escapeHtml(section.heading)}</h4><div class="structure-box"><strong>Structure:</strong> ${escapeHtml(section.structure)}</div><ul>${section.examples.map(ex => `<li>${escapeHtml(ex)}</li>`).join("")}</ul></section>`).join("")}<button class="hub-action primary" data-topic-done="${encodeURIComponent(topic)}">Mark as learned ✓</button></div>`;
-  host.scrollIntoView({behavior:"smooth",block:"nearest"});
+  const content=sections.length?sections.map(section => `<section class="lesson-section"><h4>${escapeHtml(section.heading)}</h4><div class="structure-box"><strong>Structure:</strong> ${escapeHtml(section.structure)}</div><ul>${section.examples.map(ex => `<li>${escapeHtml(ex)}</li>`).join("")}</ul></section>`).join(""):'<p>এই Lesson-এর বিস্তারিত অংশ পরে যোগ করা হবে।</p>';
+  host.innerHTML = `<div class="hub-detail page-panel"><div class="page-top-actions"><button class="back-level" data-home-levels>⌂ Home</button><button class="back-level" data-back-topic>← Back</button></div><div class="level-page-kicker">LEVEL 0${currentLevelIndex+1} · LESSON</div><h3>${escapeHtml(topic)}</h3>${content}<button class="hub-action primary" data-topic-done="${encodeURIComponent(topic)}">Mark as learned ✓</button></div>`;
 }
 function renderSixSentences(levelIndex) {
-  const host = $("topicLesson"); const items = sixSentenceSets[levelIndex] || [];
-  if (!items.length) { host.innerHTML = `<div class="lesson-content"><h3>6 Sentences</h3><p>এই Level-এর practice sentences শিগগিরই যোগ হবে।</p></div>`; return; }
+  const host = $("hubContent"); const items = sixSentenceSets[levelIndex] || [];
+  if (!items.length) { host.innerHTML = `<div class="hub-detail page-panel"><button class="back-level" data-back-level>← Back</button><h3>6 Sentences Practice</h3><p>এই Level-এর practice sentences শিগগিরই যোগ হবে।</p></div>`; return; }
   const names = ["Affirmative", "Negative", "Interrogative", "Negative Interrogative", "Why Affirmative", "Why Negative"];
-  host.innerHTML = `<div class="lesson-content"><h3>6 Sentences Practice</h3>${items.map((item,i) => `<section class="six-sentence-item"><h4>${i+1}. ${escapeHtml(item.bn)}</h4><div class="six-form-grid">${item.forms.map((form,j) => `<div class="six-form"><strong>${names[j]}</strong><span>${escapeHtml(form)}</span><small>${escapeHtml(item.bnForms?.[j] || "")}</small></div>`).join("")}</div></section>`).join("")}<button class="hub-action primary" data-six-done="${levelIndex}">Practice completed ✓</button></div>`;
-  host.scrollIntoView({behavior:"smooth",block:"nearest"});
+  host.innerHTML = `<div class="hub-detail page-panel"><div class="page-top-actions"><button class="back-level" data-home-levels>⌂ Home</button><button class="back-level" data-back-to-level>← Back</button></div><h3>6 Sentences · Practice</h3>${items.map((item,i) => `<section class="six-sentence-item"><h4>${i+1}. ${escapeHtml(item.bn)}</h4><div class="six-form-grid">${item.forms.map((form,j) => `<div class="six-form"><strong>${names[j]}</strong><span>${escapeHtml(form)}</span><small>${escapeHtml(item.bnForms?.[j] || "")}</small></div>`).join("")}</div></section>`).join("")}<button class="hub-action primary" data-six-done="${levelIndex}">Practice completed ✓</button></div>`;
+}
+function normalizeAnswer(v){return String(v||"").toLowerCase().replace(/[.!?,'’]/g,"").replace(/\s+/g," ").trim();}
+function renderSixSentenceQuiz(levelIndex) {
+  const host=$("hubContent"); const items=sixSentenceSets[levelIndex]||[];
+  if(!items.length){host.innerHTML='<div class="hub-detail page-panel"><button class="back-level" data-back-to-level>← Back</button><p>এই Level-এর Quiz শিগগিরই যোগ হবে।</p></div>';return;}
+  const names=["Affirmative","Negative","Interrogative","Negative Interrogative","Why Affirmative","Why Negative"];
+  host.innerHTML=`<div class="hub-detail page-panel"><div class="page-top-actions"><button class="back-level" data-home-levels>⌂ Home</button><button class="back-level" data-back-to-level>← Back</button></div><div class="level-page-kicker">WRITE ALL SIX FORMS</div><h3>6 Sentences · Quiz</h3><p class="muted">প্রতিটি বাংলা বাক্যের জন্য নিজে ৬টি English Form লেখো।</p><form id="sixFormQuiz">${items.map((item,si)=>`<section class="six-sentence-item"><div class="quiz-source-bn">${si+1}. ${escapeHtml(item.bn)}</div>${names.map((n,i)=>`<label class="six-answer-field"><strong>${n}</strong><input name="s${si}f${i}" autocomplete="off" placeholder="Write ${n} sentence..."></label>`).join("")}</section>`).join("")}<button class="hub-action primary" type="submit">Check My Answers</button></form><div id="sixQuizResult" aria-live="polite"></div></div>`;
+  $("sixFormQuiz").addEventListener("submit",e=>{
+    e.preventDefault();let score=0,total=items.length*6;const result=[];
+    items.forEach((item,si)=>item.forms.forEach((answer,i)=>{const field=e.currentTarget.elements[`s${si}f${i}`];const ok=normalizeAnswer(field.value)===normalizeAnswer(answer);if(ok)score++;field.classList.toggle("answer-correct",ok);field.classList.toggle("answer-wrong",!ok);result.push(`<p class="${ok?'correct-line':'wrong-line'}">${ok?'✓':'✕'} ${escapeHtml(item.bn)} — ${names[i]}: ${escapeHtml(answer)}</p>`);}));
+    $("sixQuizResult").innerHTML=`<h4>Score: ${score}/${total}</h4>${result.join("")}`;if(score===total)markDone(`six-quiz-${levelIndex}`);
+  });
+}
+function renderLevelQuiz(levelNumber) {
+  currentLevelIndex=levelNumber-1;
+  const host=$("hubContent"); const questions=levelQuizBanks[levelNumber-1]||[]; let answered=0,score=0;
+  host.innerHTML=`<div class="hub-detail page-panel"><div class="page-top-actions"><button class="back-level" data-home-levels>⌂ Home</button><button class="back-level" data-back-to-level>← Back</button></div><div class="level-page-kicker">LEVEL 0${levelNumber} · PRACTICE TEST</div><h3>Level ${levelNumber} Quiz</h3><p class="muted">৫০টি প্রশ্ন · প্রতিটি উত্তরের পর সঙ্গে সঙ্গে feedback দেখাবে।</p><div class="quiz-live-progress"><span id="levelQuizCount">0/${questions.length} answered</span><strong id="levelQuizScore">Score: 0</strong></div><div id="levelQuizQuestions">${questions.map((q,i)=>`<article class="quiz-question" data-q-index="${i}"><p>${i+1}. ${escapeHtml(q.q)}</p><div class="quiz-options">${q.options.map((o,j)=>`<label><input type="radio" name="level${levelNumber}q${i}" value="${j}"><span>${escapeHtml(o)}</span></label>`).join("")}</div><div class="instant-feedback" id="feedback-${i}" aria-live="polite"></div></article>`).join("")}</div><div id="levelQuizComplete" class="quiz-complete"></div></div>`;
+  host.querySelectorAll('.quiz-question input[type="radio"]').forEach(input=>input.addEventListener('change',()=>{
+    const qIndex=Number(input.closest('.quiz-question').dataset.qIndex),q=questions[qIndex],picked=Number(input.value),ok=picked===q.answer,card=input.closest('.quiz-question'),feedback=card.querySelector('.instant-feedback');
+    if(card.dataset.answered) return; card.dataset.answered='1'; answered++; if(ok)score++;
+    card.querySelectorAll('input').forEach(el=>el.disabled=true);
+    card.classList.add(ok?'question-correct':'question-wrong');
+    feedback.innerHTML=`<strong class="${ok?'feedback-good':'feedback-bad'}">${ok?'✓ Correct':'✕ Incorrect'}</strong><span>${escapeHtml(ok?q.why:`Correct answer: ${q.options[q.answer]}. ${q.why}`)}</span>`;
+    $("levelQuizCount").textContent=`${answered}/${questions.length} answered`;$("levelQuizScore").textContent=`Score: ${score}`;
+    if(answered===questions.length){$("levelQuizComplete").innerHTML=`<h3>Quiz completed!</h3><p>Your final score: <strong>${score}/${questions.length}</strong></p><button class="hub-action primary" data-quiz-retry="${levelNumber}">Try Again</button>`;markDone(`level-quiz-${levelNumber}`);}
+  }));
 }
 function openVocabulary(level) {
   const detail = $("vocabDetail");
   if (level !== 1) return toast("এই Vocabulary Level-এর content পরে যোগ হবে।");
-  detail.innerHTML = `<div class="hub-detail vocab-detail"><div class="detail-top"><div><div class="eyebrow">LEVEL 01 · WORD BANK</div><h3>Vocabulary Level 1</h3><p class="muted">${words.length}টি আগের অনুশীলনের শব্দ</p></div><button class="back-level" data-vocab-back>← Back</button></div><input class="word-search" id="wordSearch" placeholder="Search vocabulary..." aria-label="Search vocabulary"><div class="hub-grid" id="wordGrid">${words.map((w,i) => `<article class="word-card"><div class="word-number">WORD ${String(i+1).padStart(2,'0')}</div><h3>${escapeHtml(w.word)}</h3><p class="word-meaning">অর্থ: ${escapeHtml(w.meaning)}</p><div class="verb-forms"><span><b>V1</b>${escapeHtml(w.v1)}</span><span><b>V2</b>${escapeHtml(w.v2)}</span><span><b>V3</b>${escapeHtml(w.v3)}</span><span><b>V4</b>${escapeHtml(w.v4)}</span><span><b>V5</b>${escapeHtml(w.v5)}</span></div><p class="word-example"><strong>${escapeHtml(w.example)}</strong><br><span>${escapeHtml(w.bn)}</span></p><button class="hub-action" data-word-done="${i}">Mark learned ✓</button></article>`).join("")}</div><p class="muted">তোমার বইয়ের Level 1-এর ২০০টি শব্দের ছবি দিলে এই তালিকাটি বইয়ের সঠিক ক্রমে সাজিয়ে দেওয়া হবে।</p></div>`;
+  detail.innerHTML = `<div class="hub-detail vocab-detail"><div class="detail-top"><div><div class="eyebrow">LEVEL 01 · WORD BANK</div><h3>Vocabulary Level 1</h3><p class="muted">${words.length}টি আগের অনুশীলনের শব্দ</p></div><div class="page-top-actions"><button class="back-level" data-home-vocab>⌂ Home</button><button class="back-level" data-vocab-back>← Back</button></div></div><input class="word-search" id="wordSearch" placeholder="Search vocabulary..." aria-label="Search vocabulary"><div class="hub-grid" id="wordGrid">${words.map((w,i) => `<article class="word-card"><div class="word-number">WORD ${String(i+1).padStart(2,'0')}</div><h3>${escapeHtml(w.word)}</h3><p class="word-meaning">অর্থ: ${escapeHtml(w.meaning)}</p><div class="verb-forms"><span><b>V1</b>${escapeHtml(w.v1)}</span><span><b>V2</b>${escapeHtml(w.v2)}</span><span><b>V3</b>${escapeHtml(w.v3)}</span><span><b>V4</b>${escapeHtml(w.v4)}</span><span><b>V5</b>${escapeHtml(w.v5)}</span></div><p class="word-example"><strong>${escapeHtml(w.example)}</strong><br><span>${escapeHtml(w.bn)}</span></p><button class="hub-action" data-word-done="${i}">Mark learned ✓</button></article>`).join("")}</div><p class="muted">তোমার বইয়ের Level 1-এর ২০০টি শব্দের ছবি দিলে এই তালিকাটি বইয়ের সঠিক ক্রমে সাজিয়ে দেওয়া হবে।</p></div>`;
   $("wordSearch").addEventListener("input", e => { const q=e.target.value.toLowerCase(); document.querySelectorAll("#wordGrid .word-card").forEach(card => card.classList.toggle("hidden", !card.textContent.toLowerCase().includes(q))); });
 }
 function openExpressions(level) {
   const group = commonExpressions.find(g => g.level === level); const host = $("expressionDetail"); if (!group || !host) return;
-  host.innerHTML = `<div class="hub-detail expression-detail"><div class="detail-top"><div><div class="eyebrow">COMMON EXPRESSIONS · LEVEL 0${level}</div><h3>${level===1?'Everyday Basics':level===2?'Natural Conversation':'Fluent Expressions'}</h3><p class="muted">${group.items.length}টি expression</p></div><button class="back-level" data-expression-back>← Back</button></div><div class="expression-list">${group.items.map((item,i)=>`<article class="expression-row"><div class="expression-index">${String(i+1).padStart(2,'0')}</div><div class="expression-body"><h4>${escapeHtml(item[0])}</h4><p>${escapeHtml(item[1])}</p><small>Example: ${escapeHtml(item[2])}</small></div><button class="hub-action" data-speak="${encodeURIComponent(item[0])}">🔊</button></article>`).join("")}</div></div>`;
+  host.innerHTML = `<div class="hub-detail expression-detail"><div class="detail-top"><div><div class="eyebrow">COMMON EXPRESSIONS · LEVEL 0${level}</div><h3>${level===1?'Everyday Basics':level===2?'Natural Conversation':'Fluent Expressions'}</h3><p class="muted">${group.items.length}টি expression</p></div><div class="page-top-actions"><button class="back-level" data-home-expressions>⌂ Home</button><button class="back-level" data-expression-back>← Back</button></div></div><div class="expression-list">${group.items.map((item,i)=>`<article class="expression-row"><div class="expression-index">${String(i+1).padStart(2,'0')}</div><div class="expression-body"><h4>${escapeHtml(item[0])}</h4><p>${escapeHtml(item[1])}</p><small>Example: ${escapeHtml(item[2])}</small></div><button class="hub-action" data-speak="${encodeURIComponent(item[0])}">🔊</button></article>`).join("")}</div></div>`;
   host.scrollIntoView({behavior:"smooth",block:"nearest"});
 }
 
@@ -290,10 +449,18 @@ const savedTheme = localStorage.getItem("ef-theme"); if (savedTheme && $("themeS
 document.querySelectorAll(".hub-tab").forEach(btn => btn.addEventListener("click", () => renderHub(btn.dataset.tab)));
 $("hubContent").addEventListener("click", e => {
   const b = e.target.closest("button"); if (!b) return;
-  if (b.dataset.level !== undefined) openLevel(Number(b.dataset.level));
-  if (b.dataset.backLevel !== undefined) { $("levelDetail").innerHTML = ""; const levelGrid = document.querySelector(".level-grid"); if (levelGrid) levelGrid.classList.remove("hidden"); $("hubContent").scrollIntoView({behavior:"smooth",block:"start"}); }
-  if (b.dataset.openTopic) renderTopic(decodeURIComponent(b.dataset.openTopic));
-  if (b.dataset.sixSentences !== undefined) renderSixSentences(Number(b.dataset.sixSentences));
+  if (b.dataset.levelIndex !== undefined) openLevel(Number(b.dataset.levelIndex));
+  if (b.dataset.homeLevels !== undefined) renderHub("levels");
+  if (b.dataset.homeVocab !== undefined) renderHub("vocabulary");
+  if (b.dataset.homeExpressions !== undefined) renderHub("expressions");
+  if (b.dataset.backLevel !== undefined) renderHub("levels");
+  if (b.dataset.backToLevel !== undefined) openLevel(currentLevelIndex);
+  if (b.dataset.backTopic !== undefined) openLevel(currentLevelIndex);
+  if (b.dataset.openTopic) openTopicPage(decodeURIComponent(b.dataset.openTopic));
+  if (b.dataset.sixPractice !== undefined) renderSixSentences(Number(b.dataset.sixPractice));
+  if (b.dataset.sixQuiz !== undefined) renderSixSentenceQuiz(Number(b.dataset.sixQuiz));
+  if (b.dataset.quizLevel !== undefined) renderLevelQuiz(Number(b.dataset.quizLevel));
+  if (b.dataset.quizRetry !== undefined) renderLevelQuiz(Number(b.dataset.quizRetry));
   if (b.dataset.topicDone) { markDone(`topic-${decodeURIComponent(b.dataset.topicDone)}`); b.textContent = "Learned ✓"; b.disabled = true; }
   if (b.dataset.sixDone !== undefined) { markDone(`six-${b.dataset.sixDone}`); b.textContent = "Completed ✓"; b.disabled = true; }
   if (b.dataset.vocab) openVocabulary(Number(b.dataset.vocab));
