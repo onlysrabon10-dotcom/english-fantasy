@@ -79,30 +79,34 @@
 
     <section id="adminView" class="app-shell hidden">
       <div class="welcome-row"><div><div class="eyebrow">CONTROL CENTER</div><h1>Admin <span>Panel</span></h1><p>Vocabulary, Presentation Topics, Tongue Twisters ও Sentences পরিচালনা করো।</p></div><button id="adminLogout" class="outline-button">Log out</button></div>
-      <section class="glass admin-vocab-panel">
+      <nav class="admin-manager-tabs" aria-label="Admin content managers">
+        <button type="button" class="admin-manager-tab" data-admin-manager="vocabulary">Vocabulary</button>
+        <button type="button" class="admin-manager-tab" data-admin-manager="presentations">Presentation Topics</button>
+        <button type="button" class="admin-manager-tab" data-admin-manager="twisters">Tongue Twisters</button>
+        <button type="button" class="admin-manager-tab" data-admin-manager="sentences">Sentences</button>
+      </nav>
+      <section class="glass admin-vocab-panel admin-manager-section hidden" data-admin-section="vocabulary">
         <div class="eyebrow">VOCABULARY MANAGER</div><h2>Manage Vocabulary</h2>
         <div class="admin-vocab-toolbar"><label>Level <select id="adminVocabLevel"><option value="1">Level 1</option><option value="2">Level 2</option><option value="3">Level 3</option></select></label><input id="adminVocabSearch" placeholder="Search word..." aria-label="Search vocabulary words"></div>
-        <form id="adminVocabForm" class="admin-vocab-form"><input id="adminVocabWord" placeholder="Word" required><input id="adminVocabMeaning" placeholder="বাংলা অর্থ" required><textarea id="adminVocabSynonyms" placeholder="Direct / Close Synonyms (comma separated)"></textarea><textarea id="adminVocabIndirectSynonyms" placeholder="Indirect Synonyms (comma separated)"></textarea><textarea id="adminVocabAntonyms" placeholder="Direct Antonyms (comma separated)"></textarea><textarea id="adminVocabIndirectAntonyms" placeholder="Indirect Antonyms (comma separated)"></textarea><div class="admin-vocab-actions"><button class="gold-button" type="submit" id="adminVocabSave">Add Word</button><button class="outline-button" type="button" id="adminVocabCancel">Clear</button></div></form>
+        <form id="adminVocabForm" class="admin-vocab-form"><input id="adminVocabWord" placeholder="Word" required><input id="adminVocabMeaning" placeholder="বাংলা অর্থ" required><textarea id="adminVocabSynonyms" placeholder="2 Indirect Synonyms (comma separated)"></textarea><textarea id="adminVocabAntonyms" placeholder="2 Indirect Antonyms (comma separated)"></textarea><div class="admin-vocab-actions"><button class="gold-button" type="submit" id="adminVocabSave">Add Word</button><button class="outline-button" type="button" id="adminVocabCancel">Clear</button></div></form>
         <div id="adminVocabList" class="admin-vocab-list"></div>
       </section>
-      <section class="glass admin-vocab-panel admin-content-panel">
+      <section class="glass admin-vocab-panel admin-content-panel admin-manager-section hidden" data-admin-section="presentations">
         <div class="eyebrow">PRESENTATION MANAGER</div><h2>Manage Presentation Topics</h2>
         <form id="adminPresentationForm" class="admin-vocab-form">
           <input id="adminPresentationTitle" placeholder="Topic title" required><input id="adminPresentationBn" placeholder="বাংলা শিরোনাম">
-          <textarea id="adminPresentationIntro" placeholder="Introduction" required></textarea>
-          <textarea id="adminPresentationPoints" placeholder="Key points (one per line)" required></textarea>
-          <textarea id="adminPresentationConclusion" placeholder="Conclusion" required></textarea>
+          <textarea id="adminPresentationParagraph" placeholder="Write the complete presentation here..." rows="12" required></textarea>
           <div class="admin-vocab-actions"><button class="gold-button" id="adminPresentationSave" type="submit">Add Topic</button><button class="outline-button" id="adminPresentationCancel" type="button">Clear</button></div>
         </form><div id="adminPresentationList" class="admin-vocab-list"></div>
       </section>
-      <section class="glass admin-vocab-panel admin-content-panel">
+      <section class="glass admin-vocab-panel admin-content-panel admin-manager-section hidden" data-admin-section="twisters">
         <div class="eyebrow">TONGUE TWISTER MANAGER</div><h2>Manage Tongue Twisters</h2>
         <form id="adminTwisterForm" class="admin-vocab-form">
           <input id="adminTwisterText" placeholder="English tongue twister" required><input id="adminTwisterPronunciation" placeholder="বাংলা উচ্চারণ" required><textarea id="adminTwisterMeaning" placeholder="বাংলা অর্থ" required></textarea>
           <div class="admin-vocab-actions"><button class="gold-button" id="adminTwisterSave" type="submit">Add Tongue Twister</button><button class="outline-button" id="adminTwisterCancel" type="button">Clear</button></div>
         </form><div id="adminTwisterList" class="admin-vocab-list"></div>
       </section>
-      <div class="admin-grid">
+      <div class="admin-grid admin-manager-section hidden" data-admin-section="sentences">
         <form id="addSentenceForm" class="glass admin-form">
           <div class="eyebrow">CONTENT MANAGER</div><h2>Add a sentence</h2>
           <label>বাংলা Sentence<input id="newBangla" required placeholder="বইটি প্রকাশ করা হচ্ছে।" /></label>

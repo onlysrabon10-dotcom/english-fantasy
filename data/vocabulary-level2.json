@@ -3,732 +3,448 @@
     "word": "Plant",
     "meaning": "রোপণ করা",
     "synonyms": [],
-    "indirectSynonyms": [
-      "cultivate",
-      "sow",
-      "grow"
-    ],
-    "antonyms": [],
-    "indirectAntonyms": [
-      "uproot",
-      "remove"
-    ]
+    "antonyms": []
   },
   {
     "word": "Play",
     "meaning": "খেলা করা",
     "synonyms": [
       "enjoy",
-      "compete",
-      "perform"
+      "compete"
     ],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": [
-      "work",
-      "study"
-    ]
+    "antonyms": []
   },
   {
     "word": "Please",
     "meaning": "সন্তুষ্ট করা",
     "synonyms": [],
-    "indirectSynonyms": [
-      "satisfy",
-      "delight",
-      "make happy"
-    ],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Pray",
     "meaning": "প্রার্থনা করা, অনুনয় করা",
     "synonyms": [],
-    "indirectSynonyms": [
-      "worship",
-      "appeal",
-      "ask earnestly"
-    ],
-    "antonyms": [],
-    "indirectAntonyms": [
-      "curse",
-      "reject worship"
-    ]
+    "antonyms": []
   },
   {
     "word": "Prefer",
     "meaning": "অধিক পছন্দ করা",
     "synonyms": [],
-    "indirectSynonyms": [
-      "favor",
-      "choose over",
-      "be inclined toward"
-    ],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Prepare",
     "meaning": "তৈরি করা",
     "synonyms": [],
-    "indirectSynonyms": [
-      "arrange",
-      "get ready",
-      "make ready"
-    ],
-    "antonyms": [],
-    "indirectAntonyms": [
-      "neglect preparation",
-      "leave unready"
-    ]
+    "antonyms": []
   },
   {
     "word": "Put",
     "meaning": "রাখা",
     "synonyms": [],
-    "indirectSynonyms": [
-      "place",
-      "set",
-      "position"
-    ],
-    "antonyms": [],
-    "indirectAntonyms": [
-      "remove",
-      "take away"
-    ]
+    "antonyms": []
   },
   {
     "word": "Qualify",
     "meaning": "যোগ্য করে তোলা",
     "synonyms": [],
-    "indirectSynonyms": [
-      "meet the requirements",
-      "be eligible",
-      "prepare"
-    ],
-    "antonyms": [],
-    "indirectAntonyms": [
-      "be disqualified",
-      "be ineligible"
-    ]
+    "antonyms": []
   },
   {
     "word": "Quarrel",
     "meaning": "ঝগড়া করা",
     "synonyms": [],
-    "indirectSynonyms": [
-      "argue",
-      "dispute",
-      "have a disagreement"
-    ],
-    "antonyms": [],
-    "indirectAntonyms": [
-      "agree",
-      "make peace"
-    ]
+    "antonyms": []
   },
   {
     "word": "Query",
     "meaning": "খোঁজা",
     "synonyms": [],
-    "indirectSynonyms": [
-      "ask",
-      "inquire",
-      "question"
-    ],
-    "antonyms": [],
-    "indirectAntonyms": [
-      "answer",
-      "respond"
-    ]
+    "antonyms": []
   },
   {
     "word": "Quench",
     "meaning": "প্রশমিত করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Quest",
     "meaning": "খোঁজা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Question",
     "meaning": "প্রশ্ন বা জেরা করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Quicken",
     "meaning": "ত্বরান্বিত করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Quit",
     "meaning": "স্থান ত্যাগ করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": [
-      "continue",
-      "persist"
-    ]
+    "antonyms": []
   },
   {
     "word": "Quiver",
     "meaning": "কাঁপা, কম্পিত হওয়া",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Quote",
     "meaning": "উদ্ধৃত করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Receive",
     "meaning": "গ্রহণ করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": [
-      "give",
-      "send"
-    ]
+    "antonyms": []
   },
   {
     "word": "Remove",
     "meaning": "অপসারণ করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": [
-      "add",
-      "insert"
-    ]
+    "antonyms": []
   },
   {
     "word": "Repair",
     "meaning": "মেরামত করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": [
-      "damage",
-      "break"
-    ]
+    "antonyms": []
   },
   {
     "word": "Repeat",
     "meaning": "পুনরাবৃত্তি করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": [
-      "stop",
-      "do once"
-    ]
+    "antonyms": []
   },
   {
     "word": "Reply",
     "meaning": "উত্তর দেওয়া",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Reject",
     "meaning": "বাতিল করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": [
-      "accept",
-      "approve"
-    ]
+    "antonyms": []
   },
   {
     "word": "Return",
     "meaning": "ফিরে আসা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": [
-      "leave",
-      "depart"
-    ]
+    "antonyms": []
   },
   {
     "word": "Ride",
     "meaning": "চড়া, আরোহণ করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Ring",
     "meaning": "ঘণ্টা বাজানো",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Rise",
     "meaning": "উঠা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": [
-      "fall",
-      "sink"
-    ]
+    "antonyms": []
   },
   {
     "word": "See",
     "meaning": "দেখা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Smell",
     "meaning": "গন্ধ নেওয়া বা পাওয়া",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Smoke",
     "meaning": "ধূমপান করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Spell",
     "meaning": "বানান করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Spread",
     "meaning": "ছড়িয়ে দেওয়া",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Start",
     "meaning": "আরম্ভ করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": [
-      "stop",
-      "finish"
-    ]
+    "antonyms": []
   },
   {
     "word": "Steal",
     "meaning": "চুরি করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": [
-      "return",
-      "give back"
-    ]
+    "antonyms": []
   },
   {
     "word": "Stop",
     "meaning": "থামা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": [
-      "continue",
-      "proceed"
-    ]
+    "antonyms": []
   },
   {
     "word": "Study",
     "meaning": "অধ্যয়ন করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Submit",
     "meaning": "দাখিল করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": [
-      "resist",
-      "refuse"
-    ]
+    "antonyms": []
   },
   {
     "word": "Talk",
     "meaning": "কথা বলা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Taste",
     "meaning": "স্বাদ গ্রহণ করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Teach",
     "meaning": "শিক্ষা দেওয়া",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Tear",
     "meaning": "ছেঁড়া, ছিড়ে ফেলা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Test",
     "meaning": "পরীক্ষা করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Throw",
     "meaning": "নিক্ষেপ করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Touch",
     "meaning": "স্পর্শ করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Try",
     "meaning": "চেষ্টা করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Turn",
     "meaning": "ঘোরা, মোড় নেওয়া, টাইপ করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Type",
     "meaning": "টাইপ করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Understand",
     "meaning": "বুঝা, বুঝতে পারা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Undertake",
     "meaning": "দায়িত্ব গ্রহণ করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Unite",
     "meaning": "একত্র করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": [
-      "separate",
-      "divide"
-    ]
+    "antonyms": []
   },
   {
     "word": "Update",
     "meaning": "হালনাগাদ করা, সমিলিত করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": [
-      "leave outdated",
-      "neglect updates"
-    ]
+    "antonyms": []
   },
   {
     "word": "Upset",
     "meaning": "বিচলিত করা, উল্টাপাল্টা করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Urge",
     "meaning": "অনুপ্রাণিত বা উদ্দীপ্ত করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Use",
     "meaning": "ব্যবহার করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": [
-      "avoid",
-      "leave unused"
-    ]
+    "antonyms": []
   },
   {
     "word": "Usurp",
     "meaning": "অন্যায়ভাবে দখল করা / জবর দখল করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Utilize",
     "meaning": "কাজে লাগানো",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Utter",
     "meaning": "উচ্চারণ করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Vacate",
     "meaning": "খালি করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Vanish",
     "meaning": "অদৃশ্য হওয়া",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": [
-      "appear",
-      "show up"
-    ]
+    "antonyms": []
   },
   {
     "word": "Vary",
     "meaning": "পরিবর্তন করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Verify",
     "meaning": "সত্যতা যাচাই করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": [
-      "doubt",
-      "question"
-    ]
+    "antonyms": []
   },
   {
     "word": "Vex",
     "meaning": "বিরক্ত করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Violate",
     "meaning": "লঙ্ঘন করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Visit",
     "meaning": "পরিদর্শন করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": [
-      "avoid",
-      "stay away"
-    ]
+    "antonyms": []
   },
   {
     "word": "Vomit",
     "meaning": "বমি করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Vote",
     "meaning": "ভোট দেওয়া",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Vow",
     "meaning": "শপথ নেওয়া",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Wait",
     "meaning": "অপেক্ষা করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": [
-      "hurry",
-      "leave immediately"
-    ]
+    "antonyms": []
   },
   {
     "word": "Wake",
     "meaning": "জাগা, জাগানো",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": [
-      "sleep",
-      "doze"
-    ]
+    "antonyms": []
   },
   {
     "word": "Warn",
     "meaning": "সতর্ক করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": [
-      "reassure",
-      "comfort"
-    ]
+    "antonyms": []
   },
   {
     "word": "Wash",
     "meaning": "ধৌত করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": [
-      "soil",
-      "dirty"
-    ]
+    "antonyms": []
   },
   {
     "word": "Watch",
     "meaning": "মনোযোগসহ দেখা/পাহারা দেওয়া",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": [
-      "ignore",
-      "look away"
-    ]
+    "antonyms": []
   },
   {
     "word": "Whisper",
     "meaning": "ফিসফিস করে কথা বলা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": [
-      "shout",
-      "speak loudly"
-    ]
+    "antonyms": []
   },
   {
     "word": "Win",
     "meaning": "জয়লাভ করা",
     "synonyms": [],
-    "indirectSynonyms": [],
     "antonyms": [
-      "lose",
-      "fail"
-    ],
-    "indirectAntonyms": [
       "lose",
       "fail"
     ]
@@ -737,1026 +453,768 @@
     "word": "Wipe",
     "meaning": "মুছা; মুছে ফেলা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Worship",
     "meaning": "পূজা বা উপাসনা করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Wring",
     "meaning": "মোচড়ানো",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Abstain",
     "meaning": "বিরত থাকা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Abolish",
     "meaning": "বিলোপ করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Acknowledge",
     "meaning": "প্রাপ্তি স্বীকার করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Allot",
     "meaning": "বরাদ্দ করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Amend",
     "meaning": "সংশোধনের মাধ্যমে উন্নতি সাধন করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Annul",
     "meaning": "বাতিল করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Approve",
     "meaning": "অনুমোদন করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Ascend",
     "meaning": "আরোহণ করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Audit",
     "meaning": "হিসাব পরীক্ষা করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Awake",
     "meaning": "জেগে ওঠা / জাগানো",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Babble",
     "meaning": "আধো আধো কথা বলা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Baffle",
     "meaning": "হতবুদ্ধি বা ব্যর্থ করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Banish",
     "meaning": "নির্বাসিত করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Bark",
     "meaning": "ঘেউ ঘেউ করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Bask",
     "meaning": "রোদ্র বা আগুন পোহানো",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Bet",
     "meaning": "বাজি রাখা বা ধরা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Bid",
     "meaning": "আদেশ করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Bid",
     "meaning": "নিলাম ডাকা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Block",
     "meaning": "বাধা দেওয়া; প্রতিহত করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Bury",
     "meaning": "কবর দেওয়া",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Carry out",
     "meaning": "পালন করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Challenge",
     "meaning": "প্রতিদ্বন্দ্বিতায় আহ্বান করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Chop",
     "meaning": "টুকরো টুকরো করে কাটা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Cheat",
     "meaning": "প্রতারণা করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Cite",
     "meaning": "উদ্ধৃত করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Compose",
     "meaning": "প্রস্তুত করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Compromise",
     "meaning": "আপোস মীমাংসা করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Confine",
     "meaning": "কারারুদ্ধ করা; অবরুদ্ধ করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Confess",
     "meaning": "দোষ স্বীকার করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Contribute",
     "meaning": "অবদান রাখা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Defy",
     "meaning": "প্রকাশ্যে বিরোধিতা করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Detect",
     "meaning": "আবিষ্কার / সনাক্ত করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Deplore",
     "meaning": "অনুশোচনা প্রকাশ করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Deform",
     "meaning": "বিকৃত করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Dishearten",
     "meaning": "নিরুৎসাহিত করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Displease",
     "meaning": "অসন্তুষ্ট করা বা বিরক্ত করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Dismay",
     "meaning": "হতাশ করা; আতঙ্কিত করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Disappoint",
     "meaning": "নিরাশ করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Dodge",
     "meaning": "ধোঁকা দেওয়া",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Drag",
     "meaning": "টানা; জমিতে মই দেওয়া",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Eject",
     "meaning": "বহিষ্কার করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Emancipate",
     "meaning": "মুক্ত করা বা মুক্তি দেওয়া",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Embrace",
     "meaning": "আলিঙ্গন করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Emphasize",
     "meaning": "জোর দেওয়া",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Entrust",
     "meaning": "বিশ্বাস স্থাপন করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Erect",
     "meaning": "খাড়া করা; নির্মাণ করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Escort",
     "meaning": "সঙ্গে করে নিয়ে যাওয়া",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Evict",
     "meaning": "উচ্ছেদ করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Exert",
     "meaning": "প্রয়োগ বা প্রদর্শন করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Expose",
     "meaning": "দৃষ্টিগোচর করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Falter",
     "meaning": "দ্বিধাপূর্ণভাবে চলা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Fetch",
     "meaning": "গিয়ে নিয়ে আসা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Facilitate",
     "meaning": "সহজতর করা; সহায়তা করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Ferry",
     "meaning": "খেয়া পারাপার করা বা হওয়া",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Feign",
     "meaning": "ভান করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Forsake",
     "meaning": "পরিত্যাগ করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Forswear",
     "meaning": "ছেড়ে দেওয়া / ত্যাগ করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Frustrate",
     "meaning": "হতাশ করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Fret",
     "meaning": "উদ্বিগ্ন হওয়া; অস্থির হওয়া",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Frown",
     "meaning": "ভ্রুকুটি করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Hamper",
     "meaning": "ব্যাহত করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Hatch",
     "meaning": "ডিমে তা দেওয়া",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Heat",
     "meaning": "গরম করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Hijack",
     "meaning": "ছিনতাই করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Hire",
     "meaning": "ভাড়া করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Horrify",
     "meaning": "আতঙ্কিত করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Hum",
     "meaning": "গুঞ্জন করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Humiliate",
     "meaning": "লজ্জা দেওয়া",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Hunt",
     "meaning": "শিকার করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Hurry",
     "meaning": "তাড়াহুড়ো করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Ignore",
     "meaning": "উপেক্ষা করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Imagine",
     "meaning": "কল্পনা করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Imitate",
     "meaning": "অনুকরণ করা / নকল করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Implement",
     "meaning": "বাস্তবায়ন করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Impose",
     "meaning": "আরোপ করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Imprison",
     "meaning": "কারারুদ্ধ করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Improve",
     "meaning": "উন্নতি করা",
     "synonyms": [
       "develop",
-      "enhance",
-      "better"
+      "enhance"
     ],
-    "indirectSynonyms": [],
     "antonyms": [
       "worsen",
       "damage"
-    ],
-    "indirectAntonyms": []
+    ]
   },
   {
     "word": "Inaugurate",
     "meaning": "উদ্বোধন করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Indicate",
     "meaning": "নির্দেশ দেওয়া",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Indulge",
     "meaning": "প্রশ্রয় দেওয়া",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Labour",
     "meaning": "পরিশ্রম করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Land",
     "meaning": "অবতরণ করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Last",
     "meaning": "টেকসই হওয়া",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Leap",
     "meaning": "লাফ দেওয়া",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Let",
     "meaning": "অনুমতি দেওয়া",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Level",
     "meaning": "সমতল করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Lie",
     "meaning": "মিথ্যা বলা",
     "synonyms": [
       "recline",
-      "rest",
-      "stretch out"
+      "rest"
     ],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Live",
     "meaning": "বাস করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Lock",
     "meaning": "তালা দেওয়া",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Look",
     "meaning": "তাকানো",
     "synonyms": [
       "watch",
-      "see",
-      "glance"
+      "see"
     ],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": [
-      "ignore",
-      "look away"
-    ]
+    "antonyms": []
   },
   {
     "word": "Loot",
     "meaning": "লুট করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Magnify",
     "meaning": "বড় করে দেখানো; বিবর্ধিত করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Manipulate",
     "meaning": "নিপুণভাবে পরিচালনা করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Manage",
     "meaning": "ব্যবস্থা করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Manufacture",
     "meaning": "উৎপাদন করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Massage",
     "meaning": "মালিশ করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Match",
     "meaning": "মানানসই হওয়া",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "March",
     "meaning": "কুচকাওয়াজ করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Market",
     "meaning": "বাজারজাত করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Medicate",
     "meaning": "ওষুধের সাহায্যে চিকিৎসা করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Merge",
     "meaning": "একীভূত করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Overcome",
     "meaning": "জয় করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Overcrowd",
     "meaning": "অতিমাত্রায় ভিড় করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Overdo",
     "meaning": "বাড়াবাড়ি করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Overdose",
     "meaning": "মাত্রাধিক্য বা অতিরিক্ত মাত্রা সেবন করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Overflow",
     "meaning": "উপচে পড়ে প্রবাহিত হওয়া",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Overload",
     "meaning": "অতিরিক্ত বোঝাই করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Overlook",
     "meaning": "উপেক্ষা করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Overrule",
     "meaning": "বাতিল করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Overtake",
     "meaning": "পিছনে ফেলে এগিয়ে যাওয়া",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Overturn",
     "meaning": "উল্টে যাওয়া",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Participate",
     "meaning": "অংশগ্রহণ করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Patronize",
     "meaning": "পৃষ্ঠপোষকতা করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Pant",
     "meaning": "হাঁপানো",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Peep",
     "meaning": "উঁকি মারা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Peel",
     "meaning": "ফলের খোসা ছাড়ানো",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Pick",
     "meaning": "তোলা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Pierce",
     "meaning": "বিদ্ধ করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Pour",
     "meaning": "ঢালা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Polish",
     "meaning": "ঘষামাজা করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Prevent",
     "meaning": "বাধা দেওয়া",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Rebuke",
     "meaning": "তিরস্কার করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   },
   {
     "word": "Realize",
     "meaning": "অনুধাবন করা",
     "synonyms": [],
-    "indirectSynonyms": [],
-    "antonyms": [],
-    "indirectAntonyms": []
+    "antonyms": []
   }
 ]
