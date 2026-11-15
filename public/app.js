@@ -1229,7 +1229,7 @@ let presentationTopics = [
 
 function renderPresentationTopics(items = presentationTopics) {
   if (!items.length) return '<p class="empty-note">কোনো Presentation Topic পাওয়া যায়নি।</p>';
-  return `<div class="presentation-grid">${items.map(item => { const i=presentationTopics.indexOf(item); return `<article class="presentation-card"><div class="word-number">PRESENTATION · ${String(i+1).padStart(2,'0')}</div><h3>${escapeHtml(item.title)}</h3><p class="presentation-bn">${escapeHtml(item.bn)}</p><p>${escapeHtml(item.paragraph||item.intro||"")}</p><button class="hub-action primary" data-presentation="${i}">Open Topic ↗</button></article>`; }).join('')}</div>`;
+  return `<div class="presentation-grid">${items.map(item => { const i=presentationTopics.indexOf(item); return `<article class="presentation-card"><div class="word-number">PRESENTATION · ${String(i+1).padStart(2,'0')}</div><h3>${escapeHtml(item.title)}</h3><p class="presentation-bn">${escapeHtml(item.bn)}</p><button class="hub-action primary" data-presentation="${i}">Open Topic ↗</button></article>`; }).join('')}</div>`;
 }
 function openPresentationTopic(index) {
   const item=presentationTopics[index]; if(!item) return;
